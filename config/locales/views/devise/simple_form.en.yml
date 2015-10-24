@@ -1,0 +1,7 @@
+en:
+  helpers:
+    submit:
+      session:
+        new: 'Login'
+      password:
+        new: 'Send Instructions'

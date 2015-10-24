@@ -1,0 +1,6 @@
+en:
+  mongoid:
+    models:
+      superadmin:
+        one: 'Institution Superadmin'
+        account: 'Institution Superadmin Account'

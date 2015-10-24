@@ -1,0 +1,7 @@
+el:
+  mongoid:
+    attributes:
+      user:
+        email: 'Email'
+        password: 'Κωδικός'
+        password_confirmation: 'Επαλήθευση κωδικού'

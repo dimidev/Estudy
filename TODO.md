@@ -1,0 +1,5 @@
+-[ ] Make Datatable Multilangage
+-[ ] Bootstrap Select Datatables make it smaller (show entries select)
+-[ ] Fix Top Right, user avatar not showing properly
+-[ ] Todo Find how translate nested attributes (association)
+-[ ] Add cancel btn to forms

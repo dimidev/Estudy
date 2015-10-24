@@ -1,0 +1,6 @@
+el:
+  mongoid:
+    models:
+      superadmin:
+        one: 'Διαχειριστή Ιδρύματος'
+        account: 'Λογαριασμός Διαχειριστή Ιδρύματος'

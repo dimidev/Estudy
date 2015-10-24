@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Estudy - <%= yield(:page_title).presence || 'SIS' %></title>
+  <meta charset="utf-8">
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= "#{controller.controller_name} #{controller.action_name}" %>" >
+
+<%= render "layouts/sidebars/sidebar" %>
+<%= render "layouts/navs/navbar" %>
+
+<main>
+  <div class="container-fluid wrapper">
+    <ol class="breadcrumb pull-right">
+      <%= render_breadcrumbs tag: :li, separator:'' %>
+    </ol>
+
+    <div class="page-header">
+      <h2><%= yield(:page_title).presence || 'SIS' %></h2>
+    </div>
+
+    <%= render 'general/flash_messages' %>
+
+    <%= yield %>
+
+  </div><!--//container-fluid-->
+
+  <footer class="container-fluid">
+    <span class="pull-right">
+      <a class="btn-scroll-top"><%= fa_icon 'arrow-up', text: t('back_to_top') %></a>
+    </span>
+
+    &copy; <%= Date.current.year %> <b>DimiDev</b>. All Right Reserved
+  </footer>
+</main>
+
+</body>
+</html>

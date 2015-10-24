@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+    <div class="alert alert-danger">
+      <b><%= t('simple_form.error_notification.form_has_errors') %><%= pluralize(resource.errors.count, 'error') %>:</b>
+      <ul>
+        <% resource.errors.full_messages.each do |err| %>
+            <li><%= err %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

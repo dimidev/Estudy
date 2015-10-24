@@ -1,0 +1,13 @@
+el:
+  mongoid:
+    models:
+      address:
+       one: 'Διεύθυνση'
+       other: 'Διευθύνσεις'
+    attributes:
+      address:
+        country: 'Χώρα'
+        city: 'Πόλη'
+        postal_code: 'Ταχυδρομικός Κώδικας'
+        address: 'Διεύθυνση'
+        primary: 'Κύρια Κατοικία'

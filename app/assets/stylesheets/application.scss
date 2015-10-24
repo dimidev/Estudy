@@ -1,0 +1,100 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+*= require font-awesome
+*= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+*= require bootstrap-datetimepicker.min
+*= require bootstrap-select.min
+*= require bootstrap-toggle.min
+*= require jquery.fileupload
+*= require jquery.fileupload-ui
+*= require simple_calendar
+*= require_self
+ */
+
+//== Import Fonts
+@font-face {
+  font-family: 'Comfortaa';
+  src:font-url('Comfortaa_Regular.ttf');
+}
+@font-face {
+  font-family: 'DroiDSans';
+  src: font-url('DroidSans.ttf');
+}
+@font-face {
+  font-family: 'Lato';
+  src: font-url('Lato-Regular.ttf');
+}
+@font-face {
+  font-family: 'Roboto';
+  src: font-url('Roboto-Regular.ttf');
+}
+
+@import 'flat-colors';
+@import 'bootstrap-sprockets';
+@import "bootstrap-vars";
+@import 'bootstrap';
+@import 'bootstrap-new';
+@import 'icheck/square/blue';
+@import 'datatables';
+@import 'simple_calendar_edit';
+
+//== General Style
+html, body {
+  height: 100%;
+}
+
+//== Devise
+.devise {
+  main{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+
+    #logo {
+      margin-bottom: 20px;
+      box-shadow: $box-shadow;
+    }
+
+    #copyright {
+      margin-top: 50px;
+      img {
+        display: inline-block;
+        height: 150px;
+        position: relative;
+      }
+    }
+  }//.wrapper
+
+  &.institutions main{
+    margin-top: 20px;
+    position: relative;
+    top: unset;
+    transform: unset;
+  }
+}//.devise
+
+// Avatar
+#avatar-img{
+  width: 100%;
+  max-width: 180px;
+}
+#avatar-upload {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}

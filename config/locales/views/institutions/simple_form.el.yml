@@ -1,0 +1,6 @@
+el:
+  helpers:
+    submit:
+      institution:
+        create: 'Δημιουργία Ιδρύματος'
+        update: 'Ενημέρωση Ιδρύματος'

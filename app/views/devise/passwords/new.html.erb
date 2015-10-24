@@ -1,0 +1,28 @@
+<% title t('devise.passwords.new.title') %>
+
+<div class="col-xs-10 col-sm-8 col-md-6 col-sm-offset-2 col-xs-offset-1 col-md-offset-3">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading text-center">
+      <h2 class="panel-title"><%= t 'devise.passwords.new.title' %></h2>
+    </div>
+    <div class="panel-body">
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
+
+          <%= f.input :email, label: false, wrapper: :vertical_input_group do %>
+              <span class="input-group-addon"><%= fa_icon'envelope' %></span>
+              <%= f.input_field :email, placeholder: t('simple_form.labels.defaults.email'), class: "form-control" %>
+          <% end %>
+
+          <div class="form-actions">
+            <%= f.button :submit, t('helpers.submit.password.new') , class:'btn-primary btn-block' %>
+          </div>
+        <% end %>
+
+    </div><!--//panel-body-->
+    <div class="panel-footer text-center">
+      <%= render 'devise/shared/links' %>
+    </div><!--//panel-footer-->
+  </div><!--//panel-->
+</div><!--/col-->

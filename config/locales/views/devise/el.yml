@@ -1,0 +1,11 @@
+el:
+  devise:
+    sessions:
+      new:
+        title: 'Είσοδος Χρήστη'
+    registrations:
+      new:
+        title: 'Εγγραφή Χρήστη'
+    passwords:
+      new:
+        title: 'Επαναφορά Κωδικού'

@@ -1,0 +1,12 @@
+el:
+  mongoid:
+    models:
+      institution:
+        one: 'Ιδρυμα'
+        other: 'Ιδρύματα'
+    attributes:
+      institution:
+        title: 'Τίτλος'
+        short_title: 'Σύντομος Τίτλος'
+        foundation_date: 'Έτος Ιδρύσεως'
+        logo: 'Λογότυπο'

@@ -1,0 +1,68 @@
+<% title t('.title') %>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4 class="panel-title"><%= t('.title') %></h4>
+  </div><!--//panal-heading-->
+  <div class="panel-body">
+    <%= simple_nested_form_for @institution, url: institution_path do |f| %>
+        <%= render 'general/form_errors', resource: @institution %>
+
+        <div class="row">
+          <div class="col-md-4">
+            <fieldset>
+              <legend><%= t('mongoid.attributes.institution.logo') %></legend>
+              <%= image_tag f.object.institution_logo.url, id:'avatar-img', class:'center-block img-responsive img-rounded' %>
+              <div class="row">
+                  <%= f.input :institution_logo, label: false, wrapper_html:{class:'col-sm-6'} do %>
+                    <span class="btn btn-primary btn-block">
+                      <%= fa_icon'upload',text: t('img_upload.upload') %>
+                      <%= f.input_field :institution_logo, id:'avatar-upload' %>
+                    </span>
+                  <% end %>
+                <div class="col-sm-6">
+                  <a id="avatar-delete" class="btn btn-danger btn-block"><%= fa_icon'trash', text: t('img_upload.delete') %></a>
+                </div><!--//col-->
+              </div><!--//row-->
+            </fieldset>
+          </div><!--//col-->
+          <div class="col-md-8">
+            <%= f.input :title %>
+            <%= f.input :short_title %>
+            <%= f.input :foundation_date %>
+          </div><!--//col-->
+        </div><!--//row-->
+
+        <div class="row">
+          <div class="col-md-6">
+            <legend><%= t('mongoid.models.address.one') %></legend>
+            <%= f.simple_fields_for :address do |a| %>
+                <%= a.input :country, include_blank: false, priority: ['GR'], input_html: {data: {size: 10, 'live-search': 'true'}} %>
+                <%= a.input :city %>
+                <%= a.input :postal_code %>
+                <%= a.input :address %>
+            <% end %>
+          </div><!--//col-->
+
+          <div class="col-md-6">
+            <legend><%= t('mongoid.models.superadmin.account') %></legend>
+            <%= f.simple_fields_for :superadmin do |s| %>
+                <%= s.input :email %>
+                <%= s.input :password %>
+                <%= s.input :password_confirmation %>
+            <% end %>
+          </div><!--//col-->
+        </div><!--//row-->
+
+  </div><!--//panal-body-->
+  <div class="panel-footer">
+        <%= f.button :submit, class:'btn-success' %>
+    <% end %>
+  </div><!--//panal-footer-->
+</div><!--//panal-->
+
+
+
+
+
+

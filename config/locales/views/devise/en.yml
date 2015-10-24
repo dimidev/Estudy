@@ -1,0 +1,11 @@
+en:
+  devise:
+    sessions:
+      new:
+        title: 'User Login'
+    registrations:
+      new:
+        title: 'User Registration'
+    passwords:
+      new:
+        title: 'fsdfds'

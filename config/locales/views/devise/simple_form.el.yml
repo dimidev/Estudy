@@ -1,0 +1,7 @@
+el:
+  helpers:
+    submit:
+      session:
+        new: 'Έίσοδος'
+      password:
+        new: 'Αποστολή οδηγιών'
