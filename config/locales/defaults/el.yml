@@ -1,4 +1,14 @@
 el:
+  back_to_top: 'Πίσω στη κορυφή'
   img_upload:
     upload: 'Επιλογή'
     delete: 'Διαγραφή'
+  btn:
+    cancel: 'Άκυρο'
+    delete: 'Διαγραφή'
+  datatable:
+    options: 'Επιλογές'
+    edit: 'Επεξεργασία'
+    delete: 'Διαγραφή'
+  confirmation:
+    delete: 'Είστε σίγουροι ?'

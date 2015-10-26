@@ -1,0 +1,13 @@
+.table.dataTable{
+  border-collapse: collapse !important;
+}
+
+.datatable, .dataTables_scroll{
+  .no-sort{
+    padding-right: 8px !important;
+  }
+}
+
+.dataTables_empty{
+  text-align: center;
+}

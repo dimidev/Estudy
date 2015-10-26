@@ -1,0 +1,17 @@
+<% title t('.title') %>
+
+<%= render 'general/form_errors', resource: @superadmin %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= simple_form_for @superadmin, url: superadmin_path do |f| %>
+        <%= f.input :email %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation %>
+  </div><!--//panel-body-->
+  <div class="panel-footer">
+    <%= f.button :submit, class:'btn-success' %>
+    <%= cancel_btn(root_path) %>
+    <% end %>
+  </div><!--//panel-footer-->
+</div><!--//panel-->

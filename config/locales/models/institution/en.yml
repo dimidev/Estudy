@@ -3,7 +3,6 @@ en:
     models:
       institution:
         one: 'Institution'
-        other: 'Institutions'
     attributes:
       institution:
         logo: 'Institution Logo'

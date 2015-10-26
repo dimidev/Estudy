@@ -3,10 +3,19 @@ el:
     models:
       institution:
         one: 'Ιδρυμα'
-        other: 'Ιδρύματα'
     attributes:
       institution:
         title: 'Τίτλος'
         short_title: 'Σύντομος Τίτλος'
         foundation_date: 'Έτος Ιδρύσεως'
-        logo: 'Λογότυπο'
+        institution_logo: 'Λογότυπο'
+        institution_banner: 'Banner'
+    success:
+      models:
+        course:
+          update: 'Οι πληροφορίες του Ιδρύματος αποθηκεύτηκαν επιτυχώς'
+    errors:
+      models:
+        course:
+          create: 'Το Ιδρυμα δεν δημιουργήθηκε επιτυχώς'
+          update: 'Οι πληροφορίες του Ιδρύματος δεν αποθηκεύτηκαν επιτυχώς'

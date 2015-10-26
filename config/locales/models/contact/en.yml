@@ -1,0 +1,8 @@
+en:
+  mongoid:
+    models:
+      contact:
+       one: 'Contact'
+    attributes:
+      contact:
+        value: 'Value'

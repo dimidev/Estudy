@@ -1,0 +1,28 @@
+<% if %w(new create).include?(controller.action_name)
+     title(t('departments.new.title'))
+   else
+     title(t('departments.edit.title'))
+   end
+%>
+
+<%= render 'general/form_errors', resource: @department %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+
+  </div><!--//pane-heading-->
+  <div class="panel-body">
+
+    <%= simple_nested_form_for @department do |f| %>
+
+        <div class="tab-content">
+
+        </div><!--//tab-content-->
+
+  </div><!--//pane-body-->
+  <div class="panel-footer">
+        <%= f.button :submit, class:'btn-success' %>
+        <%= cancel_btn(departments_path) %>
+    <% end %>
+  </div><!--//pane-footer-->
+</div><!--//panel-->

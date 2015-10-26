@@ -1,0 +1,29 @@
+<% title t('institutions.edit.title') %>
+
+<%= render 'general/form_errors', resource: @institution %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <ul class="nav nav-pills">
+      <li role="presentation" class="active"><a href="#general" role="tab" data-toggle="tab"><%= fa_icon'user', text: t('mongoid.models.institution.one')%></a></li>
+      <li role="presentation"><a href="#address" role="tab" data-toggle="tab"><%= fa_icon'globe', text: t('mongoid.models.address.one')%></a></li>
+      <li role="presentation"><a href="#contact" role="tab" data-toggle="tab"><%= fa_icon'phone', text: t('mongoid.models.contact.one')%></a></li>
+    </ul>
+  </div><!--//pane-heading-->
+  <div class="panel-body">
+
+    <%= simple_nested_form_for @institution, url: institution_path do |f| %>
+
+        <div class="tab-content">
+          <%= render 'institutions/tabs/general', f: f %>
+          <%= render 'institutions/tabs/address', f: f %>
+          <%= render 'institutions/tabs/contact', f: f %>
+        </div><!--//tab-content-->
+
+  </div><!--//pane-body-->
+  <div class="panel-footer">
+        <%= f.button :submit, class:'btn-success' %>
+        <%= cancel_btn(root_path) %>
+    <% end %>
+  </div><!--//pane-footer-->
+</div><!--//panel-->

@@ -1,1 +1,6 @@
 en:
+  institutions:
+    new:
+      title: 'Create Institution'
+    edit:
+      title: 'Edit Institution'

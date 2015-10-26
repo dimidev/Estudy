@@ -6,4 +6,28 @@
   .panel-title{
     font-size: 20px;
   }
-}
+}//.panel
+
+//== Fieldset
+fieldset {
+  border: 1px solid $medium-gray;
+  border-radius: $border-radius-base;
+  padding: 10px;
+  margin-bottom: 20px;
+
+  legend {
+    border: 0;
+    padding: 0 10px;
+    width: auto;
+    margin-bottom: 0;
+  }
+}//fieldset
+
+//== Forms
+.form-control {
+  box-shadow: none;
+
+  &:focus {
+    box-shadow: none;
+  }
+}//.form-control

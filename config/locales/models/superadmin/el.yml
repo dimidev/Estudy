@@ -4,3 +4,12 @@ el:
       superadmin:
         one: 'Διαχειριστή Ιδρύματος'
         account: 'Λογαριασμός Διαχειριστή Ιδρύματος'
+        account_mini: 'Λογαριασμός Διαχειριστή'
+    success:
+      models:
+        superadmin:
+          update: 'Η αποθήκευση στοιχείων Διαχειριστή ήταν επιτυχής'
+    errors:
+      models:
+        superadmin:
+          update: 'Η αποθήκευση στοιχείων Διαχειριστή δεν ήταν επιτυχής'

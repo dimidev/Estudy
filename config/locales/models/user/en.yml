@@ -1,6 +1,4 @@
 en:
   mongoid:
-    models:
-      address:
-       one: 'Address'
-       other: 'Addresses'
+    attributes:
+      user:

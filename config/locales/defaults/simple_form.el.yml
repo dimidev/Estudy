@@ -9,8 +9,18 @@ el:
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Please review the problems below:"
+      default_message: "Παρακαλώ ελέγξτε τα παρακάτω σφάλματα:"
+      form_has_errors: "Η φόρμα περιέχει "
+      error:
+        one: 'σφάλμα'
+        other: '%{count} σφάλματα'
     labels:
       defaults:
         email: 'Email'
         password: 'Κωδικός'
+    nested_btn:
+      add: 'Προσθήκη %{model}'
+      remove: 'Διαγραφή %{model}'
+      defaults:
+        add: 'Προσθήκη'
+        remove: 'Διαγραφή'

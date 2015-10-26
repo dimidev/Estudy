@@ -4,3 +4,4 @@ en:
       superadmin:
         one: 'Institution Superadmin'
         account: 'Institution Superadmin Account'
+        account_mini: 'Institution Superadmin'

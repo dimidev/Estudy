@@ -1,0 +1,10 @@
+el:
+  header:
+    user:
+      my_account: 'Λογαριασμός Μου'
+      log_out: 'Αποσύνδεση'
+    languages:
+      choose_language: 'Επιλέξτε γλώσσα'
+  languages:
+    el: 'Ελληνικά'
+    en: 'Αγγλικά'

@@ -1,0 +1,17 @@
+<% title t('.title') %>
+
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <table id="departments-table" class="datatable table table-hover table-striped" data-source="<%= departments_path(format: :json) %>">
+      <thead>
+      <tr>
+        <th><%= t('mongoid.attributes.department.short_title') %></th>
+        <th><%= t('mongoid.attributes.department.foundation_date') %></th>
+        <th class="no-sort text-center"><%= t('datatable.options') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div><!--//panel-body-->
+</div><!--//panel-->

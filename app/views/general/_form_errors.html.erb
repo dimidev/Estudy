@@ -1,6 +1,6 @@
 <% if resource.errors.any? %>
     <div class="alert alert-danger">
-      <b><%= t('simple_form.error_notification.form_has_errors') %><%= pluralize(resource.errors.count, 'error') %>:</b>
+      <b><%= t('simple_form.error_notification.form_has_errors') %><%= t 'simple_form.error_notification.error', count: resource.errors.count %>:</b>
       <ul>
         <% resource.errors.full_messages.each do |err| %>
             <li><%= err %></li>

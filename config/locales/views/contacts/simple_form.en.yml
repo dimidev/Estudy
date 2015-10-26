@@ -1,0 +1,5 @@
+en:
+  simple_form:
+    prompts:
+      contact:
+        type: 'Choose contact type'

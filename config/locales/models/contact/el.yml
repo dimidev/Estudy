@@ -1,0 +1,13 @@
+el:
+  mongoid:
+    models:
+      contact:
+       one: 'Επικοινωνία'
+    attributes:
+      contact:
+        type: 'Τύπος Επικοινωνίας'
+        value: 'Περιεχόμενο'
+  enumerize:
+    contact:
+      type:
+        phone: 'Τηλέφωνο'

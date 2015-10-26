@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # MongoDB gems
 gem 'mongoid'
 gem 'bson_ext'
-gem 'enumerize'
 
 # Style gems and helpers
 gem 'bootstrap-sass'
@@ -25,6 +24,9 @@ gem "breadcrumbs_on_rails"
 gem 'simple_form'
 gem 'nested_form'
 gem 'best_in_place'
+
+# Enumerize fields
+gem 'enumerize'
 
 # Displays chart
 gem 'chartkick'

@@ -1,0 +1,8 @@
+el:
+  departments:
+    index:
+      title: 'Προβολή Τμημάτων'
+    new:
+      title: 'Δημιουργία Τμήματος'
+    edit:
+      title: 'Επεξεργασία Τμήματος'

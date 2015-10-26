@@ -1,0 +1,8 @@
+en:
+  departments:
+    index:
+      title: 'View Departments'
+    new:
+      title: 'New Department'
+    new:
+      title: 'Edit Department'

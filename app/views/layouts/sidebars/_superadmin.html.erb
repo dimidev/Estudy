@@ -1,0 +1,20 @@
+<li class="has-sub">
+  <a>
+    <%= fa_icon('institution',text: t('mongoid.models.institution.one')) %>
+    <%= fa_icon 'caret-down', class:'pull-right' %>
+  </a>
+  <ul class="sub-menu">
+    <li><%= link_to t('institutions.edit.title'), edit_institution_path %></li>
+  </ul>
+</li>
+
+<li class="has-sub">
+  <a>
+    <%= fa_icon('institution',text: t('mongoid.models.department.other')) %>
+    <%= fa_icon 'caret-down', class:'pull-right' %>
+  </a>
+  <ul class="sub-menu">
+    <li><%= link_to t('departments.new.title'), new_department_path %></li>
+    <li><%= link_to t('departments.index.title'), departments_path %></li>
+  </ul>
+</li>

@@ -1,0 +1,13 @@
+<aside id="sidebar">
+  <div id="nav-institute-logo" class="text-center">
+    <%= image_tag Institution.first.institution_logo.url, class:'img-rounded center-block' %>
+  </div>
+
+  <ul class="nav">
+    <li>
+      <%= link_to fa_icon('laptop',text: t('sidebar.dashboard')), root_path %>
+    </li>
+
+    <%= render "layouts/sidebars/#{current_user.role}" %>
+  </ul>
+</aside>

@@ -68,7 +68,7 @@ $(function(){
 
     // Delete logo or avatar
     $('#avatar-delete').click(function(){
-        $('#avatar-img').removeAttr('src');
+        $('#avatar-img').removeAttr('src').removeAttr('alt');
         $('#avatar-upload').val('');
     });
 

@@ -1,0 +1,10 @@
+<div role="tabpanel" class="tab-pane fade in" id="address">
+
+  <%= f.simple_fields_for :address do |a| %>
+      <%= a.input :country, include_blank: false, priority: ['GR'], input_html: {data: {size: 10, 'live-search': 'true'}} %>
+      <%= a.input :city %>
+      <%= a.input :postal_code %>
+      <%= a.input :address %>
+  <% end %>
+
+</div><!--//general-->

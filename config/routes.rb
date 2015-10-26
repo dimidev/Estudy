@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   mount Ckeditor::Engine => '/ckeditor'
 
   scope ':locale', locale: /#{I18n.available_locales.join('|')}/ do
@@ -17,7 +16,10 @@ Rails.application.routes.draw do
       get 'home', as: :dashboard_home
     end
 
-    resource :institution
+    resource :institution, except: :destroy
+    resource :superadmin, only: [:edit, :update]
+
+    resources :departments
 
     get 'users/sign_out', as: :logout
   end

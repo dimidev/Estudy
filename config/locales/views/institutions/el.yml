@@ -2,3 +2,7 @@ el:
   institutions:
     new:
       title: 'Δημιουργία Ιδρύματος'
+    edit:
+      title: 'Επεξεργασία Ιδρύματος'
+      tabs:
+        general: 'Γενικά'

@@ -5,3 +5,15 @@ el:
         email: 'Email'
         password: 'Κωδικός'
         password_confirmation: 'Επαλήθευση κωδικού'
+    success:
+      models:
+        user:
+          create: 'Η εγγραφή %{model} <b>%{name}</b> ήταν επιτυχής'
+          update: 'Η αποθήκευση δεδομένων %{model} <b>%{name}</b> ήταν επιτυχής'
+          destroy: 'Η διαγραφή %{model} <b>%{name}</b> ήταν επιτυχής'
+    errors:
+      models:
+        user:
+          create: 'Η εγγραφή %{model} δεν ήταν επιτυχής'
+          update: 'Η αποθήκευση δεδομένων %{model} δεν ήταν επιτυχής'
+          destroy: 'Η διαγραφή %{model} <b>%{name}</b> δεν ήταν επιτυχής'

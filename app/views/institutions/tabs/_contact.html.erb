@@ -1,0 +1,19 @@
+<div role="tabpanel" class="tab-pane fade in" id="contact">
+
+  <div class="form-group">
+    <%= add_nested_resource f, :contacts, '.contacts' %>
+  </div>
+
+  <div class="contacts">
+      <%= f.simple_fields_for :contacts, defaults:{label: false} do |c| %>
+        <div class="row">
+          <%= c.input :type, prompt: t('simple_form.prompts.contact.type'),wrapper_html:{class:'col-md-5'} %>
+          <%= c.input :value, placeholder: t('mongoid.attributes.contact.value'), wrapper_html:{class:'col-md-5'} %>
+          <div class="col-md-2 text-center">
+            <%= remove_nested_resource c, content: false %>
+          </div>
+        </div><!--//row-->
+      <% end %>
+  </div><!--//contacts-->
+
+</div><!--//contact-->

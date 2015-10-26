@@ -1,0 +1,8 @@
+en:
+  mongoid:
+    models:
+      department:
+        one: 'Department'
+        other: 'Departments'
+    attributes:
+      department:

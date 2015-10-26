@@ -1,0 +1,11 @@
+el:
+  mongoid:
+    models:
+      department:
+        one: 'Τμήμα'
+        other: 'Τμήματα'
+    attributes:
+      department:
+        title: 'Τίτλος'
+        short_title: 'Σύντομος Τίτλος'
+        foundation_date: 'Ημερομηνία Ιδρύσεως'

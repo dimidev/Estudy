@@ -1,1 +1,7 @@
 en:
+  datatable:
+    options: 'Options'
+    edit: 'Edit'
+    delete: 'Delete'
+  confirmation:
+    delete: 'Are you sure ?'
