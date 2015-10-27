@@ -16,12 +16,7 @@ class Institution
                             path:":rails_root/public/system/:attachment/:style/:basename.:extension",
                             default_url: 'institution.png'
 
-  has_mongoid_attached_file :institution_banner, style:{medium:'150x150',thumb:'60x60'},
-                            url:"/system/:attachment/:style/:basename.:extension",
-                            path:":rails_root/public/system/:attachment/:style/:basename.:extension"
-
   validates_attachment :institution_logo, content_type: {content_type: /\Aimage\/.*\Z/}, size: {less_than: 2.megabytes}
-  validates_attachment :institution_banner, content_type: {content_type: /\Aimage\/.*\Z/}, size: {less_than: 2.megabytes}
 
   embeds_one :address, autobuild: true
   embeds_many :contacts

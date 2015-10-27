@@ -1,0 +1,8 @@
+en:
+  mongoid:
+    models:
+      professor:
+        one: 'Professor'
+        other: 'Professors'
+    attributes:
+      professor:

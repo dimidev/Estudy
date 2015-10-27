@@ -1,0 +1,21 @@
+<% title t('.title') %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to fa_icon('plus', text: t('professors.new.title')), new_department_professor_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' %>
+    <h2 class="panel-title"><%= t('mongoid.models.professor.other') %></h2>
+  </div><!--//panel-heading-->
+  <div class="panel-body">
+    <table id="professors-table" class="datatable table table-hover table-striped" data-source="<%= department_professors_path(params[:department_id], format: :json) %>">
+      <thead>
+      <tr>
+        <th><%= t('mongoid.attributes.user.name') %></th>
+        <th><%= t('mongoid.attributes.user.lastname') %></th>
+        <th class="no-sort text-center"><%= t('datatable.options') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div><!--//panel-body-->
+</div><!--//panel-->

@@ -9,14 +9,20 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-
+    <ul class="nav nav-pills">
+      <li role="presentation" class="active"><a href="#general" role="tab" data-toggle="tab"><%= fa_icon'user', text: t('mongoid.models.department.one')%></a></li>
+      <li role="presentation"><a href="#address" role="tab" data-toggle="tab"><%= fa_icon'globe', text: t('mongoid.models.address.one')%></a></li>
+      <li role="presentation"><a href="#contact" role="tab" data-toggle="tab"><%= fa_icon'phone', text: t('mongoid.models.contact.one')%></a></li>
+    </ul>
   </div><!--//pane-heading-->
   <div class="panel-body">
 
     <%= simple_nested_form_for @department do |f| %>
 
         <div class="tab-content">
-
+          <%= render 'departments/tabs/general', f: f %>
+          <%= render 'general/tabs/address', f: f %>
+          <%= render 'general/tabs/contact', f: f %>
         </div><!--//tab-content-->
 
   </div><!--//pane-body-->

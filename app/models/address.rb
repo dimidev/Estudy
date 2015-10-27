@@ -9,6 +9,7 @@ class Address
 
   validates_presence_of :country, :city, :postal_code, :address
 
-  embedded_in :institution
+  embedded_in :institution, autobuild: true
   embedded_in :department
+  embedded_in :admin
 end

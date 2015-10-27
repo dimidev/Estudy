@@ -1,0 +1,23 @@
+<div role="tabpanel" class="tab-pane active fade in" id="general">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'users/forms/avatar', f: f %>
+    </div><!--//col-->
+
+    <div class="col-md-9">
+      <fieldset>
+        <legend><%= t('legends.user.academic_informations') %></legend>
+        <div class="row">
+          <%= f.association :studies_programme, label_method: :diploma_title, include_blank: false, wrapper_html:{ class:'col-md-6' } %>
+          <%= f.input :stc, readonly: true, wrapper_html:{ class:'col-md-6' } %>
+          <%= f.input :semester, wrapper_html:{ class:'col-md-6' } %>
+        </div><!--//row-->
+      </fieldset>
+
+      <%= render 'users/forms/personal', f: f %>
+      <%= render 'users/forms/legal', f: f %>
+      <%= render 'users/forms/login_account', f: f %>
+
+    </div><!--//col-->
+  </div><!--//row-->
+</div><!--//profile-->

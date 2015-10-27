@@ -1,0 +1,8 @@
+<fieldset>
+  <legend><%= t('legends.user.login_credentials') %></legend>
+  <%= f.input :email %>
+  <div class="row">
+    <%= f.input :password, wrapper_html:{ class:'col-md-6' } %>
+    <%= f.input :password_confirmation, wrapper_html:{ class:'col-md-6' } %>
+  </div><!--//row-->
+</fieldset>

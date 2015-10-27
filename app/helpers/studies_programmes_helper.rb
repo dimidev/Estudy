@@ -1,0 +1,2 @@
+module StudiesProgrammesHelper
+end

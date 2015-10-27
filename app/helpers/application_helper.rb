@@ -32,7 +32,7 @@ module ApplicationHelper
     if user.role? :superadmin
       send("edit_#{user.model_name.singular}_path")
     else
-      send("edit_#{user.model_name.singular}_path(#{user})")
+      send("edit_#{user.model_name.singular}_path", user)
     end
   end
 

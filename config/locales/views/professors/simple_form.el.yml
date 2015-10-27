@@ -1,0 +1,10 @@
+el:
+  simple_form:
+    labels:
+      professor:
+        department_ids: 'Τμήματα'
+  helpers:
+    submit:
+      professor:
+        create: 'Εγγραφή Καθηγητή'
+        update: 'Ενημέρωση Καθηγητή'

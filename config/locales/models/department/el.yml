@@ -9,3 +9,21 @@ el:
         title: 'Τίτλος'
         short_title: 'Σύντομος Τίτλος'
         foundation_date: 'Ημερομηνία Ιδρύσεως'
+        department_logo: 'Λογότυπο Τμήματος'
+        active: 'Ενεργό'
+        not_active: 'Μη Ενεργό'
+    success:
+      models:
+        department:
+          create: 'Το Τμήμα <b>%{title}</b> δημιουργήθηκε με επιτυχία'
+          update: 'Τα στοιχεία του Τμήματος <b>%{title}</b> αποθηκεύτηκαν επιτυχώς'
+          destroy: 'Το Τμήμα <b>%{title}</b> διαγράφηκε με επιτυχία'
+    errors:
+      models:
+        department:
+          create: 'Το Ιδρυμα δεν δημιουργήθηκε επιτυχώς'
+          update: 'Τα στοιχεία του Τμήματος δεν αποθηκεύτηκαν επιτυχώς'
+          destroy: 'Δεν πραγματοποιήθηκε η διαγραφή του Τμήματος <b>%{title}</b>'
+  legends:
+    department:
+      other_options: 'Άλλες Επιλογές'

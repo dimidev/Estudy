@@ -1,0 +1,5 @@
+el:
+  helpers:
+    submit:
+      admin:
+        update: 'Ενημέρωση Διαχειριστή'

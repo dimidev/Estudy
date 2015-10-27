@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   mount Ckeditor::Engine => '/ckeditor'
 
   scope ':locale', locale: /#{I18n.available_locales.join('|')}/ do
@@ -19,7 +20,12 @@ Rails.application.routes.draw do
     resource :institution, except: :destroy
     resource :superadmin, only: [:edit, :update]
 
-    resources :departments
+    resources :departments, shallow: true do
+      resources :admins
+      resources :professors
+      resources :students
+      resources :studies_programmes
+    end
 
     get 'users/sign_out', as: :logout
   end

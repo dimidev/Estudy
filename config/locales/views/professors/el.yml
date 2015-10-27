@@ -1,0 +1,10 @@
+el:
+  professors:
+    index:
+      title: 'Προβολή Καθηγητών'
+    new:
+      title: 'Εγγραφή Καθηγητή'
+    show:
+      title: 'Προβολή Καθηγητή'
+    edit:
+      title: 'Επεξεργασία Καθηγητή'

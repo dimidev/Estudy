@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Datatable
+  extend Enumerize
   # Include default devise modules. Others available are:
   # :confirmable,  and :omniauthable,
   devise :database_authenticatable, :recoverable, :rememberable,
@@ -46,6 +47,17 @@ class User
   field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   field :locked_at,       type: Time
 
+  ## Personal Informations
+  field :name,          type: String
+  field :lastname,      type: String
+  field :gender
+  enumerize :gender, in: [:male, :female], default: :male
+  field :birthdate,     type: Date
+
+  ## Legal Informations
+  field :nic, type: String
+  field :trn, type: String
+
   has_mongoid_attached_file :user_avatar, style:{medium:'150x150',thumb:'60x60'},
                             url:"/system/:attachment/:style/:basename.:extension",
                             path:":rails_root/public/system/:attachment/:style/:basename.:extension",
@@ -53,10 +65,15 @@ class User
 
   validates_attachment :user_avatar, content_type: {content_type: /\Aimage\/.*\Z/}, size: {less_than: 2.megabytes}
   validates :email, presence: true, format: {with: Devise::email_regexp}
-  validates_presence_of :name, :lastname, :gender, :birthdate, unless: lambda{ self.role? :superadmin }
+  validates_presence_of :name, :lastname, :gender, :birthdate, unless: lambda{ |obj| obj.role? :superadmin }
   validates_presence_of :password, on: :create
   validates_confirmation_of :password, unless: lambda { self.password.blank? || self.password.nil? }
 
+  embeds_many :addresses
+  embeds_many :contacts
+  embeds_many :permisions
+
+  accepts_nested_attributes_for :addresses, :contacts, allow_destroy: true, reject_if: :all_blank
 
   def fullname
     "#{self.name} #{self.lastname}"

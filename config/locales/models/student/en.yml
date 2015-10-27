@@ -1,0 +1,9 @@
+en:
+  mongoid:
+    models:
+      student:
+        one: 'Student'
+        other: 'Students'
+    attributes:
+      student:
+        stc: 'Student Code'

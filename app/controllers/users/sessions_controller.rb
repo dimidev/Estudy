@@ -34,7 +34,7 @@ class Users::SessionsController < Devise::SessionsController
   def failure
     respond_to do |format|
       flash.now[:alert] = I18n.t('devise.failure.invalid')
-      format.js {render 'login_failure.js.erb'}
+      format.js {render 'login_failure.destroy.js.erb'}
     end
   end
 

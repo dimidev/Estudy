@@ -1,0 +1,10 @@
+el:
+  mongoid:
+    models:
+      student:
+        one: 'Φοιτητή'
+        other: 'Φοιτητές'
+    attributes:
+      student:
+        stc: 'ΑΕΜ'
+        semester: 'Εξάμηνο'

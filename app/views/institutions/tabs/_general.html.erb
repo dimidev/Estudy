@@ -17,22 +17,6 @@
           </div><!--//col-->
         </div><!--//row-->
       </fieldset>
-
-      <fieldset>
-        <legend><%= t('mongoid.attributes.institution.institution_banner') %></legend>
-        <%= image_tag f.object.institution_banner.url(:medium), id:'avatar-img', class:'center-block img-responsive img-rounded' %>
-        <div class="row">
-          <%= f.input :institution_logo, label: false, wrapper_html:{class:'col-sm-6'} do %>
-                    <span class="btn btn-primary btn-block">
-                      <%= fa_icon'upload',text: t('img_upload.upload') %>
-                      <%= f.input_field :institution_banner, id:'avatar-upload' %>
-                    </span>
-          <% end %>
-          <div class="col-sm-6">
-            <a id="avatar-delete" class="btn btn-danger btn-block"><%= fa_icon'trash', text: t('img_upload.delete') %></a>
-          </div><!--//col-->
-        </div><!--//row-->
-      </fieldset>
     </div><!--//col-->
 
     <div class="col-md-9">
@@ -41,8 +25,5 @@
       <%= f.input :foundation_date %>
     </div><!--//col-->
   </div><!--//row-->
-
-
-
 
 </div><!--//general-->

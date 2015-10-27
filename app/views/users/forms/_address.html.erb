@@ -1,0 +1,25 @@
+<div role="tabpanel" class="tab-pane fade" id="address">
+  <div class="form-group">
+    <%= add_nested_resource(f, :addresses, '.addresses') %>
+  </div>
+
+  <div class="addresses">
+
+      <%= f.simple_fields_for :addresses do |a| %>
+        <div class="well">
+          <div class="row">
+            <%= a.input :country, include_blank: false, priority: ['GR'], input_html: {data: {size: 10, 'live-search': 'true'}}, wrapper_html:{class:'col-md-6'} %>
+            <%= a.input :city, wrapper_html:{class:'col-md-6'} %>
+            <%= a.input :postal_code, wrapper_html:{class:'col-md-6'} %>
+            <%= a.input :address, wrapper_html:{class:'col-md-6'} %>
+          </div><!--//row-->
+
+          <%= a.input :primary, as: :boolean, inline_label: t('mongoid.attributes.address.primary'), input_html:{class:'icheck'} %>
+
+          <%= remove_nested_resource(a)%>
+        </div><!--//well-->
+      <% end %>
+
+  </div><!--//addresses-->
+
+</div><!--//address-->

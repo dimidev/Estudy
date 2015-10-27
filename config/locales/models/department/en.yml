@@ -6,3 +6,15 @@ en:
         other: 'Departments'
     attributes:
       department:
+    success:
+      models:
+        department:
+          create: 'Department <b>%{title}</b> is created'
+          update: 'Department <b>%{title}</b> is updated'
+          destroy: 'Department <b>%{title}</b> is deleted'
+    errors:
+      models:
+        department:
+          create: 'Department is not created'
+          update: 'Department is not updated'
+          destroy: 'Department <b>%{title}</b> is not deleted'

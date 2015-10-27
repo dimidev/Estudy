@@ -1,6 +1,6 @@
 el:
   helpers:
     submit:
-      institution:
-        create: 'Δημιουργία Ιδρύματος'
-        update: 'Ενημέρωση Ιδρύματος'
+      department:
+        create: 'Δημιουργία Τμήματος'
+        update: 'Ενημέρωση Τμήματος'

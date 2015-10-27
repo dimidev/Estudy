@@ -6,3 +6,12 @@ en:
     attributes:
       institution:
         logo: 'Institution Logo'
+    success:
+      models:
+        institution:
+          update: 'Institution is updated'
+    errors:
+      models:
+        institution:
+          create: 'Institution is not created'
+          update: 'Institution is not updated'

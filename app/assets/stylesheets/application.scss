@@ -322,6 +322,27 @@ main{
   opacity: 0;
 }
 
+.checkbox label{
+  line-height: 22px;
+
+  &:first-of-type{
+    padding-left: unset;
+  }
+}
+
+//== Bootstrap Select
+.dataTables_length .bootstrap-select{
+  width: auto !important;
+}
+
+th .bootstrap-select{
+  width: 100% !important;
+
+  .dropdown-menu{
+    max-height: 300px !important;
+  }
+}
+
 //== Footer
 footer{
   padding: 15px;

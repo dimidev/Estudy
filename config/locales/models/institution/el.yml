@@ -12,10 +12,10 @@ el:
         institution_banner: 'Banner'
     success:
       models:
-        course:
+        institution:
           update: 'Οι πληροφορίες του Ιδρύματος αποθηκεύτηκαν επιτυχώς'
     errors:
       models:
-        course:
+        institution:
           create: 'Το Ιδρυμα δεν δημιουργήθηκε επιτυχώς'
           update: 'Οι πληροφορίες του Ιδρύματος δεν αποθηκεύτηκαν επιτυχώς'

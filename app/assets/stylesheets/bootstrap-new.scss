@@ -31,3 +31,96 @@ fieldset {
     box-shadow: none;
   }
 }//.form-control
+
+//== Dropdown
+.dropdown-menu {
+  border-radius: $border-radius-base !important;
+  min-width: unset;
+
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    border-bottom: 10px solid $dropdown-bg;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    top: -10px;
+    left: 10px;
+    z-index: 150;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-bottom: 11px solid $dropdown-border;
+    border-right: 11px solid transparent;
+    border-left: 11px solid transparent;
+    top: -11px;
+    left: 9px;
+  }
+
+  & > li > a {
+    padding: 3px 15px;
+
+    & > .fa {
+      margin-right: 5px;
+      min-width: 15px;
+      text-align: center;
+    }
+  }
+}
+
+.dropdown-center {
+  left: 50%;
+  transform: translate(-50%);
+
+  &:before {
+    top: -10px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 150;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-bottom: 11px solid $dropdown-border;
+    border-right: 11px solid transparent;
+    border-left: 11px solid transparent;
+    top: -11px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}//.dropdown-center
+
+.navbar-right {
+  .dropdown-menu {
+    &:after {
+      left: unset;
+      right: 10px;
+    }
+
+    &:before {
+      left: unset;
+      right: 11px !important;
+    }
+  }
+}//.navbar-rigth dropdown
+
+//== Alert and forms states
+.alert {
+  ul {
+    padding: 0 15px;
+  }
+}
+
+//== Table
+.table {
+  td {
+    vertical-align: middle !important;
+  }
+}
+
+//== Badge
+.badge-success{ background-color: $brand-success; }
+.badge-danger{ background-color: $brand-danger; }

@@ -1,0 +1,17 @@
+<fieldset>
+  <legend><%= t('mongoid.attributes.user.user_avatar') %></legend>
+  <%= image_tag f.object.user_avatar.url, id:'avatar-img', class:'center-block img-responsive img-rounded' %>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= f.input :user_avatar, label: false do %>
+        <span class="btn btn-primary btn-block">
+          <%= fa_icon'upload',text: t('img_upload.upload') %>
+          <%= f.input_field :user_avatar, id:'avatar-upload' %>
+        </span>
+      <% end %>
+    </div><!--//col-->
+    <div class="col-sm-6">
+      <a id="avatar-delete" class="btn btn-danger btn-block"><%= fa_icon'trash', text: t('img_upload.delete') %></a>
+    </div><!--//col-->
+  </div><!--//row-->
+</fieldset>

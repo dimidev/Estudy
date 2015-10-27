@@ -1,0 +1,10 @@
+en:
+  professors:
+    index:
+      title: 'View Professors'
+    new:
+      title: 'Register Professor'
+    show:
+      title: 'Show Professor'
+    edit:
+      title: 'Edit Professor'

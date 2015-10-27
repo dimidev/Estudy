@@ -1,0 +1,10 @@
+el:
+  students:
+    index:
+      title: 'Προβολή Φοιτητών'
+    new:
+      title: 'Εγγραφή Φοιτητή'
+    show:
+      title: 'Προβολή Φοιτητή'
+    edit:
+      title: 'Επεξεργασία Φοιτητή'

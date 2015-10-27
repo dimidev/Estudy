@@ -1,0 +1,33 @@
+<% if %w(new create).include?(controller.action_name)
+    title(t('professors.new.title'))
+   else
+     title(t('professors.edit.title'))
+   end
+%>
+
+<%= render 'general/form_errors', resource: @professor %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <ul class="nav nav-pills">
+      <li role="presentation" class="active"><a href="#general" role="tab" data-toggle="tab"><%= fa_icon'user', text: t('mongoid.models.professor.one')%></a></li>
+      <li role="presentation"><a href="#address" role="tab" data-toggle="tab"><%= fa_icon'money', text: t('mongoid.models.address.other')%></a></li>
+      <li role="presentation"><a href="#contact" role="tab" data-toggle="tab"><%= fa_icon'money', text: t('mongoid.models.contact.one')%></a></li>
+    </ul>
+  </div><!--//panel-heading-->
+  <div class="panel-body">
+    <%= simple_nested_form_for [@department, @professor] do |f| %>
+
+        <div class="tab-content">
+            <%= render 'professors/tabs/general', f: f %>
+            <%= render 'users/forms/address', f: f %>
+            <%= render 'general/tabs/contact', f: f %>
+        </div><!--//tab-content-->
+
+  </div><!--//panel-body-->
+  <div class="panel-footer">
+        <%= f.button :submit, class:'btn-success' %>
+        <%= cancel_btn(department_professors_path(current_user.department)) %>
+    <% end %>
+  </div><!--//panel-footer-->
+</div><!--//panel-->

@@ -5,6 +5,15 @@ el:
         email: 'Email'
         password: 'Κωδικός'
         password_confirmation: 'Επαλήθευση κωδικού'
+        name: 'Όνομα'
+        lastname: 'Επώνυμο'
+        gender: 'Φύλο'
+        birthdate: 'Ημ.Γενήσεως'
+        last_sign_in_at: 'Τελευταια είσοδος στις'
+        last_sign_in_ip: 'IP Τελευταίας εισόδου'
+        user_avatar: 'Εικόνα χρήστη'
+        nic: 'Δελτιο Αστυνομικής Ταυτότητας'
+        trn: 'Αριθμός Φορολογικού Μητρώου'
     success:
       models:
         user:
@@ -17,3 +26,14 @@ el:
           create: 'Η εγγραφή %{model} δεν ήταν επιτυχής'
           update: 'Η αποθήκευση δεδομένων %{model} δεν ήταν επιτυχής'
           destroy: 'Η διαγραφή %{model} <b>%{name}</b> δεν ήταν επιτυχής'
+  enumerize:
+    user:
+      gender:
+        male: 'Άνδρας'
+        female: 'Γυναίκα'
+  legends:
+    user:
+      login_credentials: 'Στοιχεία λογαριασμού εισόδου'
+      personal_informations: 'Προσοπικά Στοιχεία'
+      legal_informations: 'Νομικά στοιχεία'
+      academic_informations: 'Ακαδημαικά Στοιχεία'

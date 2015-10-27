@@ -1,0 +1,8 @@
+en:
+  admins:
+    index:
+      title: 'View Admins'
+    new:
+      title: 'New Admin'
+    edit:
+      title: 'Edit Admin'

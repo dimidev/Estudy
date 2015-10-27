@@ -1,0 +1,7 @@
+en:
+  mongoid:
+    models:
+      admin:
+        one: 'Department Admin'
+        other: 'Department Admins'
+        admin: 'Admin'

@@ -1,0 +1,32 @@
+<li class="has-sub">
+  <a>
+    <%= fa_icon('users',text: t('mongoid.models.admin.other')) %>
+    <%= fa_icon 'caret-down', class:'pull-right' %>
+  </a>
+  <ul class="sub-menu">
+    <li><%= link_to t('admins.new.title'), new_department_admin_path(current_user.department) %></li>
+    <li><%= link_to t('admins.index.title'), department_admins_path(current_user.department) %></li>
+  </ul>
+</li>
+
+<li class="has-sub">
+  <a>
+    <%= fa_icon('users',text: t('mongoid.models.professor.other')) %>
+    <%= fa_icon 'caret-down', class:'pull-right' %>
+  </a>
+  <ul class="sub-menu">
+    <li><%= link_to t('professors.new.title'), new_department_professor_path(current_user.department) %></li>
+    <li><%= link_to t('professors.index.title'), department_professors_path(current_user.department) %></li>
+  </ul>
+</li>
+
+<li class="has-sub">
+  <a>
+    <%= fa_icon('users',text: t('mongoid.models.student.other')) %>
+    <%= fa_icon 'caret-down', class:'pull-right' %>
+  </a>
+  <ul class="sub-menu">
+    <li><%= link_to t('students.new.title'), new_department_student_path(current_user.department) %></li>
+    <li><%= link_to t('students.index.title'), department_students_path(current_user.department) %></li>
+  </ul>
+</li>

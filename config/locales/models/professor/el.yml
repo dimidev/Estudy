@@ -1,0 +1,8 @@
+el:
+  mongoid:
+    models:
+      professor:
+        one: 'Καθηγητή'
+        other: 'Καθηγητές'
+    attributes:
+      professor:

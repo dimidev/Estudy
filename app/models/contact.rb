@@ -10,4 +10,5 @@ class Contact
 
   embedded_in :institution
   embedded_in :department
+  embedded_in :admin
 end
