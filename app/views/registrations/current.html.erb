@@ -1,0 +1,28 @@
+<% title t('.title') %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"><%= Date.current.year.to_s + "-" + Date.current.next_year.year.to_s %></h2>
+  </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+          <th><%= t('mongoid.attributes.course.title') %></th>
+          <th class="text-center"><%= t('mongoid.attributes.course.semester') %></th>
+          <th class="text-center"><%= t('mongoid.attributes.course.ects') %></th>
+          <th class="text-center"><%= t('mongoid.attributes.course.hours') %></th>
+      </thead>
+      <tbody>
+        <% @courses.each do |course| %>
+            <tr>
+              <td><%= course.title %></td>
+              <td><%= course.title %></td>
+              <td><%= course.title %></td>
+              <td><%= course.hours %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div><!--//panel-->
+
+
+

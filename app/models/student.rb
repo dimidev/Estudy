@@ -9,6 +9,7 @@ class Student < User
   validates_presence_of :semester
   validates_numericality_of :semester, only_integer: true, greater_than_or_equal_to: 1
 
+  has_many :registrations
   belongs_to :studies_programme
   belongs_to :department
 
@@ -19,8 +20,6 @@ class Student < User
 
   def auto_increment
     if self.new_record?
-      student = Student.order_by(stc: :desc).first
-
     end
   end
 end

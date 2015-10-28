@@ -1,0 +1,10 @@
+en:
+  courses:
+    index:
+      title: 'View Courses'
+    new:
+      title: 'New Course'
+    show:
+      title: 'Show Course'
+    edit:
+      title: 'Edit Course'

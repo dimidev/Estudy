@@ -7,7 +7,10 @@
     <div class="col-md-9">
       <fieldset>
         <legend><%= t('legends.user.academic_informations') %></legend>
-          <%= f.input :department_ids, as: :select, collection: @departments, label_method: :title, include_blank: false, input_html:{multiple: true} %>
+          <div class="row">
+            <%= f.input :department_ids, as: :select, collection: @departments, label_method: :title, include_blank: false, input_html:{multiple: true}, wrapper_html:{class:'col-md-6'} %>
+            <%= f.input :professor_type, as: :select, wrapper_html:{class:'col-md-6'} %>
+          </div>
       </fieldset>
 
       <%= render 'users/forms/personal', f: f %>

@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title"><%= t('courses.new.title') %></h4>
+</div><!--//modal-header-->
+<%= simple_nested_form_for [@studies_programme, @course], remote: true do |c| %>
+    <div class="modal-body">
+
+      <%= c.input :title %>
+      <div class="row">
+        <%= c.input :course_type, as: :select, include_blank: false, wrapper_html:{class:'col-md-6'} %>
+        <%= c.input :semester, wrapper_html:{class:'col-md-6'} %>
+        <%= c.input :ects, wrapper_html:{class:'col-md-6'} %>
+        <%= c.input :hours, wrapper_html:{class:'col-md-6'} %>
+      </div><!--//row-->
+      <%= c.input :description, as: :ckeditor, input_html:{ ckeditor: {toolbar: 'mini'} } %>
+
+      <div class="form-group">
+        <%= add_nested_resource c, :child_courses, '.course-childs' %>
+      </div>
+
+      <div class="course-childs">
+        <%= c.simple_fields_for :child_courses do |ch| %>
+            <div class="well">
+              <div class="row">
+                <%= ch.input :title, wrapper_html:{class:'col-md-6'} %>
+                <%= ch.input :course_part, as: :select, include_blank: false, wrapper_html:{class:'col-md-6'} %>
+                <%= ch.input :percent, wrapper_html:{class:'col-md-6'} %>
+                <%= ch.input :hours, wrapper_html:{class:'col-md-6'} %>
+              </div><!--//row-->
+              <%= remove_nested_resource(ch) %>
+            </div><!--//well-->
+        <% end %>
+      </div>
+
+    </div><!--//modal-body-->
+    <div class="modal-footer">
+        <%= c.button :submit, class:'btn-success pull-left' %>
+        <a class="btn btn-warning pull-right" data-dismiss="modal"><%= t('btn.cancel') %></a>
+    </div><!--//modal-footer-->
+<% end %>

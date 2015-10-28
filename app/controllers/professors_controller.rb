@@ -8,10 +8,11 @@ class ProfessorsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render(json: Professor.where(department_ids: params[:department_id]).datatable(self, %w(name lastname semester)) do |professor|
+        render(json: Professor.where(department_ids: params[:department_id]).datatable(self, %w(name lastname professor_type)) do |professor|
                  [
                      professor.name,
                      professor.lastname,
+                     I18n.t("enumerize.professor.professor_type.#{professor.professor_type}"),
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
@@ -98,7 +99,7 @@ class ProfessorsController < ApplicationController
   private
 
   def professor_params
-    params.require(:professor).permit(:user_avatar, :email, :password, :password_confirmation, :role,
+    params.require(:professor).permit(:user_avatar, :email, :password, :password_confirmation, :role, :professor_type,
                                       :name, :lastname, :gender, :birthdate, :nic, :trn, department_ids: [],
                                       addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
                                       contacts_attributes: [:id, :_destroy, :type, :value])

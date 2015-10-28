@@ -1,0 +1,6 @@
+$("#registrations-table").DataTable().draw(false);
+
+<% if notice || alert %>
+    $('.alert').remove();
+    $('main .wrapper').find('.page-header').after("<%= j render 'general/flash_messages' %>");
+<% end %>

@@ -1,0 +1,24 @@
+<% if %w(new create).include?(controller.action_name)
+     title(t('registrations.new.title'))
+   else
+     title(t('registrations.edit.title'))
+   end
+%>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"><%= Date.current.year.to_s + "-" + Date.current.next_year.year.to_s %></h2>
+  </div>
+  <%= simple_form_for [@student, @registration] do |f| %>
+
+
+
+  <div class="panel-footer">
+        <%= f.button :submit, class:'btn-success' %>
+        <%= cancel_btn(student_registrations_path(@registration.student)) %>
+    <% end %>
+  </div><!--//panel-footer-->
+</div><!--//panel-->
+
+
+

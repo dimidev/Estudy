@@ -1,0 +1,46 @@
+el:
+  mongoid:
+    models:
+      course:
+       one: 'Μάθημα'
+       other: 'Μαθήματα'
+      child_course:
+        one: 'Μάθημα'
+        other: 'Μαθήματα'
+    attributes:
+      course:
+        title: 'Τίτλος'
+        description: 'Περιγραφή'
+        semester: 'Εξάμηνο'
+        ects: 'ECTS'
+        hours: 'Ώρες'
+        course_type: 'Τύπος Μαθήματος'
+        course_part: 'Μέρος Μαθήματος'
+        percent: 'Ποσοστό'
+    success:
+      models:
+        course:
+          create: 'Το Μάθημα <b>%{title}</b> δημιουργήθηκε επιτυχώς'
+          update: 'Το Μάθημα <b>%{title}</b> αποθηκεύτηκε επιτυχώς'
+          destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> ήταν επιτυχής'
+    errors:
+      models:
+        course:
+          create: 'Το Μάθημα <b>%{title}</b> δεν δημιουργήθηκε επιτυχώς'
+          update: 'Το Μάθημα <b>%{title}</b> δεν αποθηκεύτηκε επιτυχώς'
+          destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> δεν ήταν επιτυχής'
+  helpers:
+    submit:
+      course:
+        create: 'Δημιουργία Μαθήματος'
+        update: 'Ενημέρωση Μαθήματος'
+  enumerize:
+    course:
+      course_type:
+        compulsory: 'Υποχρεωτικό'
+        specification: 'Ειδικότητας'
+        selection_required: 'Ειδικότητας Υποχρεωτικό'
+        foreign_language: 'Ξένη Γλώσσα'
+      course_part:
+        theory: 'Θεωρία'
+        lab: 'Εργαστήριο'

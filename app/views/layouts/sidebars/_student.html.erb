@@ -1,0 +1,11 @@
+<li class="has-sub">
+  <a>
+    <%= fa_icon('file-o',text: t('mongoid.models.registration.other')) %>
+    <%= fa_icon 'caret-down', class:'pull-right' %>
+  </a>
+  <ul class="sub-menu">
+    <li><%= link_to t('registrations.current.title'), current_student_registrations_path(current_user) %></li>
+    <li><%= link_to t('registrations.new.title'), new_student_registration_path(current_user) %></li>
+    <li><%= link_to t('registrations.index.title'), student_registrations_path(current_user) %></li>
+  </ul>
+</li>

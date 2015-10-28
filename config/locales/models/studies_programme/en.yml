@@ -1,0 +1,19 @@
+en:
+  mongoid:
+    models:
+      studies_programme:
+        one: 'Studies Programme'
+        other: 'Studies Programmes'
+    attributes:
+    success:
+      models:
+        studies_programme:
+          create: 'Studies Programme %{title} is created'
+          update: 'Studies Programme %{title} is updated'
+          destroy: 'Studies Programme %{title} is deleted'
+    errors:
+      models:
+        studies_programme:
+          create: 'Studies Programme is not created'
+          update: 'Studies Programme is not updated'
+          destroy: 'Studies Programme %{title} is not deleted'

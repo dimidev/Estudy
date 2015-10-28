@@ -1,0 +1,12 @@
+<% if @course.errors.any? %>
+    $('.modal-body').find('.alert').remove();
+    $('.modal-body').prepend("<%= j render 'general/form_errors', resource: @course %>");
+<% else %>
+    $('#modal').modal('hide');
+    $('#courses-table').DataTable().draw(false);
+<% end %>
+
+<% if notice || alert %>
+    $('.alert-warning').remove();
+    $('.modal-body').prepend("<%= j render 'general/flash_messages' %>");
+<% end %>

@@ -1,0 +1,31 @@
+el:
+  mongoid:
+    models:
+      studies_programme:
+        one: 'Πρόγραμμα Σπουδών'
+        other: 'Προγράμματα Σπουδών'
+    attributes:
+      studies_programme:
+        diploma_title: 'Τίτλος Διπλώματος'
+        studies_level: 'Επίπεδο Σπουδών'
+        semesters: 'Εξάμηνα'
+        fees: 'Δίδακτρα'
+        orientation: 'Κατεύθυνση'
+        active: 'Ενεργό'
+    success:
+      models:
+        studies_programme:
+          create: 'Δημιουργία Προγράμματος Σπουδών <b>%{title}</b> ήταν επιτυχής'
+          update: 'Αποθήκευση Προγράμματος Σπουδών <b>%{title}</b> ήταν επιτυχής'
+          destroy: 'Διαγραφή Προγράμματος Σπουδών <b>%{title}</b> ήταν επιτυχής'
+    errors:
+      models:
+        studies_programme:
+          create: 'Δημιουργία Προγράμματος Σπουδών δεν ήταν επιτυχής'
+          update: 'Αποθήκευση Προγράμματος Σπουδών δεν ήταν επιτυχής'
+          destroy: 'Διαγραφή Προγράμματος Σπουδών <b>%{title}</b> δεν ήταν επιτυχής'
+  enumerize:
+    studies_programme:
+      studies_level:
+        undergraduate: 'Προπτυχιακό'
+        postgraduate: 'Μεταπτυχιακό'

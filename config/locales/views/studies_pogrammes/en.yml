@@ -1,0 +1,12 @@
+en:
+  studies_programmes:
+    index:
+      title: 'Studies Programmes'
+    new:
+      title: 'New Studies Programme'
+      alerts:
+        save_first: 'Για τη δημιουργία %{model}, πρέπει να αποθηκεύσετε πρώτα το Πρόγραμμα Σπουδών'
+    show:
+      title: 'Show Studies Programme'
+    edit:
+      title: 'Edit Studies Programme'

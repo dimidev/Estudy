@@ -30,3 +30,13 @@
     <li><%= link_to t('students.index.title'), department_students_path(current_user.department) %></li>
   </ul>
 </li>
+
+<li class="has-sub">
+  <a>
+    <%= fa_icon('book',text: t('sidebar.programme.programme')) %>
+    <%= fa_icon 'caret-down', class:'pull-right' %>
+  </a>
+  <ul class="sub-menu">
+    <li><%= link_to t('sidebar.programme.studies'), department_studies_programmes_path(current_user.department) %></li>
+  </ul>
+</li>

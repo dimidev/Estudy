@@ -6,3 +6,13 @@ el:
         other: 'Καθηγητές'
     attributes:
       professor:
+        professor_type: 'Τύπος Ακαδημαϊκού'
+  enumerize:
+    professor:
+      professor_type:
+        professor_emeritus: 'Ομότιμος Καθηγητής'
+        professor: 'Καθηγητής'
+        associate_professor: 'Αναπληρωτής Καθηγητής'
+        assistant_professor: 'Επίκουρος Καθηγητής'
+        lecturer: 'Λέκτορας'
+        lab_assistant: 'Εργαστηριακός Βοηθός'

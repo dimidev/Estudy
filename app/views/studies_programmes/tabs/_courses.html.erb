@@ -1,0 +1,26 @@
+<div role="tabpanel" class="tab-pane fade" id="courses">
+  <% if %w(new create).include?(controller.action_name) %>
+    <div class="alert alert-warning text-center">
+      <%= fa_icon'exclamation-circle', text: t('studies_programmes.new.alerts.save_first', model: Course.model_name.human) %>
+    </div>
+  <% else %>
+      <div class="form-group">
+        <%= link_to fa_icon('plus', text: t('courses.new.title')), new_studies_programme_course_path(f.object), remote: true, class:'btn btn-primary' %>
+      </div>
+
+      <table id="courses-table" class="datatable table table-hover table-striped" data-source="<%= studies_programme_courses_path(f.object , format: :json) %>">
+        <thead>
+        <tr>
+          <th><%= t('mongoid.attributes.course.semester') %></th>
+          <th><%= t('mongoid.attributes.course.title') %></th>
+          <th><%= t('mongoid.attributes.course.course_type') %></th>
+          <th><%= t('mongoid.attributes.course.ects') %></th>
+          <th><%= t('mongoid.attributes.course.hours') %></th>
+          <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+  <% end %>
+</div><!--//courses-->

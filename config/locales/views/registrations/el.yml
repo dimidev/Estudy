@@ -1,0 +1,12 @@
+el:
+  registrations:
+    index:
+      title: 'Προβολή Δηλώσεων'
+    new:
+      title: 'Νέα Δήλωση'
+    show:
+      title: 'Προβολή Δήλωσης'
+    edit:
+      title: 'Επεξεργασία Δήλωσης'
+    current:
+      title: 'Τρέχουσα Δήλωση'

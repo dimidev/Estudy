@@ -1,0 +1,12 @@
+en:
+  registrations:
+    index:
+      title: 'View Registrations'
+    new:
+      title: 'New Registration'
+    show:
+      title: 'Show Registration'
+    edit:
+      title: 'Edit Registration'
+    current:
+      title: 'Current Registration'

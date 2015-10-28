@@ -1,3 +1,6 @@
 el:
   sidebar:
     dashboard: 'Πάνελ'
+    programme:
+      programme: 'Πρόγραμμα'
+      studies: 'Σπουδών'

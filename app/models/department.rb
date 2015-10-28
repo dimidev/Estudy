@@ -23,6 +23,7 @@ class Department
   embeds_many :contacts
   has_many :admins
   has_many :students
+  has_many :studies_programmes
   belongs_to :institution
 
   accepts_nested_attributes_for :address, :contacts, reject_if: :all_blank, allow_destroy: true

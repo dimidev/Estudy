@@ -1,0 +1,6 @@
+en:
+  mongoid:
+    models:
+      registration:
+       one: 'Registration'
+       other: 'Registrations'

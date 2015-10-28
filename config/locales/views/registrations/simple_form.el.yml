@@ -1,0 +1,6 @@
+el:
+  helpers:
+    submit:
+      registration:
+        create: 'Δήλωση Μαθημάτων'
+        update: 'Ενημέρωση Δήλωσης'
