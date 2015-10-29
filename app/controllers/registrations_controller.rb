@@ -30,7 +30,7 @@ class RegistrationsController < ApplicationController
 
     @student = Student.find(params[:student_id])
     @registration = @student.registrations.build
-    @courses = @student.studies_programme.courses
+    @courses = @student.studies_programme.courses.order_by(semester: :asc)
 
     render :edit
   end
@@ -64,7 +64,7 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(@registration.student)
     add_breadcrumb I18n.t('registrations.edit.title')
 
-    @courses = @registration.student.studies_programme.courses
+    @courses = @registration.student.studies_programme.courses.order_by(semester: :asc)
   end
 
   def update

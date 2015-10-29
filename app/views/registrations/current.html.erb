@@ -16,10 +16,19 @@
       <tbody>
         <% @courses.each do |course| %>
             <tr>
-              <td class="text-center"<%= course.title %></td>
-              <td><%= course.semester %></td>
-              <td><%= t "enumerize.course.course_type.#{course.course_type}" %></td>
-              <td class="text-center"><%= course.ects %></td>
+              <td class="text-center"><%= course.semester %></td>
+              <td>
+                <%= course.title %>
+                <%= '- ' << t("enumerize.course.course_part.#{course.course_part}") if course.has_parent_course? %>
+              </td>
+              <td>
+                <% if course.has_parent_course? %>
+                    <%= t("enumerize.course.course_type.#{course.parent_course.course_type}") %>
+                <% else %>
+                    <%= t("enumerize.course.course_type.#{course.course_type}") %>
+                <% end %>
+              </td>
+              <td class="text-center"><%= course.has_parent_course? ? course.percent : course.ects %></td>
               <td class="text-center"><%= course.hours %></td>
             </tr>
         <% end %>
