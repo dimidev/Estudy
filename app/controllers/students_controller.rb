@@ -95,7 +95,7 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:studies_programme, :user_avatar, :email, :password, :password_confirmation, :role,
+    params.require(:student).permit(:studies_programme_id, :user_avatar, :email, :password, :password_confirmation, :role,
                                     :name, :lastname, :gender, :birthdate, :nic, :trn, :semester,
                                     addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
                                     contacts_attributes: [:id, :_destroy, :type, :value])

@@ -15,8 +15,9 @@ class Course
   field :hours,         type: Integer, default: 0
   field :percent,       type: Integer
 
+  validates_presence_of :title, :hours
+  validates :ects, presence: true, numericality: {integer_only: true, greater_than_equal_to: 0}, unless: lambda{ |obj| obj.has_parent_course? }
 
-  belongs_to :department
   belongs_to :studies_programme
   has_many   :courses, as: :parent_course
   belongs_to :parent_course, polymorphic: true

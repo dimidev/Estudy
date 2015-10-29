@@ -51,7 +51,7 @@ class User
   field :name,          type: String
   field :lastname,      type: String
   field :gender
-  enumerize :gender, in: [:male, :female], default: :male
+  enumerize :gender, in: [:male, :female]
   field :birthdate,     type: Date
 
   ## Legal Informations

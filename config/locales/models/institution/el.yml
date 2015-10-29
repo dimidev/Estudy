@@ -6,7 +6,6 @@ el:
     attributes:
       institution:
         title: 'Τίτλος'
-        short_title: 'Σύντομος Τίτλος'
         foundation_date: 'Έτος Ιδρύσεως'
         institution_logo: 'Λογότυπο'
         institution_banner: 'Banner'

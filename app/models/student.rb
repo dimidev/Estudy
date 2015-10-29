@@ -9,6 +9,7 @@ class Student < User
   validates_presence_of :semester
   validates_numericality_of :semester, only_integer: true, greater_than_or_equal_to: 1
 
+  validates_associated :studies_programme
   has_many :registrations
   belongs_to :studies_programme
   belongs_to :department

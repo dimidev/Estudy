@@ -15,11 +15,11 @@
       <%= c.input :description, as: :ckeditor, input_html:{ ckeditor: {toolbar: 'mini'} } %>
 
       <div class="form-group">
-        <%= add_nested_resource c, :child_courses, '.course-childs' %>
+        <%= add_nested_resource c, :courses, '.course-childs' %>
       </div>
 
       <div class="course-childs">
-        <%= c.simple_fields_for :child_courses do |ch| %>
+        <%= c.simple_fields_for :courses do |ch| %>
             <div class="well">
               <div class="row">
                 <%= ch.input :title, wrapper_html:{class:'col-md-6'} %>

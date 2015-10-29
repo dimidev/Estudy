@@ -7,7 +7,6 @@ el:
     attributes:
       department:
         title: 'Τίτλος'
-        short_title: 'Σύντομος Τίτλος'
         foundation_date: 'Ημερομηνία Ιδρύσεως'
         department_logo: 'Λογότυπο Τμήματος'
         active: 'Ενεργό'

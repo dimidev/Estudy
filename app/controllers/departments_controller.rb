@@ -9,7 +9,7 @@ class DepartmentsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render(json: Department.datatable(self, %w(short_title foundation_date)) do |department|
+        render(json: Department.datatable(self, %w(title foundation_date)) do |department|
                  [
                      department.title,
                      department.foundation_date,
@@ -94,7 +94,7 @@ class DepartmentsController < ApplicationController
 
   private
   def department_params
-    params.require(:department).permit(:department_logo, :title, :short_title, :foundation_date, :active,
+    params.require(:department).permit(:department_logo, :title, :foundation_date, :active,
                                        address_attributes: [:country, :city, :postal_code, :address],
                                        contacts_attributes: [:id, :_destroy, :type, :value])
   end

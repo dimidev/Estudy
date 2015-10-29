@@ -4,7 +4,6 @@ class Department
   include Mongoid::Datatable
 
   field :title,           type: String
-  field :short_title,     type: String
   field :foundation_date, type: Integer
   field :active,          type: Boolean, default: true
 
@@ -15,8 +14,8 @@ class Department
 
   validates_attachment :department_logo, content_type: {content_type: /\Aimage\/.*\Z/}, size: {less_than: 2.megabytes}
   validates_associated :institution
-  validates_uniqueness_of :title, :short_title
-  validates_presence_of :title, :short_title, :foundation_date
+  validates_uniqueness_of :title
+  validates_presence_of :title, :foundation_date
   validates_numericality_of :foundation_date, only_integer: true
 
   embeds_one :address

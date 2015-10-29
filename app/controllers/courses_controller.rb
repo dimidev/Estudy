@@ -94,6 +94,6 @@ class CoursesController < ApplicationController
   private
   def course_params
     params.require(:course).permit(:title, :description, :course_type, :semester, :ects, :hours,
-                                   child_courses_attributes:[:id, :_destroy, :title, :course_part, :percent, :hours])
+                                   courses_attributes:[:id, :_destroy, :title, :course_part, :percent, :hours])
   end
 end

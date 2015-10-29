@@ -2,22 +2,25 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
+    <%= link_to fa_icon('pencil-square-o', text: t('registrations.edit.title')), edit_registration_path(@registration), class:'btn btn-sm btn-warning pull-right' %>
     <h2 class="panel-title"><%= Date.current.year.to_s + "-" + Date.current.next_year.year.to_s %></h2>
   </div>
     <table class="table table-bordered table-hover">
       <thead>
-          <th><%= t('mongoid.attributes.course.title') %></th>
           <th class="text-center"><%= t('mongoid.attributes.course.semester') %></th>
+          <th><%= t('mongoid.attributes.course.title') %></th>
+          <th><%= t('mongoid.attributes.course.course_type') %></th>
           <th class="text-center"><%= t('mongoid.attributes.course.ects') %></th>
           <th class="text-center"><%= t('mongoid.attributes.course.hours') %></th>
       </thead>
       <tbody>
         <% @courses.each do |course| %>
             <tr>
-              <td><%= course.title %></td>
-              <td><%= course.title %></td>
-              <td><%= course.title %></td>
-              <td><%= course.hours %></td>
+              <td class="text-center"<%= course.title %></td>
+              <td><%= course.semester %></td>
+              <td><%= t "enumerize.course.course_type.#{course.course_type}" %></td>
+              <td class="text-center"><%= course.ects %></td>
+              <td class="text-center"><%= course.hours %></td>
             </tr>
         <% end %>
       </tbody>
