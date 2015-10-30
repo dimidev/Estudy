@@ -2,4 +2,4 @@
 -[ ] Bootstrap Select Datatables make it smaller (show entries select)
 -[ ] Fix Top Right, user avatar not showing properly
 -[ ] Todo Find how translate nested attributes (association)
--[ ] Add cancel btn to forms
+-[ ] Remove devise message 'you must sign in before....'

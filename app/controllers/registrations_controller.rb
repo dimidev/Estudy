@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('registrations.index.title')
 
     respond_to do |format|
-      format.html
+      format.html{ flash[:notice] = I18n.t('mongoid.success.models.registration.registrations_period') if Timetable.current.exists? }
       format.json do
         render(json: Student.find(params[:student_id]).registrations.datatable(self, %w(id)) do |registration|
                  [
@@ -28,11 +28,15 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(params[:student_id])
     add_breadcrumb I18n.t('registrations.new.title')
 
-    @student = Student.find(params[:student_id])
-    @registration = @student.registrations.build
-    @courses = @student.studies_programme.courses.order_by(semester: :asc)
+    if Timetable.current
+      @student = Student.find(params[:student_id])
+      @registration = @student.registrations.build
+      @courses = @student.studies_programme.courses.order_by(semester: :asc)
 
-    render :edit
+      render :edit
+    else
+      redirect_to student_registrations_path(params[:student_id]), alert: t('mongoid.errors.models.registration.registrations_period')
+    end
   end
 
   def create
@@ -43,9 +47,9 @@ class RegistrationsController < ApplicationController
     @registration = @student.registrations.build(registration_params)
 
     if @registration.save
-      redirect_to student_registrations_path(params[:student_id]), notice: t('mongoid.success.models.registration.create')
+      redirect_to student_registrations_path(params[:student_id]), notice: I18n.t('mongoid.success.models.registration.create')
     else
-      render :edit, alert: t('mongoid.errors.models.registration.create')
+      render :edit, alert: I18n.t('mongoid.errors.models.registration.create')
     end
   end
 

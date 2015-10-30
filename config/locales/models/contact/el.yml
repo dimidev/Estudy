@@ -3,10 +3,11 @@ el:
     models:
       contact:
        one: 'Επικοινωνία'
+       other: '%{count} Εποικοινωνίες'
     attributes:
       contact:
-        type: 'Τύπος Επικοινωνίας'
-        value: 'Περιεχόμενο'
+        type: 'Είδος Επικοινωνίας'
+        value: 'Τιμή'
   enumerize:
     contact:
       type:

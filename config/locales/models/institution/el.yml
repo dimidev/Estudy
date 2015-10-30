@@ -8,7 +8,6 @@ el:
         title: 'Τίτλος'
         foundation_date: 'Έτος Ιδρύσεως'
         institution_logo: 'Λογότυπο'
-        institution_banner: 'Banner'
     success:
       models:
         institution:

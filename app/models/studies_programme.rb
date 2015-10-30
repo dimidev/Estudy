@@ -9,7 +9,8 @@ class StudiesProgramme
   field :fees,            type: Boolean,      default: false
   field :orientation,     type: Boolean,      default: false
   field :semesters,       type: Integer
-  field :active,          type: Boolean,      default: true
+  field :status
+  enumerize :status, in: {active: true, not_active: false}, default: :active
 
   validates_presence_of :diploma_title, :studies_level, :semesters
   validates_numericality_of :semesters, only_integer: true, greater_than: 0

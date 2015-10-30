@@ -1,0 +1,14 @@
+en:
+  timetables:
+    index:
+      title: 'All Timetables'
+    new:
+      title: 'New Timetable'
+    show:
+      title: 'Show Timetable'
+    current:
+      title: 'Current Timetable'
+    edit:
+      title: 'Edit Timetable'
+    current:
+      title: 'Timetable'

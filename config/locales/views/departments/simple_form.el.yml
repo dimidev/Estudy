@@ -4,3 +4,7 @@ el:
       institution:
         create: 'Δημιουργία Ιδρύματος'
         update: 'Ενημέρωση Ιδρύματος'
+  simple_form:
+    hints:
+      department:
+        foundation_date: 'Πληκτρολογήστε μόνο το έτος π.χ. 2001'

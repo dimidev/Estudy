@@ -2,7 +2,8 @@ en:
   mongoid:
     models:
       contact:
-       one: 'Contact'
+        one: 'Contact'
+        other: '%{count} Contacts'
     attributes:
       contact:
         value: 'Value'

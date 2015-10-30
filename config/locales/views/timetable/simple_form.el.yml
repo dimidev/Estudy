@@ -1,0 +1,6 @@
+el:
+  helpers:
+    submit:
+      timetable:
+        create: 'Νέο Χρονοδιάγραμμα'
+        update: 'Ενημέρωση Χρονοδιαγράμματος'

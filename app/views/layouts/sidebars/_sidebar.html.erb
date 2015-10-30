@@ -1,12 +1,18 @@
 <aside id="sidebar">
   <div id="nav-institute-logo" class="text-center">
-    <%= image_tag Institution.first.institution_logo.url, class:'img-rounded center-block' %>
+    <% if (current_user.role? :superadmin) || (current_user.role? :professor) %>
+        <%= image_tag Institution.first.institution_logo.url, class:'img-rounded center-block' %>
+    <% else %>
+        <% if current_user.department.department_logo.exists? %>
+            <%= image_tag current_user.department.department_logo.url(:medium), class:'img-rounded center-block' %>
+        <% else %>
+            <%= image_tag Institution.first.institution_logo.url, class:'img-rounded center-block' %>
+        <% end %>
+    <% end %>
   </div>
 
   <ul class="nav">
-    <li>
-      <%= link_to fa_icon('laptop',text: t('sidebar.dashboard')), root_path %>
-    </li>
+    <li><%= link_to fa_icon('laptop',text: t('sidebar.dashboard')), root_path %></li>
 
     <%= render "layouts/sidebars/#{current_user.role}" %>
   </ul>

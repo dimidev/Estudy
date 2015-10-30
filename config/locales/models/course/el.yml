@@ -29,11 +29,6 @@ el:
           create: 'Το Μάθημα <b>%{title}</b> δεν δημιουργήθηκε επιτυχώς'
           update: 'Το Μάθημα <b>%{title}</b> δεν αποθηκεύτηκε επιτυχώς'
           destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> δεν ήταν επιτυχής'
-  helpers:
-    submit:
-      course:
-        create: 'Δημιουργία Μαθήματος'
-        update: 'Ενημέρωση Μαθήματος'
   enumerize:
     course:
       course_type:

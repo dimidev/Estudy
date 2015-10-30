@@ -5,7 +5,7 @@ en:
         one: 'Institution'
     attributes:
       institution:
-        logo: 'Institution Logo'
+        institution_logo: 'Institution Logo'
     success:
       models:
         institution:

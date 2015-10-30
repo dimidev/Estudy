@@ -11,7 +11,7 @@ el:
         semesters: 'Εξάμηνα'
         fees: 'Δίδακτρα'
         orientation: 'Κατεύθυνση'
-        active: 'Ενεργό'
+        status: 'Κατάσταση'
     success:
       models:
         studies_programme:
@@ -29,3 +29,6 @@ el:
       studies_level:
         undergraduate: 'Προπτυχιακό'
         postgraduate: 'Μεταπτυχιακό'
+      status:
+        active: 'Ενεργό'
+        not_active: 'Μη Ενεργό'

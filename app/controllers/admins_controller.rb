@@ -88,7 +88,7 @@ class AdminsController < ApplicationController
   private
 
   def admin_params
-    params.require(:admin).permit(:user_avatar, :email, :password, :password_confirmation,
+    params.require(:admin).permit(:user_avatar, :delete_img, :email, :password, :password_confirmation,
                                   :name, :lastname, :gender, :birthdate, :nic, :trn,
                                   addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
                                   contacts_attributes:[:id, :_destroy, :type, :value])

@@ -1,1 +1,5 @@
 en:
+  simple_form:
+    hints:
+      department:
+        foundation_date: 'Type only the date ex. 2001'

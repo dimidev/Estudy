@@ -13,6 +13,7 @@
                     </span>
           <% end %>
           <div class="col-sm-6">
+            <%= f.input :delete_img, as: :hidden, input_html:{id:'delete_img'} %>
             <a id="avatar-delete" class="btn btn-danger btn-block"><%= fa_icon'trash', text: t('img_upload.delete') %></a>
           </div><!--//col-->
         </div><!--//row-->
@@ -24,10 +25,7 @@
       <%= f.input :title %>
       <%= f.input :foundation_date %>
 
-      <fieldset>
-        <legend><%= t('legends.department.other_options') %></legend>
-        <%= f.input :active, as: :boolean, inline_label: t('mongoid.attributes.department.active'), input_html:{class:'icheck'} %>
-      </fieldset>
+      <%= f.input :status, as: :select, include_blank: false %>
     </div><!--//col-->
   </div><!--//row-->
 

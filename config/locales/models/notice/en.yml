@@ -1,0 +1,18 @@
+en:
+  mongoid:
+    models:
+      notice:
+        one: 'Notice'
+        other: 'Notices'
+  success:
+    models:
+      notice:
+        create: 'Notice for <b>%{target}</b> is created'
+        update: 'Notice for <b>%{target}</b> is updated'
+        destroy: 'Notice for <b>%{target}</b> is deleted'
+  errors:
+    models:
+      notice:
+        create: 'Notice is not created'
+        update: 'Notice is not updated'
+        destroy: 'Notice for <b>%{target}</b> is not deleted'

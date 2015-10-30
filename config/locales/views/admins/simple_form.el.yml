@@ -2,4 +2,5 @@ el:
   helpers:
     submit:
       admin:
+        create: 'Δημιουργία Διαχειριστή'
         update: 'Ενημέρωση Διαχειριστή'

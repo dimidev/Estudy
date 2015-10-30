@@ -1,5 +1,8 @@
 el:
   simple_form:
     prompts:
-      contact:
+      contacts:
         type: 'Επιλέξτε τύπο επικοινωνίας'
+    placeholders:
+      contacts:
+        value: 'Τιμή'

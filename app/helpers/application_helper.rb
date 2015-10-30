@@ -37,12 +37,16 @@ module ApplicationHelper
   end
 
   # Helpers for nested forms
-  def add_nested_resource(resource, target, div_target=nil, content=nil, translate=true)
-    content ||= target.to_s.singularize
-    content = t("mongoid.models.#{content}.one") if translate
-    div_target ||= ".#{target.to_s}"
+  def add_nested_resource(resource, nested_resource, options={})
+    target = options[:target].present? ? options[:target] : ".#{nested_resource.to_s}"
 
-    resource.link_to_add(fa_icon('plus', text: t('simple_form.nested_btn.add', model: content)), target, data:{target: div_target}, class:'btn btn-primary')
+    if options[:content] == false
+      resource.link_to_add(fa_icon('plus'), nested_resource, data:{target: target, toggle:'tolltip', title: t('simple_form.nested_btn.defaults.add')}, class:'btn btn-primary')
+    else
+      content = options[:content] || nested_resource.to_s.singularize
+      content = t("mongoid.models.#{content}.one") if options[:localize] && options[:content].blank?
+      resource.link_to_add(fa_icon('plus', text: t('simple_form.nested_btn.add', model: content)), nested_resource, data:{target: target}, class:'btn btn-primary')
+    end
   end
 
   def remove_nested_resource(resource, options={})
@@ -61,5 +65,11 @@ module ApplicationHelper
     btn_class << ' ' << options[:class] if options[:class].present?
 
     link_to t('btn.cancel'), path, class: btn_class
+  end
+
+  def delete_btn(resource)
+    if %w(edit update).include?(controller.action_name)
+      link_to(t('btn.delete'), send("#{resource.model_name.singular}_path", resource.id) , method: :delete, class:'btn btn-danger pull-right', data:{confirm: t('confirmation.delete')})
+    end
   end
 end

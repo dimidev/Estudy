@@ -17,6 +17,9 @@ class User
     self.role==role.to_s && ROLES.index(role.to_s)
   end
 
+  attr_accessor :delete_img
+  before_validation {user_avatar.clear if delete_img == '1' }
+
   ## Database authenticatable
   field :email,              type: String
   field :encrypted_password, type: String

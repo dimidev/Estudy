@@ -1,0 +1,8 @@
+en:
+  notices:
+    index:
+      title: 'View Notices'
+    new:
+      title: 'New Notice'
+    edit:
+      title: 'Edit Notice'

@@ -1,6 +1,6 @@
 <fieldset>
   <legend><%= t('mongoid.attributes.user.user_avatar') %></legend>
-  <%= image_tag f.object.user_avatar.url, id:'avatar-img', class:'center-block img-responsive img-rounded' %>
+  <%= image_tag f.object.user_avatar.url, id:'avatar-img', alt: '', class:'center-block img-responsive img-rounded' %>
   <div class="row">
     <div class="col-sm-6">
       <%= f.input :user_avatar, label: false do %>
@@ -11,6 +11,7 @@
       <% end %>
     </div><!--//col-->
     <div class="col-sm-6">
+      <%= f.input :delete_img, as: :hidden, input_html:{id:'delete_img'} %>
       <a id="avatar-delete" class="btn btn-danger btn-block"><%= fa_icon'trash', text: t('img_upload.delete') %></a>
     </div><!--//col-->
   </div><!--//row-->

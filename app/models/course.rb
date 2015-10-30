@@ -21,6 +21,7 @@ class Course
   belongs_to :studies_programme
   has_many   :courses, as: :parent_course
   belongs_to :parent_course, polymorphic: true
+  has_many :notice
 
   accepts_nested_attributes_for :courses, reject_if: :all_blank, allow_destroy: true
 end

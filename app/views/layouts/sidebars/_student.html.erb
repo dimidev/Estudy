@@ -9,3 +9,15 @@
     <li><%= link_to t('registrations.index.title'), student_registrations_path(current_user) %></li>
   </ul>
 </li>
+
+<li class="has-sub">
+    <a>
+        <%= fa_icon('file-o',text: t('sidebar.programme.programme')) %>
+        <%= fa_icon 'caret-down', class:'pull-right' %>
+    </a>
+    <ul class="sub-menu">
+        <li><%= link_to t('sidebar.programme.studies'), department_studies_programmes_path(current_user.department) %></li>
+    </ul>
+</li>
+
+<li><%= link_to fa_icon('calendar', text: t('mongoid.models.timetable.one')), current_department_timetables_path(current_user.department) %></li>

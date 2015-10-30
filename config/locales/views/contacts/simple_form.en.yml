@@ -1,5 +1,8 @@
 en:
   simple_form:
     prompts:
-      contact:
+      contacts:
         type: 'Choose contact type'
+    placeholders:
+      contacts:
+        value: 'Value'

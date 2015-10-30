@@ -1,0 +1,21 @@
+en:
+  mongoid:
+    models:
+      timetable:
+       one: 'Timetable'
+    attributes:
+      timetable:
+    success:
+      models:
+        timetable:
+          create: 'Timetable %{title} is created'
+          update: 'Timetable %{title} is updated'
+          destroy: 'Timetable %{title} is deleted'
+    errors:
+      models:
+        timetable:
+          create: 'Timetable is not created'
+          update: 'Timetable is not updated'
+          destroy: 'Timetable %{title} is not deleted'
+          current:
+            not_exists: 'Timetable not exists for current semester'

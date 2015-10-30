@@ -13,8 +13,8 @@
   <div class="panel-heading">
     <ul class="nav nav-pills">
       <li role="presentation" class="active"><a href="#programme" role="tab" data-toggle="tab"><%= fa_icon'user', text: t('mongoid.models.studies_programme.one')%></a></li>
-      <li role="presentation"><a href="#rules" role="tab" data-toggle="tab"><%= fa_icon'money', text: t('mongoid.models.programme_rule.other')%></a></li>
-      <li role="presentation"><a href="#courses" role="tab" data-toggle="tab"><%= fa_icon'money', text: t('mongoid.models.course.other')%></a></li>
+      <li role="presentation"><a href="#rules" role="tab" data-toggle="tab"><%= fa_icon'file-o', text: t('mongoid.models.programme_rule.other')%></a></li>
+      <li role="presentation"><a href="#courses" role="tab" data-toggle="tab"><%= fa_icon'books', text: t('mongoid.models.course.other')%></a></li>
     </ul>
   </div><!--//panel-heading-->
   <div class="panel-body">
@@ -30,6 +30,7 @@
   <div class="panel-footer">
         <%= f.button :submit, class:'btn-success' %>
         <%= cancel_btn(department_studies_programmes_path(@studies_programme.department)) %>
+        <%= delete_btn(@studies_programme) %>
     <% end %>
   </div><!--//panel-footer-->
 </div><!--//panel-->

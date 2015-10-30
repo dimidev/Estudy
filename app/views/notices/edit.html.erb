@@ -1,0 +1,37 @@
+<% if %w(new create).include?(controller.action_name)
+     title(t('notices.new.title'))
+   else
+     title(t('notices.edit.title'))
+   end
+%>
+
+<%= render 'general/form_errors', resource: @notice %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= simple_nested_form_for @notice do |f| %>
+        <div class="row">
+          <%= f.input :title, wrapper_html:{class:'col-md-6'} %>
+          <%= f.input :target, wrapper_html:{class:'col-md-6'} %>
+        </div>
+
+        <div class="row">
+          <%= f.association :institution, wrapper_html:{class:'col-md-4'} %>
+          <%= f.association :department, collection: @departments ,wrapper_html:{class:'col-md-4'} %>
+          <%= f.association :course, collection: @courses, wrapper_html:{class:'col-md-4'} %>
+        </div>
+        <div class="row">
+          <%= f.association :admin, label: Admin.model_name.human(count: @admins.count), collection: @admins, label_method: lambda{|obj| "#{obj.fullname}"} , wrapper_html:{class:'col-md-4'} %>
+          <%= f.association :professor, label: Professor.model_name.human(count: @professors.count), collection: @professors, wrapper_html:{class:'col-md-4'} %>
+          <%= f.association :student, label: Student.model_name.human(count: @students.count), collection: @students, wrapper_html:{class:'col-md-4'} %>
+        </div>
+
+      <%= f.input :content, as: :ckeditor %>
+    </div><!--//panel-body-->
+    <div class="panel-footer">
+      <%= f.button :submit, class:'btn-success' %>
+      <%= cancel_btn(notices_path) %>
+      <%= delete_btn(@notice) %>
+    <% end %>
+    </div><!--//panel-footer-->
+</div><!--//panel-->

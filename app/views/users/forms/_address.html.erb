@@ -1,6 +1,6 @@
 <div role="tabpanel" class="tab-pane fade" id="address">
   <div class="form-group">
-    <%= add_nested_resource(f, :addresses, '.addresses') %>
+    <%= add_nested_resource(f, :addresses, target: '.addresses', localize: true) %>
   </div>
 
   <div class="addresses">

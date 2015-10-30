@@ -53,6 +53,10 @@ $(function(){
     // Init datetimepicker
     $('.datetimepicker').datetimepicker();
 
+    $(document).on('click', '.btn.add_nested_fields', function(){
+        $('.datetimepicker').datetimepicker();
+    });
+
     // image preview (logo or avatar)
     var preview = $('#avatar-img');
     $('#avatar-upload').change(function(event){
@@ -64,12 +68,14 @@ $(function(){
             preview.attr('src',image_base64);
         };
         render.readAsDataURL(file);
+        $('#delete_img').val(0);
     });
 
     // Delete logo or avatar
     $('#avatar-delete').click(function(){
         $('#avatar-img').removeAttr('src').removeAttr('alt');
         $('#avatar-upload').val('');
+        $('#delete_img').val(1);
     });
 
     // function for sidebar collapse

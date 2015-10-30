@@ -6,8 +6,6 @@ class InstitutionsController < ApplicationController
 
   layout 'devise', only: [:new, :create]
 
-  add_breadcrumb I18n.t('mongoid.models.institution.one'), :institution_path
-
   def new
     @institution = Institution.new
     @superadmin = @institution.build_superadmin
@@ -25,11 +23,13 @@ class InstitutionsController < ApplicationController
   end
 
   def edit
+    add_breadcrumb I18n.t('mongoid.models.institution.one'), :institution_path
     add_breadcrumb I18n.t('institutions.edit.title')
     @institution = Institution.first
   end
 
   def update
+    add_breadcrumb I18n.t('mongoid.models.institution.one'), :institution_path
     add_breadcrumb I18n.t('institutions.edit.title')
     @institution = Institution.first
 
@@ -43,7 +43,7 @@ class InstitutionsController < ApplicationController
 
   private
   def institution_params
-    params.require(:institution).permit(:institution_logo, :title, :foundation_date,
+    params.require(:institution).permit(:institution_logo, :delete_img, :title, :foundation_date,
                                         address_attributes: [:country, :city, :postal_code, :address],
                                         contacts_attributes:[:id, :_destroy, :type, :value],
                                         superadmin_attributes: [:email, :password, :password_confirmation])

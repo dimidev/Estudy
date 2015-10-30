@@ -15,7 +15,7 @@ class StudiesProgrammesController < ApplicationController
                      p.diploma_title,
                      I18n.t("enumerize.studies_programme.studies_level.#{p.studies_level}"),
                      p.semesters,
-                     active_status(p.active),
+                     programme_status(p.status),
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
@@ -95,7 +95,7 @@ class StudiesProgrammesController < ApplicationController
 
   private
   def studies_programme_params
-    params.require(:studies_programme).permit(:studies_level, :diploma_title, :semesters, :fees, :orientation, :active,
+    params.require(:studies_programme).permit(:studies_level, :diploma_title, :semesters, :fees, :orientation, :status,
                                               programme_rules_attributes: [:id, :_destroy, :course_type, :operator, :value])
   end
 end

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get 'home', as: :dashboard_home
     end
 
-    resource :institution, except: :destroy
+    resource :institution, except: [:show, :destroy]
     resource :superadmin, only: [:edit, :update]
 
     resources :departments, shallow: true do
@@ -30,7 +30,11 @@ Rails.application.routes.draw do
       resources :studies_programmes do
         resources :courses
       end
+      resources :timetables do
+        get 'current', on: :collection
+      end
     end
+    resources :notices
 
     get 'users/sign_out', as: :logout
   end

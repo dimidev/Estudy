@@ -13,6 +13,7 @@ class Student < User
   has_many :registrations
   belongs_to :studies_programme
   belongs_to :department
+  has_many :notices
 
   private
   def defaults

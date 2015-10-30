@@ -9,15 +9,19 @@ class DepartmentsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render(json: Department.datatable(self, %w(title foundation_date)) do |department|
+        render(json: Department.datatable(self, %w(title foundation_date status)) do |department|
                  [
                      department.title,
                      department.foundation_date,
-                     active_status(department.active),
+                     department_status(department.status),
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
                           <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.admin.admins')), department_admins_path(department) %></li>
+                          <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.professor.other')), department_professors_path(department) %></li>
+                          <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.student.other')), department_students_path(department) %></li>
+                          <li class='divider'></li>
+                          <li><%= link_to fa_icon('calendar-o', text: I18n.t('mongoid.models.timetable.one')), department_timetables_path(department) %></li>
                           <li class='divider'></li>
                           <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_department_path(department) %></li>
                           <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), department_path(department), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
@@ -94,7 +98,7 @@ class DepartmentsController < ApplicationController
 
   private
   def department_params
-    params.require(:department).permit(:department_logo, :title, :foundation_date, :active,
+    params.require(:department).permit(:department_logo, :delete_img, :title, :foundation_date, :status,
                                        address_attributes: [:country, :city, :postal_code, :address],
                                        contacts_attributes: [:id, :_destroy, :type, :value])
   end

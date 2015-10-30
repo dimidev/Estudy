@@ -1,0 +1,30 @@
+el:
+  mongoid:
+    models:
+      notice:
+        one: 'Ειδοποίηση'
+        other: 'Ειδοποήσεις'
+    attributes:
+      notice:
+        title: 'Τίτλος'
+        target: 'Παραλήπτες'
+    success:
+      models:
+        notice:
+          create: 'Ειδοποίηση για <b>%{target}</b> έχει δημιουργηθεί'
+          update: 'Ειδοποίηση για <b>%{target}</b> έχει αποθηκευτεί'
+          destroy: 'Διαγραφή ειδοποίηση για <b>%{target}</b> έχει διαγραφεί'
+    errors:
+      models:
+        notice:
+          create: 'Ειδοποίηση δεν έχει δημιουργηθεί'
+          update: 'Ειδοποίηση δεν έχει αποθηκευτεί'
+          destroy: 'Διαγραφή ειδοποίηση για <b>%{target}</b> δεν έχει διαγραφεί'
+  enumerize:
+    notice:
+      target:
+        institution: 'Ίδρυμα'
+        departments: 'Τμήματα'
+        admins: 'Διαχειριστές'
+        professors: 'Καθηγητές'
+        students: 'Φοιτητές'

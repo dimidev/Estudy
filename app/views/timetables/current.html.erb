@@ -1,0 +1,31 @@
+<% title t('.title') %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"><%= @timetable.period %></h2>
+  </div>
+    <table class="table table-bordered">
+      <thead>
+        <th><%= t('mongoid.attributes.timetable.title') %></th>
+        <th><%= t('mongoid.attributes.timetable.from') %></th>
+        <th><%= t('mongoid.attributes.timetable.to') %></th>
+      </thead>
+      <tbody>
+          <tr>
+            <td><%= @timetable.period %></td>
+            <td><%= @timetable.from %></td>
+            <td><%= @timetable.to %></td>
+          </tr>
+
+          <% if @timetable.has_child_timetables? %>
+            <% @timetable.each do |t| %>
+              <tr>
+                <td><%= t.title %></td>
+                <td><%= t.from %></td>
+                <td><%= t.to %></td>
+              </tr>
+            <% end %>
+          <% end %>
+      </tbody>
+    </table>
+</div><!--//panel-->

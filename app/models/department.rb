@@ -2,14 +2,19 @@ class Department
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Datatable
+  extend Enumerize
+
+  attr_accessor :delete_img
+  before_validation {department_logo.clear if delete_img == '1' }
 
   field :title,           type: String
   field :foundation_date, type: Integer
-  field :active,          type: Boolean, default: true
+  field :status
+  enumerize :status, in: {active: true, not_active: false}, default: :active
 
-  has_mongoid_attached_file :department_logo, style:{medium:'150x150',thumb:'60x60'},
-                            url:"/system/:attachment/:style/:basename.:extension",
-                            path:":rails_root/public/system/:attachment/:style/:basename.:extension",
+  has_mongoid_attached_file :department_logo, styles:{medium:'300x300>',thumb:'60x60>'},
+                            url:"/system/:attachment/:style/:id.:extension",
+                            path:":rails_root/public/system/:attachment/:style/:id.:extension",
                             default_url: 'institution.png'
 
   validates_attachment :department_logo, content_type: {content_type: /\Aimage\/.*\Z/}, size: {less_than: 2.megabytes}
@@ -23,9 +28,11 @@ class Department
   has_many :admins
   has_many :students
   has_many :studies_programmes
+  has_many :timetables
   belongs_to :institution
+  has_many :notices
 
   accepts_nested_attributes_for :address, :contacts, reject_if: :all_blank, allow_destroy: true
 
-  scope :active, lambda { where(active: true) }
+  scope :active, lambda { where(status: true) }
 end
