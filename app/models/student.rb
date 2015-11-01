@@ -5,7 +5,7 @@ class Student < User
   field :semester,  type: Integer, default: 1
   field :stc,       type: Integer # Student Code
 
-  validates_associated :department
+  validates_associated :department, :studies_programme
   validates_presence_of :semester
   validates_numericality_of :semester, only_integer: true, greater_than_or_equal_to: 1
 

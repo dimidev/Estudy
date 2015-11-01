@@ -10,7 +10,7 @@ Rails.application.routes.draw do
          registrations: 'users/registrations'
      }
 
-    root 'dashboards#home'
+    root 'dashboards#show'
 
     scope path: 'dashboard', controller: :dashboards do
       get 'home', as: :dashboard_home

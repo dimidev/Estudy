@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('registrations.index.title')
 
     respond_to do |format|
-      format.html{ flash[:notice] = I18n.t('mongoid.success.models.registration.registrations_period') if Timetable.current.exists? }
+      format.html{ flash[:notice] = I18n.t('mongoid.success.models.registration.registrations_period') if Timetable.current }
       format.json do
         render(json: Student.find(params[:student_id]).registrations.datatable(self, %w(id)) do |registration|
                  [
@@ -31,7 +31,9 @@ class RegistrationsController < ApplicationController
     if Timetable.current
       @student = Student.find(params[:student_id])
       @registration = @student.registrations.build
-      @courses = @student.studies_programme.courses.order_by(semester: :asc)
+      if @student.studies_programme.courses.exists?
+        @courses = @student.studies_programme.courses.order_by(semester: :asc)
+      end
 
       render :edit
     else

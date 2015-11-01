@@ -1,21 +1,11 @@
 <div role="tabpanel" class="tab-pane fade in" id="address">
-  <div class="form-group">
-    <%= add_nested_resource f, :addresses, target: '.addresses', localize: true %>
-  </div>
-
-  <div class="addresses">
-  <%= f.simple_fields_for :addresses do |a| %>
-    <div class="well">
+  <%= f.simple_fields_for :address do |a| %>
         <div class="row">
           <%= a.input :country, include_blank: false, priority: ['GR'], input_html: {data: {size: 10, 'live-search': 'true'}}, wrapper_html:{class:'col-md-6'} %>
           <%= a.input :city, wrapper_html:{class:'col-md-6'} %>
           <%= a.input :postal_code, wrapper_html:{class:'col-md-6'} %>
           <%= a.input :address, wrapper_html:{class:'col-md-6'} %>
         </div>
-        <%= a.input :primary, as: :boolean, input_html:{class:'icheck'} %>
-        <%= remove_nested_resource a %>
-      </div>
   <% end %>
-  </div><!--//addresses-->
 
 </div><!--//general-->

@@ -17,3 +17,4 @@ en:
           create: 'Studies Programme is not created'
           update: 'Studies Programme is not updated'
           destroy: 'Studies Programme %{title} is not deleted'
+          no_exists: 'There is no available Studies Programme, please create one'

@@ -1,5 +1,8 @@
 .simple-calendar {
-  .day {}
+  .day {
+    vertical-align: top !important;
+    text-align: right;;
+  }
 
   .wday-0 {}
   .wday-1 {}

@@ -1,3 +1,29 @@
+//== Widgets
+.widget {
+  @extend .panel;
+
+  &.widget-primary {
+    background-color: $brand-primary;
+  }
+  &.widget-warning {
+    background-color: $brand-warning;
+  }
+  &.widget-info {
+    background-color: $brand-info;
+  }
+  &.widget-danger {
+    background-color: $brand-danger;
+  }
+
+  .widget-heading {
+    padding: 15px;
+  }//.widget-heading
+
+  .widget-body {
+    padding: 15px;
+  }//.widget-body
+}//.widget
+
 //== Panels
 .panel{
   border: none;

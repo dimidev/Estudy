@@ -18,9 +18,9 @@
           </tr>
 
           <% if @timetable.has_child_timetables? %>
-            <% @timetable.each do |t| %>
+            <% @timetable.child_timetables.each do |t| %>
               <tr>
-                <td><%= t.title %></td>
+                <td><%= t.title.present? ? t.title : t("enumerize.timetable.type.#{t.type}") %></td>
                 <td><%= t.from %></td>
                 <td><%= t.to %></td>
               </tr>

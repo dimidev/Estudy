@@ -14,7 +14,7 @@ class Timetable
 
   validates_presence_of :from, :to
   validates_presence_of :period, if: lambda{|obj| obj.has_child_timetables? }
-  validates_presence_of :title, :type, if: lambda{|obj| obj.has_parent_timetable?}
+  validates_presence_of :type, if: lambda{|obj| obj.has_parent_timetable?}
 
   recursively_embeds_many
   belongs_to :department

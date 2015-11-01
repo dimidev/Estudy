@@ -17,6 +17,7 @@ class StudentsController < ApplicationController
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
+                          <li><%= link_to fa_icon('file-o', text: I18n.t('mongoid.models.registration.other')), student_registrations_path(student) %></li>
                           <li class='divider'></li>
                           <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_student_path(student) %></li>
                           <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), student_path(student), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
@@ -33,9 +34,13 @@ class StudentsController < ApplicationController
     add_breadcrumb I18n.t('students.new.title')
 
     @department = Department.find(params[:department_id])
-    @student = @department.students.build
 
-    render :edit
+    if @department.studies_programmes.exists?
+      @student = @department.students.build
+      render :edit
+    else
+      redirect_to department_studies_programmes_path(@department), alert: I18n.t('mongoid.errors.models.studies_programme.no_exists')
+    end
   end
 
   def create

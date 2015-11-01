@@ -18,3 +18,4 @@ en:
           update: 'Registrations is not updated'
           destroy: 'Registrations is not deleted'
           registrations_period: 'Registrations Period is not available'
+          no_courses: 'There is no available courses'
