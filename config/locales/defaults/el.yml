@@ -6,6 +6,7 @@ el:
   btn:
     cancel: 'Άκυρο'
     delete: 'Διαγραφή'
+    close: 'Έξοδος'
   datatable:
     options: 'Επιλογές'
     edit: 'Επεξεργασία'

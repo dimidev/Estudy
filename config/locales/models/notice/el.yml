@@ -3,28 +3,26 @@ el:
     models:
       notice:
         one: 'Ειδοποίηση'
-        other: 'Ειδοποήσεις'
+        other: 'Ειδοποιήσεις'
     attributes:
       notice:
         title: 'Τίτλος'
-        target: 'Παραλήπτες'
+        content: 'Περιεχόμενο'
+        created_at: 'Ημ. Δημιουργίας'
+        updated_at: 'Ημ. Ανανέωσης'
     success:
       models:
         notice:
-          create: 'Ειδοποίηση για <b>%{target}</b> έχει δημιουργηθεί'
-          update: 'Ειδοποίηση για <b>%{target}</b> έχει αποθηκευτεί'
-          destroy: 'Διαγραφή ειδοποίηση για <b>%{target}</b> έχει διαγραφεί'
+          create: 'Ειδοποίηση έχει δημιουργηθεί'
+          update: 'Ειδοποίηση έχει αποθηκευτεί'
+          destroy: 'Η ειδοποίηση έχει διαγραφεί'
     errors:
       models:
         notice:
           create: 'Ειδοποίηση δεν έχει δημιουργηθεί'
           update: 'Ειδοποίηση δεν έχει αποθηκευτεί'
-          destroy: 'Διαγραφή ειδοποίηση για <b>%{target}</b> δεν έχει διαγραφεί'
-  enumerize:
+          destroy: 'Η ειδοποίηση δεν έχει διαγραφεί'
+          no_notices: 'Δεν υπάρχουν ειδοποιήσεις'
+  legends:
     notice:
-      target:
-        institution: 'Ίδρυμα'
-        departments: 'Τμήματα'
-        admins: 'Διαχειριστές'
-        professors: 'Καθηγητές'
-        students: 'Φοιτητές'
+      receivers: 'Παραλήπτες'

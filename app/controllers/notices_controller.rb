@@ -10,7 +10,8 @@ class NoticesController < ApplicationController
         render(json: Notice.datatable(self, %w(title target)) do |notice|
           [
               notice.title,
-              I18n.t("enumerize.notice.target.#{notice.target}"),
+              notice.created_at.strftime('%d-%m-%Y %H:%M:%S'),
+              notice.updated_at.strftime('%d-%m-%Y %H:%M:%S'),
               %{<div class="btn-group">
                 <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                 <ul class="dropdown-menu dropdown-center">
@@ -41,11 +42,20 @@ class NoticesController < ApplicationController
     @notice = Notice.new(notice_params)
 
     if @notice.save
-      redirect_to notices_path, notice: I18n.t('mongoid.success.models.notice.create', target: @notice.target)
+      redirect_to notices_path, notice: I18n.t('mongoid.success.models.notice.create')
     else
       collections
       flash[:alert] = I18n.t('mongoid.errors.models.notice.create')
       render :edit
+    end
+  end
+
+  def show
+    @notice = Notice.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.js{ render 'dashboards/modal_show' }
     end
   end
 
@@ -66,7 +76,7 @@ class NoticesController < ApplicationController
     @notice = Notice.find(params[:id])
 
     if @notice.update_attributes(notice_params)
-      redirect_to notices_path, notice: I18n.t('mongoid.success.models.notice.update', target: @notice.target)
+      redirect_to notices_path, notice: I18n.t('mongoid.success.models.notice.update')
     else
       collections
       flash[:alert] = I18n.t('mongoid.errors.models.notice.update')
@@ -79,11 +89,11 @@ class NoticesController < ApplicationController
 
     respond_to do |format|
       if @notice.destroy
-        message = I18n.t('mongoid.success.models.notice.destroy', target: @notice.target)
+        message = I18n.t('mongoid.success.models.notice.destroy')
         format.html { redirect_to departments_path, notice: message }
         format.js { flash.now[:notice] = message }
       else
-        message = I18n.t('mongoid.errors.models.notice.destroy', target: @notice.target)
+        message = I18n.t('mongoid.errors.models.notice.destroy')
         format.html { render :edit, flash[:alert] = message }
         format.js { flash.now[:notice] = message }
       end
@@ -92,7 +102,7 @@ class NoticesController < ApplicationController
 
   private
   def notice_params
-    params.require(:notice).permit(:title, :content, :target, :institution_id, department_ids:[], admins_ids:[], professor_ids:[], student_ids:[])
+    params.require(:notice).permit(:title, :content, :institution_id, :department_id, :admin_id, :professor_id, :student_id)
   end
 
   def collections

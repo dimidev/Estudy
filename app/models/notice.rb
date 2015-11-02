@@ -1,14 +1,12 @@
 class Notice
   include Mongoid::Document
   include Mongoid::Datatable
-  extend Enumerize
+  include Mongoid::Timestamps
 
   field :title, type: String
-  field :target
-  enumerize :target, in: [:institution, :departments, :admins, :professors, :students]
   field :content, type: String
 
-  validates_presence_of :title, :target
+  validates :title, presence: true, length: {maximum: 256}
 
   belongs_to :institution
   belongs_to :department

@@ -1,40 +1,63 @@
 <% title t('sidebar.dashboard') %>
 
-<%= render 'dashboards/widgets' if current_user.role? :admin %>
+<%= render 'dashboards/modal' %>
+
+<%= render "dashboards/widgets/#{current_user.role}_widgets" %>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-lg-5">
     <div class="panel panel-info">
       <div class="panel-heading">
         <h2 class="panel-title"><%= t('mongoid.models.notice.other') %></h2>
       </div><!--//panel-heading-->
       <div class="panel-body">
-        <ul class="nav nav-tabs nav-justified">
+        <ul class="nav nav-pills nav-justified">
           <li class="active"><a data-toggle="tab" href="#institution"><%= t('mongoid.models.institution.one') %></a></li>
           <li><a data-toggle="tab" href="#departments"><%= t('mongoid.models.department.other') %></a></li>
           <li><a data-toggle="tab" href="#professors"><%= t('mongoid.models.professor.other') %></a></li>
           <li><a data-toggle="tab" href="#students"><%= t('mongoid.models.student.other') %></a></li>
         </ul>
+      </div><!--//panel-body-->
 
         <div class="tab-content">
-          <div id="home" class="tab-pane fade in active">
-            <h3>HOME</h3>
-            <p>Some content.</p>
+          <div id="institution" class="list-group tab-pane fade in active">
+            <% if @institution_notices %>
+                <% @institution_notices.each do |n| %>
+                    <%= link_to n, remote: true, class:'list-group-item' do %>
+                        <%= n.title %> <span class="badge badge-info pull-right"><%= n.created_at.strftime('%d-%m-%Y %H:%M:%S') %></span>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <div class="panel-body">
+                  <div class="alert alert-warning">
+                    <%= fa_icon'exclamation-circle', text: t('mongoid.errors.models.notice.no_notices') %>
+                  </div>
+                </div>
+            <% end %>
           </div>
-          <div id="menu1" class="tab-pane fade">
-            <h3>Menu 1</h3>
-            <p>Some content in menu 1.</p>
+
+          <div id="departments" class="list-group tab-pane fade in">
+            <% if @department_notices %>
+                <% @department_notices.each do |n| %>
+                    <%= link_to n, remote: true, class:'list-group-item' do %>
+                        <%= n.title %> <span class="badge badge-info pull-right"><%= n.created_at.strftime('%d-%m-%Y %H:%M:%S') %></span>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <div class="panel-body">
+                  <div class="alert alert-warning">
+                    <%= fa_icon'exclamation-circle', text: t('mongoid.errors.models.notice.no_notices') %>
+                  </div>
+                </div>
+            <% end %>
           </div>
-          <div id="menu2" class="tab-pane fade">
-            <h3>Menu 2</h3>
-            <p>Some content in menu 2.</p>
-          </div>
+
         </div>
-      </div><!--//panel-body-->
+
     </div><!--//panel-->
   </div><!--//col-->
 
-  <div class="col-md-6">
+  <div class="col-lg-7">
     <div class="panel">
       <div class="panel-body">
         <%= month_calendar do |date| %>

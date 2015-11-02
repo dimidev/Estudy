@@ -3,6 +3,6 @@ en:
     models:
       admin:
         one: 'Department Admin'
-        other: 'Department Admins'
+        other: '%{count} Department Admins'
         admin: 'Admin'
         admins: 'Admins'

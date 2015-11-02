@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-6 col-md-3">
+    <div class="widget widget-danger">
+      <div class="widget-body">
+        <%= @students %> <%= t('mongoid.models.student', count: @students) %>
+      </div><!--//widget-body-->
+    </div><!--//widget-->
+  </div><!--//col-->
+
+  <div class="col-sm-6 col-md-3">
+    <div class="widget widget-warning">
+      <div class="widget-body">
+        <%= @admins %> <%= t('mongoid.models.admin', count: @admins) %>
+      </div><!--//widget-body-->
+    </div><!--//widget-->
+  </div><!--//col-->
+
+  <div class="col-sm-6 col-md-3">
+    <div class="widget widget-primary">
+      <div class="widget-body">
+        <%= @professors %> <%= t('mongoid.models.professor', count: @professors) %>
+      </div><!--//widget-body-->
+    </div><!--//widget-->
+  </div><!--//col-->
+
+  <div class="col-sm-6 col-md-3">
+    <div class="widget widget-info">
+      <div class="widget-body">
+        New student registrations
+      </div><!--//widget-body-->
+    </div><!--//widget-->
+  </div><!--//col-->
+</div><!--//row-->

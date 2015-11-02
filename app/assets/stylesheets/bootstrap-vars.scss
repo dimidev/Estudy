@@ -1,9 +1,10 @@
 //== My Variables
 $sidebar-width: 220px;
-$box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.07);
+$box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 
 //== Colors
 $brand-primary: $peter-river;
+$brand-info: $aqua;
 
 //== Scaffolding
 $body-bg: #E9F0F5;
@@ -26,3 +27,11 @@ $breadcrumb-bg: none;
 //== Navbar
 $navbar-height: 50px;
 $navbar-inverse-bg: #2D353C;
+
+//== Form states and alerts
+$state-info-bg: lighten($aqua, 10);
+$state-info-text: white;
+$state-success-bg: $grass;
+
+//== Panels
+$panel-default-heading-bg: $light-gray-darken;

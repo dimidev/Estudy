@@ -1,0 +1,9 @@
+content = "<h3 class='notice-title'><%= j @notice.title %></h3>";
+
+<% if @notice.content %>
+    content += "<div class='well'><%= j @notice.content.html_safe %></div>";
+<% end %>
+
+$('#modal').find('.modal-body').html(content);
+
+$('#modal').modal();

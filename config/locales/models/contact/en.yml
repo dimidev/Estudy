@@ -4,6 +4,7 @@ en:
       contact:
         one: 'Contact'
         other: '%{count} Contacts'
+        special: 'Contact'
     attributes:
       contact:
         value: 'Value'

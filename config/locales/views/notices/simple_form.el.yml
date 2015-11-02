@@ -4,3 +4,12 @@ el:
       notice:
         create: 'Δημιουργία Ειδοποίησης'
         update: 'Ενημέρωση Ειδοποίησης'
+  simple_form:
+    labels:
+      notice:
+        institution: 'Ίδρυμα'
+        department: 'Τμήμα'
+        student: 'Φοιτητής'
+        admin: 'Διαχειριστής Τμήματος'
+        professor: 'Καθηγητής'
+        course: 'Μάθημα'

@@ -4,6 +4,7 @@ el:
       contact:
        one: 'Επικοινωνία'
        other: '%{count} Εποικοινωνίες'
+       special: 'Επικοινωνίας'
     attributes:
       contact:
         type: 'Είδος Επικοινωνίας'

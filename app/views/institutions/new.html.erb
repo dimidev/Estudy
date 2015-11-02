@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-md-4">
             <fieldset>
-              <legend><%= t('mongoid.attributes.institution.logo') %></legend>
+              <legend><%= t('mongoid.attributes.institution.institution_logo') %></legend>
               <%= image_tag f.object.institution_logo.url, id:'avatar-img', class:'center-block img-responsive img-rounded' %>
               <div class="row">
                   <%= f.input :institution_logo, label: false, wrapper_html:{class:'col-sm-6'} do %>
@@ -36,7 +36,7 @@
           <div class="col-md-6">
             <legend><%= t('mongoid.models.address.one') %></legend>
             <%= f.simple_fields_for :address do |a| %>
-                <%= a.input :country, include_blank: false, priority: ['GR'], input_html: {data: {size: 10, 'live-search': 'true'}} %>
+                <%= a.input :country, include_blank: false, priority: ['GR'], input_html: {data: {size: 10, 'live-search'=> 'true'}} %>
                 <%= a.input :city %>
                 <%= a.input :postal_code %>
                 <%= a.input :address %>

@@ -28,6 +28,10 @@
 .panel{
   border: none;
   box-shadow: $box-shadow;
+  
+  .panel-heading{
+    border: unset;
+  }
 
   .panel-title{
     font-size: 20px;
@@ -135,6 +139,10 @@ fieldset {
 }//.navbar-rigth dropdown
 
 //== Alert and forms states
+.panel-body .alert:last-of-type{
+  margin-bottom: 0;
+}
+
 .alert {
   ul {
     padding: 0 15px;
@@ -151,3 +159,9 @@ fieldset {
 //== Badge
 .badge-success{ background-color: $brand-success; }
 .badge-danger{ background-color: $brand-danger; }
+.badge-info{ background-color: $brand-info; }
+
+//== Wells
+.modal-body .well:last-of-type{
+  margin-bottom: 0;
+}
