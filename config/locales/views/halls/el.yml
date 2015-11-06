@@ -1,0 +1,10 @@
+el:
+  halls:
+    index:
+      title: 'Προβολή Αιθούσων'
+    new:
+      title: 'Νέα Αίθουσα'
+    edit:
+      title: 'Επεξεργασία Αίθουσας'
+    legends:
+      other_informations: 'Άλλες Πληροφορίες'

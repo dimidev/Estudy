@@ -1,0 +1,8 @@
+en:
+  halls:
+    index:
+      title: 'View Halls'
+    new:
+      title: 'New Hall'
+    edit:
+      title: 'Edit Hall'

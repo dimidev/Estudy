@@ -1,0 +1,8 @@
+el:
+  buildings:
+    index:
+      title: 'Προβολή Ακινήτων'
+    new:
+      title: 'Νέο Ακίνητο'
+    edit:
+      title: 'Επεξεργασία Ακίνητου'

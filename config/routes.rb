@@ -18,7 +18,10 @@ Rails.application.routes.draw do
 
     resource :institution, except: [:show, :destroy]
     resource :superadmin, only: [:edit, :update]
-
+    resources :buildings, shallow: true do
+      resources :halls, except: :show
+    end
+  
     resources :departments, shallow: true do
       resources :admins
       resources :professors

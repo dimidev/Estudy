@@ -1,0 +1,33 @@
+el:
+  mongoid:
+    models:
+      hall:
+        one: 'Αίθουσα'
+        other: 'Αίθουσες'
+    attributes:
+      hall:
+        name: 'Όνομα'
+        area: 'Εμβαδόν'
+        floors: 'Ορόφοι'
+        floor: 'Όροφος'
+        type: 'Τύπος'
+        pc: 'Υπολογιστές'
+        seats: 'Θέσεις'
+    success:
+      models:
+        hall:
+          create: 'Η αίθουσα <b>%{name}</b> αποθηκεύτηκε με επιτυχία'
+          update: 'Η αίθουσα <b>%{name}</b> αποθηκεύτηκε με επιτυχία'
+          destroy: 'Η αίθουσα <b>%{name}</b> διαγράφηκε με επιτυχία'
+    errors:
+      models:
+        hall:
+          create: 'Η αίθουσα δεν αποθηκεύτηκε'
+          update: 'Η αίθουσα δεν αποθηκεύτηκε'
+          destroy: 'Η αίθουσα <b>%{name}</b> δεν διαγράφηκε'
+  enumerize:
+    hall:
+      type:
+        office: 'Γραφείο'
+        lab: 'Εργαστήριο'
+        auditorium: 'Αμφιθέατρο'

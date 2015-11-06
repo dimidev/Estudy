@@ -11,5 +11,6 @@ class Address
 
   embedded_in :institution, autobuild: true
   embedded_in :department
+  embedded_in :building
   embedded_in :user
 end

@@ -74,7 +74,6 @@ class User
 
   embeds_many :addresses
   embeds_many :contacts
-  embeds_many :permisions
 
   accepts_nested_attributes_for :addresses, :contacts, allow_destroy: true, reject_if: :all_blank
 

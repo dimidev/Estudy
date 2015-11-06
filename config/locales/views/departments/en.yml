@@ -6,3 +6,5 @@ en:
       title: 'New Department'
     edit:
       title: 'Edit Department'
+    show:
+      title: 'Show Department'

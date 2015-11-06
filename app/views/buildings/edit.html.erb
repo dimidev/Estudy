@@ -1,0 +1,42 @@
+<% if %w(new create).include?(controller.action_name)
+     title(t('buildings.new.title'))
+   else
+     title(t('buildings.edit.title'))
+   end
+%>
+
+<%= render 'general/form_errors', resource: @building %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <%= simple_nested_form_for @building do |f| %>
+
+        <%= f.input :name %>
+
+        <div class="row">
+          <%= f.input :area, wrapper_html:{class:'col-sm-6'} %>
+          <%= f.input :floors, wrapper_html:{class:'col-sm-6'} %>
+        </div>
+
+        <fieldset>
+          <legend><%= t 'mongoid.models.address.one' %></legend>
+
+          <%= f.simple_fields_for :address do |a| %>
+              <div class="row">
+                <%= a.input :country, include_blank: false, priority: ['GR'], input_html: {data: {size: 10, 'live-search'=> 'true'}}, wrapper_html:{class:'col-md-6'} %>
+                <%= a.input :city, wrapper_html:{class:'col-md-6'} %>
+                <%= a.input :postal_code, wrapper_html:{class:'col-md-6'} %>
+                <%= a.input :address, wrapper_html:{class:'col-md-6'} %>
+              </div>
+          <% end %>
+        </fieldset>
+
+  </div><!--//pane-body-->
+  <div class="panel-footer">
+        <%= f.button :submit, class:'btn-success' %>
+        <%= cancel_btn(buildings_path) %>
+        <%= delete_btn(@building) %>
+    <% end %>
+  </div><!--//pane-footer-->
+</div><!--//panel-->

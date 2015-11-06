@@ -153,8 +153,15 @@ fieldset {
 .table {
   td {
     vertical-align: middle !important;
+    border-bottom: 1px solid #DDD;
   }
-}
+
+  &.table-half{
+    th, td{
+      width: 50%;
+    }
+  }//.table-half
+}//.table
 
 //== Badge
 .badge-success{ background-color: $brand-success; }

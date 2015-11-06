@@ -1,0 +1,6 @@
+el:
+  helpers:
+    submit:
+      building:
+        create: 'Δημιουργία Ακινήτου'
+        update: 'Ενημέρωση Ακινήτου'

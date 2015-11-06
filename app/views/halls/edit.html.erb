@@ -1,0 +1,38 @@
+<% if %w(new create).include?(controller.action_name)
+     title(t('halls.new.title'))
+   else
+     title(t('halls.edit.title'))
+   end
+%>
+
+<%= render 'general/form_errors', resource: @hall %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <%= simple_form_for [@building, @hall] do |f| %>
+
+        <div class="row">
+          <%= f.input :name, wrapper_html:{class:'col-sm-6'} %>
+          <%= f.input :type, wrapper_html:{class:'col-sm-6'} %>
+        </div>
+
+        <div class="row">
+          <%= f.input :area, wrapper_html:{class:'col-sm-6'} %>
+          <%= f.input :floor, wrapper_html:{class:'col-sm-6'} %>
+        </div>
+
+        <legend><%= t 'halls.legends.other_informations' %></legend>
+        <div class="row">
+          <%= f.input :pc, wrapper_html:{class:'col-sm-6'} %>
+          <%= f.input :seats, wrapper_html:{class:'col-sm-6'} %>
+        </div>
+
+  </div><!--//pane-body-->
+  <div class="panel-footer">
+        <%= f.button :submit, class:'btn-success' %>
+        <%= cancel_btn(building_halls_path(@hall.building)) %>
+        <%= delete_btn(@hall) %>
+    <% end %>
+  </div><!--//pane-footer-->
+</div><!--//panel-->

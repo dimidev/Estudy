@@ -11,7 +11,7 @@ class DepartmentsController < ApplicationController
       format.json do
         render(json: Department.datatable(self, %w(title foundation_date status)) do |department|
                  [
-                     department.title,
+                     "<%= link_to department.title, department_path(department) %>",
                      department.foundation_date,
                      department_status(department.status),
                      %{<div class="btn-group">
@@ -21,7 +21,8 @@ class DepartmentsController < ApplicationController
                           <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.professor.other')), department_professors_path(department) %></li>
                           <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.student.other')), department_students_path(department) %></li>
                           <li class='divider'></li>
-                          <li><%= link_to fa_icon('calendar-o', text: I18n.t('mongoid.models.timetable.one')), department_timetables_path(department) %></li>
+                          <li><%= link_to fa_icon('book', text: I18n.t('mongoid.models.studies_programme.other')), department_studies_programmes_path(department) %></li>
+                          <li><%= link_to fa_icon('calendar', text: I18n.t('mongoid.models.timetable.one')), department_timetables_path(department) %></li>
                           <li class='divider'></li>
                           <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_department_path(department) %></li>
                           <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), department_path(department), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
@@ -55,6 +56,17 @@ class DepartmentsController < ApplicationController
       flash[:alert] = I18n.t('mongoid.errors.models.department.create')
       render :edit
     end
+  end
+
+  def show
+    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path
+    add_breadcrumb I18n.t('departments.show.title')
+
+    @department = Department.find(params[:id])
+
+    @phones = @department.contacts.where(type: 'phone').map(&:value).join(', ')
+    @fax = @department.contacts.where(type: 'fax').map(&:value).join(', ')
+    @emails = @department.contacts.where(type: 'email').map(&:value).join(', ')
   end
 
   def edit

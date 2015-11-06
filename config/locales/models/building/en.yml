@@ -1,0 +1,20 @@
+en:
+  mongoid:
+    models:
+      building:
+        one: 'Building'
+        other: 'Buildings'
+    attributes:
+      building:
+    success:
+      models:
+        building:
+          create: 'Building is created'
+          update: 'Building is updated'
+          destroy: 'Building is deleted'
+    errors:
+      models:
+        building:
+          create: 'Building is not created'
+          update: 'Building is not updated'
+          destroy: 'Building is not deleted'

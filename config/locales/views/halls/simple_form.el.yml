@@ -1,0 +1,6 @@
+el:
+  helpers:
+    submit:
+      hall:
+        create: 'Δημιουργία Αίθουσας'
+        update: 'Ενημέρωση Αίθουσας'

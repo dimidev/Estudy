@@ -1,0 +1,23 @@
+el:
+  mongoid:
+    models:
+      building:
+        one: 'Ακίνητο'
+        other: 'Ακίνητα'
+    attributes:
+      building:
+        name: 'Ονομασία'
+        area: 'Εμβαδόν'
+        floors: 'Ορόφοι'
+    success:
+      models:
+        building:
+          create: 'Το ακίνητο αποθηκεύτηκε με επιτυχία'
+          update: 'Το ακίνητο αποθηκεύτηκε με επιτυχία'
+          destroy: 'Το ακίνητο διαγράφηκε με επιτυχία'
+    errors:
+      models:
+        building:
+          create: 'Το ακίνητο δεν αποθηκεύτηκε'
+          update: 'Το ακίνητο δεν αποθηκεύτηκε'
+          destroy: 'Το ακίνητο δεν διαγράφηκε'

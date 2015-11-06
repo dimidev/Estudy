@@ -3,6 +3,7 @@ class Department
   include Mongoid::Paperclip
   include Mongoid::Datatable
   extend Enumerize
+  extend ActiveModel::Naming
 
   attr_accessor :delete_img
   before_validation {department_logo.clear if delete_img == '1' }

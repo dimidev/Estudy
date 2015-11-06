@@ -18,3 +18,8 @@ en:
           create: 'Department is not created'
           update: 'Department is not updated'
           destroy: 'Department <b>%{title}</b> is not deleted'
+  enumerize:
+    department:
+      status:
+        active: 'Active'
+        not_active: 'Not Active'

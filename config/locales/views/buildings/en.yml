@@ -1,0 +1,8 @@
+en:
+  buildings:
+    index:
+      title: 'View Buildings'
+    new:
+      title: 'New Building'
+    edit:
+      title: 'Edit Building'
