@@ -1,11 +1,11 @@
 <% title t('devise.sessions.new.title') %>
 
-<div class="col-xs-10 col-sm-8 col-md-6 col-sm-offset-2 col-xs-offset-1 col-md-offset-3">
+<div class="col-xs-10 col-sm-8 col-md-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3">
 
 
-  <div class="panel panel-primary">
+  <div class="panel panel-default">
     <div class="panel-heading text-center">
-      <h2 class="panel-title"><%= t 'devise.sessions.new.title' %></h2>
+      <%= render 'layouts/partials/logo' %>
     </div>
     <div class="panel-body">
       <%= simple_form_for resource, as: resource_name, url: session_path(resource_name), remote: true, defaults: {label: false, required: false}, html: {novalidate: false, data: {format: :json}} do |f| %>
@@ -19,18 +19,14 @@
               <%= f.input_field :password, placeholder: t('simple_form.labels.defaults.password'), class: "form-control" %>
           <% end %>
 
-        <%= f.button :submit, t('helpers.submit.session.new'), class: 'btn-primary btn-block' %>
+          <%= f.button :submit, t('helpers.submit.session.new'), class: 'btn-success btn-block' %>
       <% end %>
+
     </div><!--//panel-body-->
     <div class="panel-footer text-center">
       <%= render 'devise/shared/links' %>
     </div><!--//panel-footer-->
   </div><!--//panel-->
 
-  <div id="copyright" class="text-center">
-    <p><%= Time.now.year %> &copy; | Created by <%= link_to 'DimiDev', 'http://gr.linkedin.com/in/dimidev', target: 'blank' %></p>
-
-    <%= image_tag 'badges/ror.png', class: 'ror-badge' %>
-    <%= image_tag 'badges/mongodb.png', class: 'mongo-badge' %>
-  </div>
+  <%= render 'layouts/partials/copyright' %>
 </div><!--/col-->

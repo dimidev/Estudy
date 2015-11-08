@@ -14,6 +14,7 @@ class HallsController < ApplicationController
               hall.floor,
               "#{hall.area} m<sup>2</sup>",
               hall.seats,
+              hall.pc,
               %{<div class="btn-group">
                 <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                 <ul class="dropdown-menu dropdown-center">

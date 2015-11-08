@@ -60,7 +60,7 @@ module ApplicationHelper
   end
 
   # Cancel link for forms
-  def cancel_btn(path, options={})
+  def cancel_btn(path=root_path, options={})
     btn_class = 'btn btn-warning'
     btn_class << ' ' << options[:class] if options[:class].present?
 

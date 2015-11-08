@@ -3,6 +3,7 @@ class User
   include Mongoid::Paperclip
   include Mongoid::Datatable
   extend Enumerize
+  extend ActiveModel::Naming
   # Include default devise modules. Others available are:
   # :confirmable,  and :omniauthable,
   devise :database_authenticatable, :recoverable, :rememberable,
@@ -79,6 +80,11 @@ class User
 
   def fullname
     "#{self.name} #{self.lastname}"
+  end
+
+  def age
+    age = Date.current.year - self.birthdate.year
+    age -= 1 if Date.current < birthdate + age.years
   end
 
   private

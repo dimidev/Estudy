@@ -21,4 +21,7 @@ class Hall
   validates :seats, presence: true, numericality:{only_integer: true, greater_or_equal_to: 0}, if: lambda{|obj| %w(lab auditorium).include?(obj.type)}
 
   belongs_to :building
+  has_many :professors, as: :professor_office
+
+  scope :office, lambda{where(type: :office)}
 end

@@ -1,12 +1,4 @@
-<li class="has-sub">
-  <a>
-    <%= fa_icon('institution',text: t('mongoid.models.institution.one')) %>
-    <%= fa_icon 'caret-down', class:'pull-right' %>
-  </a>
-  <ul class="sub-menu">
-    <li><%= link_to t('institutions.edit.title'), edit_institution_path %></li>
-  </ul>
-</li>
+<li><%= link_to fa_icon('institution',text: Institution.model_name.human), institution_path %></li>
 
 <li class="has-sub">
   <a>

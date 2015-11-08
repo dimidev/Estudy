@@ -2,7 +2,9 @@ class ProfessorsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(params[:department_id])
+    @department = Department.find(params[:department_id])
+    add_breadcrumb @department.title, department_professors_path(@department), if: lambda{current_user.role? :superadmin}
+    add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(@department)
     add_breadcrumb I18n.t('professors.index.title')
 
     respond_to do |format|
@@ -12,7 +14,10 @@ class ProfessorsController < ApplicationController
                  [
                      professor.name,
                      professor.lastname,
-                     I18n.t("enumerize.professor.professor_type.#{professor.professor_type}"),
+                     professor.email,
+                     professor.birthdate,
+                     professor.professor_type_text,
+                     professor.professor_office.name,
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
@@ -32,7 +37,13 @@ class ProfessorsController < ApplicationController
     @department = Department.find(params[:department_id])
     @professor = Professor.new
 
-    @departments = Department.active
+    @offices = Hall.office
+
+    if current_user.role? :superadmin
+      @departments = Department.all
+    else
+      # TODO add code for admin
+    end
 
     render :edit
   end
@@ -43,11 +54,13 @@ class ProfessorsController < ApplicationController
     @department = Department.find(params[:department_id])
     @professor = Professor.new(professor_params)
 
+
     if @professor.save
       flash[:notice] = t('mongoid.success.models.user.create', model: Professor.model_name.human, name: @professor.fullname)
       redirect_to department_professors_path(params[:department_id])
     else
       @departments = Department.active
+      @offices = Hall.office
 
       flash[:alert] = t('mongoid.errors.models.user.create', model: Professor.model_name.human, name: @professor.fullname)
       render :edit
@@ -57,23 +70,37 @@ class ProfessorsController < ApplicationController
   def edit
     @professor = Professor.find(params[:id])
 
-    add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(current_user.department)
+    # FIXME breadcrumb not working properly on superadmin mode
+    # add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(current_user.department), if: lambda{current_user.role? :admin}
     add_breadcrumb I18n.t('professors.edit.title')
 
-    @departments = Department.active
+    @offices = Hall.office
+
+    if current_user.role? :superadmin
+      @departments = Department.all
+    else
+      # TODO add code for admin
+    end
   end
 
   def update
     @professor = Professor.find(params[:id])
 
-    add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(current_user.department)
+    # FIXME breadcrumb not working properly on superadmin mode
+    #add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(current_user.department)
     add_breadcrumb I18n.t('professors.edit.title')
 
     if update_resource(@professor, professor_params)
       flash[:notice] = I18n.t('mongoid.success.models.user.update', model: Professor.model_name.human, name: @professor.fullname)
-      redirect_to department_professors_path(current_user.department)
+
+      if current_user.role? :admin
+        redirect_to department_professors_path(current_user.department)
+      else
+        redirect_to root_path
+      end
     else
       @departments = Department.active
+      @offices = Hall.office
 
       flash[:alert] = I18n.t('mongoid.errors.models.user.update', model: Professor.model_name.human)
       render :edit
@@ -99,7 +126,7 @@ class ProfessorsController < ApplicationController
   private
 
   def professor_params
-    params.require(:professor).permit(:user_avatar, :email, :password, :password_confirmation, :role, :professor_type,
+    params.require(:professor).permit(:user_avatar, :email, :password, :password_confirmation, :role, :professor_type, :professor_office_id,
                                       :name, :lastname, :gender, :birthdate, :nic, :trn, department_ids: [],
                                       addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
                                       contacts_attributes: [:id, :_destroy, :type, :value])

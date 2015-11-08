@@ -14,6 +14,7 @@ class DepartmentsController < ApplicationController
                      "<%= link_to department.title, department_path(department) %>",
                      department.foundation_date,
                      department_status(department.status),
+                     department.students.active.count,
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
@@ -22,7 +23,7 @@ class DepartmentsController < ApplicationController
                           <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.student.other')), department_students_path(department) %></li>
                           <li class='divider'></li>
                           <li><%= link_to fa_icon('book', text: I18n.t('mongoid.models.studies_programme.other')), department_studies_programmes_path(department) %></li>
-                          <li><%= link_to fa_icon('calendar', text: I18n.t('mongoid.models.timetable.one')), department_timetables_path(department) %></li>
+                          <li><%= link_to fa_icon('calendar', text: Timetable.model_name.human), department_timetables_path(department) %></li>
                           <li class='divider'></li>
                           <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_department_path(department) %></li>
                           <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), department_path(department), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>

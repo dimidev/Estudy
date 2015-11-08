@@ -4,3 +4,5 @@ en:
       title: 'Create Institution'
     edit:
       title: 'Edit Institution'
+    show:
+      title: 'Institution Infos'

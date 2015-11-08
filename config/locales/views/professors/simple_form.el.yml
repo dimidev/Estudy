@@ -3,6 +3,7 @@ el:
     labels:
       professor:
         department_ids: 'Τμήματα'
+        professor_office_id: 'Γραφείο'
   helpers:
     submit:
       professor:

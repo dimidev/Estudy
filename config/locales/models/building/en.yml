@@ -9,12 +9,12 @@ en:
     success:
       models:
         building:
-          create: 'Building is created'
-          update: 'Building is updated'
-          destroy: 'Building is deleted'
+          create: 'Building <b>%{name}</b> is created'
+          update: 'Building <b>%{name}</b> is updated'
+          destroy: 'Building <b>%{name}</b> is deleted'
     errors:
       models:
         building:
           create: 'Building is not created'
           update: 'Building is not updated'
-          destroy: 'Building is not deleted'
+          destroy: 'Building <b>%{name}</b> is not deleted'

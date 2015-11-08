@@ -58,49 +58,46 @@ html, body {
 
 //== Devise
 .devise {
-  header {
-    margin: 0;
-    .container-fluid>*{display: inline-block;}
+  background: $peter-river;
+  display: table;
+  width: 100%;
+  padding: 20px 0;
 
-    .navbar-brand {
-      padding: 10px;
-      img {
-        display: block;
-        height: 60px;
-      }
+  .language-select {
+    margin-bottom: 15px;
+
+    a{ 
+      margin: 0 5px;
+      display: inline-block;
     }
 
-    .navbar-text {
-      font-size: 30px;
-      margin-left: 0;
+    img{
+      display: block;
+      height: 30px;
+    }
+  }//.language-select
+
+  .panel-heading{
+    #logo{
+      max-height: 120px;
+      height: 100%;
+      margin-top: 10px;
     }
 
-    .language-select {
-      li{display: inline-block;}
-      a {padding: 10px 5px;}
-      img {
-        display: block;
-        height: 30px;
-      }
-    }
-  }//header
+    h3{ margin: 10px 0; }
+  }//.panel-heading
 
   main {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: auto;
-    margin-right: auto;
     padding: 0;
-
-    #logo {
-      margin-bottom: 20px;
-      box-shadow: $box-shadow;
-    }
+    display: table-cell;
+    vertical-align: middle;
 
     #copyright {
-      margin-top: 50px;
+      margin-top: 30px;
+
+      a{ color: white; }
+      p{ color: white; }
+
       img {
         display: inline-block;
         height: 150px;
@@ -109,16 +106,7 @@ html, body {
     }
   }
   //.wrapper
-
-  &.institutions main {
-    margin-top: 20px;
-    position: relative;
-    top: unset;
-    transform: unset;
-  }
-}
-
-//.devise
+}//.devise
 
 header{
   margin-left: $sidebar-width;
@@ -167,8 +155,8 @@ header{
         margin-right: 5px;
       }
     }
-  }//γλαγσ
-}//header
+  }//.flags
+}//.header
 
 //== Sidebar
 #sidebar{

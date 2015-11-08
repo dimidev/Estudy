@@ -4,6 +4,7 @@ class Student < User
 
   field :semester,  type: Integer, default: 1
   field :stc,       type: Integer # Student Code
+  field :active,    type: Boolean, default: true
 
   validates_associated :department, :studies_programme
   validates_presence_of :semester
@@ -14,6 +15,8 @@ class Student < User
   belongs_to :studies_programme
   belongs_to :department
   has_many :notices
+
+  scope :active, lambda{ where(active: true) }
 
   private
   def defaults

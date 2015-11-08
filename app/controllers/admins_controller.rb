@@ -2,15 +2,19 @@ class AdminsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    add_breadcrumb I18n.t('mongoid.models.admin.other'), department_admins_path(params[:department_id])
+    @department = Department.find(params[:department_id])
+    add_breadcrumb @department.title, department_admins_path(@department), if: lambda{current_user.role? :superadmin}
+    add_breadcrumb I18n.t('mongoid.models.admin.other'), department_admins_path(@department)
 
     respond_to do |format|
       format.html
       format.json do
-        render(json: Department.find(params[:department_id]).admins.datatable(self, %w(name lastname)) do |admin|
+        render(json: @department.admins.datatable(self, %w(name lastname)) do |admin|
                  [
                      admin.name,
                      admin.lastname,
+                     admin.email,
+                     admin.birthdate,
                      %{<li class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">

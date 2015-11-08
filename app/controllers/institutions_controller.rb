@@ -22,14 +22,24 @@ class InstitutionsController < ApplicationController
     end
   end
 
+  def show
+    add_breadcrumb Institution.model_name.human, :institution_path
+    add_breadcrumb I18n.t('institutions.show.title')
+    @institution = Institution.first
+
+    @phones = @institution.contacts.where(type: 'phone').map(&:value).join(', ')
+    @fax = @institution.contacts.where(type: 'fax').map(&:value).join(', ')
+    @emails = @institution.contacts.where(type: 'email').map(&:value).join(', ')
+  end
+
   def edit
-    add_breadcrumb I18n.t('mongoid.models.institution.one'), :institution_path
+    add_breadcrumb Institution.model_name.human, :institution_path
     add_breadcrumb I18n.t('institutions.edit.title')
     @institution = Institution.first
   end
 
   def update
-    add_breadcrumb I18n.t('mongoid.models.institution.one'), :institution_path
+    add_breadcrumb Institution.model_name.human, :institution_path
     add_breadcrumb I18n.t('institutions.edit.title')
     @institution = Institution.first
 

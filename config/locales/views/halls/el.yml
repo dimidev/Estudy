@@ -1,7 +1,7 @@
 el:
   halls:
     index:
-      title: 'Προβολή Αιθούσων'
+      title: 'Αίθουσες'
     new:
       title: 'Νέα Αίθουσα'
     edit:

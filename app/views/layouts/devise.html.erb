@@ -10,23 +10,15 @@
 </head>
 <body class="devise <%= "#{controller.controller_name} #{controller.action_name}" %>" >
 
-<header>
-  <div class="container-fluid">
-    <% if Institution.exists? %>
-        <%= link_to image_tag(Institution.first.institution_logo.url(:medium)), root_path, class:'navbar-brand' %>
-        <p class="navbar-text"><%= Institution.first.title %></p>
-    <% end %>
-
-    <ul class="nav navbar-nav language-select pull-right">
-      <% I18n.available_locales.each do |lang| %>
-          <li><%= link_to image_tag("flags/#{lang}.png"), locale: lang %></li>
-      <% end %>
-    </ul>
-  </div><!--//container-fluid-->
-</header>
-
 <main>
+
   <div class="container wrapper">
+
+    <div class="language-select text-center">
+      <% I18n.available_locales.each do |lang| %>
+          <%= link_to image_tag("flags/#{lang}.png"), locale: lang %>
+      <% end %>
+    </div>
 
     <%= yield %>
 

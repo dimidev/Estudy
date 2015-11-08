@@ -27,7 +27,15 @@
   </div><!--//panel-body-->
   <div class="panel-footer">
         <%= f.button :submit, class:'btn-success' %>
-        <%= cancel_btn(department_professors_path(current_user.department)) %>
+        <% if current_user.role? :superadmin %>
+          <% if @department %>
+            <%= cancel_btn(department_professors_path(@department)) %>
+          <% else %>
+            <%= cancel_btn %>
+          <% end %>
+        <% else %>
+          <%= cancel_btn(department_professors_path(current_user.department)) %>
+        <% end %>
     <% end %>
   </div><!--//panel-footer-->
 </div><!--//panel-->

@@ -30,9 +30,12 @@ $navbar-inverse-bg: #2D353C;
 
 //== Form states and alerts
 $state-info-bg: lighten($aqua, 10);
+$state-info-border: lighten($aqua, 10);
 $state-info-text: white;
 $state-success-bg: $grass;
+$state-success-border: $grass;
 $state-warning-bg: $sunflower;
+$state-warning-border: $sunflower;
 
 //== Panels
 $panel-default-heading-bg: $light-gray-darken;

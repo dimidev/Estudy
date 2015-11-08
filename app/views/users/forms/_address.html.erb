@@ -8,7 +8,7 @@
       <%= f.simple_fields_for :addresses do |a| %>
         <div class="well">
           <div class="row">
-            <%= a.input :country, include_blank: false, priority: ['GR'], input_html: {data: {size: 10, 'live-search': 'true'}}, wrapper_html:{class:'col-md-6'} %>
+            <%= a.input :country, include_blank: false, priority: ['GR'], input_html: {data: {size: 10, 'live-search'=> 'true'}}, wrapper_html:{class:'col-md-6'} %>
             <%= a.input :city, wrapper_html:{class:'col-md-6'} %>
             <%= a.input :postal_code, wrapper_html:{class:'col-md-6'} %>
             <%= a.input :address, wrapper_html:{class:'col-md-6'} %>

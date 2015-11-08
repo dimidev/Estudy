@@ -43,7 +43,7 @@ class BuildingsController < ApplicationController
     @building = Building.new(building_params)
 
     if @building.save
-      redirect_to buildings_path, notice: I18n.t('mongoid.success.models.building.create')
+      redirect_to buildings_path, notice: I18n.t('mongoid.success.models.building.create', name: @building.name)
     else
       flash[:alert] = I18n.t('mongoid.errors.models.building.create')
       render :edit
@@ -66,7 +66,7 @@ class BuildingsController < ApplicationController
     @building = Building.find(params[:id])
 
     if @building.update_attributes(building_params)
-      redirect_to buildings_path, notice: I18n.t('mongoid.success.models.building.update')
+      redirect_to buildings_path, notice: I18n.t('mongoid.success.models.building.update', name: @building.name)
     else
       flash[:alert] = I18n.t('mongoid.errors.models.building.update')
       render :edit
@@ -78,11 +78,11 @@ class BuildingsController < ApplicationController
 
     respond_to do |format|
       if @building.destroy
-        message = I18n.t('mongoid.success.models.building.destroy')
+        message = I18n.t('mongoid.success.models.building.destroy', name: @building.name)
         format.html { redirect_to buildings_path, notice: message }
         format.js { flash.now[:notice] = message }
       else
-        message = I18n.t('mongoid.errors.models.building.destroy')
+        message = I18n.t('mongoid.errors.models.building.destroy', name: @building.name)
         format.html { render :edit, flash[:alert] = message }
         format.js { flash.now[:notice] = message }
       end

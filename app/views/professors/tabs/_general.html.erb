@@ -10,6 +10,7 @@
           <div class="row">
             <%= f.input :department_ids, as: :select, collection: @departments, label_method: :title, include_blank: false, input_html:{multiple: true}, wrapper_html:{class:'col-md-6'} %>
             <%= f.input :professor_type, as: :select, wrapper_html:{class:'col-md-6'} %>
+            <%= f.input :professor_office_id, as: :select, collection: @offices, input_html:{data: {size: 10, 'live-search'=> 'true'}}, wrapper_html:{class:'col-md-6'} %>
           </div>
       </fieldset>
 

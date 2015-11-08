@@ -8,3 +8,4 @@ el:
       student:
         stc: 'ΑΕΜ'
         semester: 'Εξάμηνο'
+        active_students: 'Ενεργοί Φοιτητές'

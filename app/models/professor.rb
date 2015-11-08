@@ -11,6 +11,9 @@ class Professor < User
 
   has_and_belongs_to_many :departments, inverse_of: nil
 
+  # FIXME association saved like string, not like BSON:ObjectID
+  belongs_to :professor_office, class_name:'Hall', polymorphic: true
+
   private
   def defaults
     self.role = :professor

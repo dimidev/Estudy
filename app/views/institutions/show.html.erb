@@ -1,0 +1,68 @@
+<% title t('.title') %>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), edit_institution_path, class:'btn btn-warning btn-sm pull-right' %>
+    <h2 class="panel-title"><%= @institution.title %></h2>
+  </div><!--//panel-body-->
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <h3><%= t 'mongoid.attributes.institution.institution_logo' %></h3>
+        <%= image_tag @institution.institution_logo.url(:medium), class:'img-rounded' %>
+      </div><!--//col-->
+
+      <div class="col-md-8">
+        <table class="table table-half">
+          <caption><h3><%= Institution.model_name.human %></h3></caption>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.institution.title' %></b></td>
+            <td><%= @institution.title %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.institution.foundation_date' %></b></td>
+            <td><%= @institution.foundation_date %></td>
+          </tr>
+        </table>
+
+        <table class="table table-half">
+          <caption><h3><%= Address.model_name.human %></h3></caption>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.address.country' %></b></td>
+            <td><%= @institution.address.country %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.address.city' %></b></td>
+            <td><%= @institution.address.city %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.address.postal_code' %></b></td>
+            <td><%= @institution.address.postal_code %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.address.address' %></b></td>
+            <td><%= @institution.address.address %></td>
+          </tr>
+        </table>
+
+        <% if @institution.has_contacts? %>
+          <table class="table table-half">
+            <caption><h3><%= Contact.model_name.human %></h3></caption>
+            <tr>
+              <td><b><%= t 'enumerize.contact.type.phone' %></b></td>
+              <td><%= @phones %></td>
+            </tr>
+            <tr>
+              <td><b><%= t 'enumerize.contact.type.fax' %></b></td>
+              <td><%= @fax %></td>
+            </tr>
+            <tr>
+              <td><b><%= t 'enumerize.contact.type.email' %></b></td>
+              <td><%= @emails %></td>
+            </tr>
+          </table>
+        <% end %>
+      </div><!--//col-->
+    </div><!--//row-->
+  </div><!--//panel-body-->
+</div><!--//panel-->

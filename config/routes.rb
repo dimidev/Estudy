@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get 'home', as: :dashboard_home
     end
 
-    resource :institution, except: [:show, :destroy]
+    resource :institution, except: :destroy
     resource :superadmin, only: [:edit, :update]
     resources :buildings, shallow: true do
       resources :halls, except: :show

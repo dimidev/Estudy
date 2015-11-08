@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
                      student.stc,
                      student.name,
                      student.lastname,
+                     student.birthdate,
                      student.semester,
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>

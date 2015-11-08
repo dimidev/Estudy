@@ -2,7 +2,7 @@
 
 <div class="col-xs-10 col-sm-8 col-md-6 col-sm-offset-2 col-xs-offset-1 col-md-offset-3">
 
-  <div class="panel panel-primary">
+  <div class="panel panel-default">
     <div class="panel-heading text-center">
       <h2 class="panel-title"><%= t 'devise.passwords.new.title' %></h2>
     </div>
@@ -16,7 +16,7 @@
           <% end %>
 
           <div class="form-actions">
-            <%= f.button :submit, t('helpers.submit.password.new') , class:'btn-primary btn-block' %>
+            <%= f.button :submit, t('helpers.submit.password.new') , class:'btn-success btn-block' %>
           </div>
         <% end %>
 
@@ -25,4 +25,6 @@
       <%= render 'devise/shared/links' %>
     </div><!--//panel-footer-->
   </div><!--//panel-->
+
+  <%= render 'layouts/partials/copyright' %>
 </div><!--/col-->

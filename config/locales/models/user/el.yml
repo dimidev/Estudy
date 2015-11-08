@@ -9,6 +9,7 @@ el:
         lastname: 'Επώνυμο'
         gender: 'Φύλο'
         birthdate: 'Ημ.Γενήσεως'
+        age: 'Ηλικία'
         last_sign_in_at: 'Τελευταια είσοδος στις'
         last_sign_in_ip: 'IP Τελευταίας εισόδου'
         user_avatar: 'Εικόνα χρήστη'
