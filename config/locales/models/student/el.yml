@@ -9,3 +9,11 @@ el:
         stc: 'ΑΕΜ'
         semester: 'Εξάμηνο'
         active_students: 'Ενεργοί Φοιτητές'
+        status: 'Κατάσταση'
+  enumerize:
+    student:
+      status:
+        active: 'Ενεργός'
+        not_active: 'Μη Ενεργός'
+        postponement: 'Αναβολή'
+        graduate: 'Απόφοιτος'

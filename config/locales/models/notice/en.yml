@@ -17,3 +17,10 @@ en:
           update: 'Notice is not updated'
           destroy: 'Notice is not deleted'
           no_notices: 'There is no avalable notices'
+  enumerize:
+    notice:
+      institution: 'Institution'
+      department: 'Department'
+      admins: 'Admins'
+      professors: 'Professors'
+      students: 'Students'

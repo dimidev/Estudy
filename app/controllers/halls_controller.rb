@@ -7,7 +7,7 @@ class HallsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render(json: Building.find(params[:building_id]).halls.datatable(self, %w(name type area floors)) do |hall|
+        render(json: Building.find(params[:building_id]).halls.datatable(self, %w(name type area floors seats pc)) do |hall|
           [
               hall.name,
               hall.type_text,

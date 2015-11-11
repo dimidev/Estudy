@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :department
+  load_and_authorize_resource :admin, through: :department, shallow: true
 
   def index
     @department = Department.find(params[:department_id])

@@ -8,11 +8,18 @@ class Ability
     if user.role? :superadmin
       can :manage, :all
     elsif user.role? :admin
-
+      can :manage, Department, id: user.department.id
+      can :manage, [Admin, Professor, Student]
+      can :manage, StudiesProgramme
+      can :manage, Registration
+      can :manage, Timetable
+      can :manage, Notice
+      can :read, [Building, Hall]
     elsif user.role? :professor
 
     else
-
+      can :read, Student, id: user.id
+      can :manage, Registration
     end
     #
     # The first argument to `can` is the action you are giving the user

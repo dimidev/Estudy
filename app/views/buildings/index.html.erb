@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <%= link_to fa_icon('plus', text: t('buildings.new.title')), new_building_path, class:'btn btn-sm btn-primary pull-right' %>
+    <%= link_to fa_icon('plus', text: t('buildings.new.title')), new_building_path, class:'btn btn-sm btn-primary pull-right' if can?(:create, Building) %>
     <h2 class="panel-title"><%= t('mongoid.models.building.other') %></h2>
   </div>
   <div class="panel-body">
@@ -12,6 +12,7 @@
         <th class="text-center"><%= t('mongoid.attributes.building.name') %></th>
         <th class="text-center"><%= t('mongoid.attributes.building.area') %></th>
         <th class="text-center"><%= t('mongoid.attributes.building.floors') %></th>
+        <th class="text-center"><%= t('mongoid.models.hall.other') %></th>
         <th class="no-sort text-center"><%= t('datatable.options') %></th>
       </tr>
       </thead>

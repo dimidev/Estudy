@@ -13,14 +13,16 @@ class BuildingsController < ApplicationController
               "#{building.area} m<sup>2</sup>",
               building.floors,
               %{<div class="btn-group">
-                        <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
-                        <ul class="dropdown-menu dropdown-center">
-                          <li><%= link_to fa_icon('building-o', text: I18n.t('mongoid.models.hall.other')), building_halls_path(building) %></li>
-                          <li class='divider'></li>
-                          <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_building_path(building) %></li>
-                          <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), building_path(building), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
-                        </ul>
-                      </div>}
+                  <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
+                  <ul class="dropdown-menu dropdown-center">
+                    <li><%= link_to fa_icon('building-o', text: I18n.t('mongoid.models.hall.other')), building_halls_path(building) %></li>
+                    <% if can? :manage, Building %>
+                      <li class='divider'></li>
+                      <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_building_path(building) %></li>
+                      <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), building_path(building), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
+                    <% end %>
+                  </ul>
+                </div>}
           ]
         end)
       end

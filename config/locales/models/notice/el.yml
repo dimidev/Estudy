@@ -10,6 +10,7 @@ el:
         content: 'Περιεχόμενο'
         created_at: 'Ημ. Δημιουργίας'
         updated_at: 'Ημ. Ανανέωσης'
+        target: 'Παραλήπτες'
     success:
       models:
         notice:
@@ -26,3 +27,11 @@ el:
   legends:
     notice:
       receivers: 'Παραλήπτες'
+  enumerize:
+    notice:
+      target:
+        institution: 'Ιδρυμα'
+        department: 'Τμήμα'
+        admins: 'Διαχειριστές'
+        professors: 'Καθηγητές'
+        students: 'Φοιτητές'

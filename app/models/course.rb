@@ -18,10 +18,10 @@ class Course
   validates_presence_of :title, :hours
   validates :ects, presence: true, numericality: {integer_only: true, greater_than_equal_to: 0}, unless: lambda{ |obj| obj.has_parent_course? }
 
-  belongs_to :studies_programme
-  has_many   :courses, as: :parent_course
-  belongs_to :parent_course, polymorphic: true
-  has_many :notice
+  belongs_to  :studies_programme
+  has_many    :courses, as: :parent_course
+  belongs_to  :parent_course, polymorphic: true
+  has_many    :registrations
 
   accepts_nested_attributes_for :courses, reject_if: :all_blank, allow_destroy: true
 end

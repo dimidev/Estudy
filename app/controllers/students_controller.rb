@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :department
+  load_and_authorize_resource :student, through: :department, shallow: true
 
   def index
     add_breadcrumb I18n.t('mongoid.models.student.other'), department_students_path(params[:department_id])
@@ -8,13 +9,14 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render(json: Department.find(params[:department_id]).students.datatable(self, %w(stc name lastname semester)) do |student|
+        render(json: Department.find(params[:department_id]).students.datatable(self, %w(stc name lastname birthdate semester status)) do |student|
                  [
                      student.stc,
                      student.name,
                      student.lastname,
                      student.birthdate,
                      student.semester,
+                     student.status_text,
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
@@ -101,7 +103,7 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:studies_programme_id, :user_avatar, :email, :password, :password_confirmation, :role,
+    params.require(:student).permit(:studies_programme_id, :user_avatar, :email, :password, :password_confirmation, :role, :status,
                                     :name, :lastname, :gender, :birthdate, :nic, :trn, :semester,
                                     addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
                                     contacts_attributes: [:id, :_destroy, :type, :value])

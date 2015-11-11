@@ -1,5 +1,6 @@
 class RegistrationsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :student
+  load_and_authorize_resource :registration, through: :department, shallow: true
 
   def index
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(params[:student_id])
@@ -31,11 +32,14 @@ class RegistrationsController < ApplicationController
     if Timetable.current
       @student = Student.find(params[:student_id])
       @registration = @student.registrations.build
+      @registration.child_registrations.build
+
       if @student.studies_programme.courses.exists?
         @courses = @student.studies_programme.courses.order_by(semester: :asc)
+        render :edit
+      else
+        redirect_to department_students_path(@student.department), alert: t('mongoid.errors.models.registration.no_courses')
       end
-
-      render :edit
     else
       redirect_to student_registrations_path(params[:student_id]), alert: t('mongoid.errors.models.registration.registrations_period')
     end
@@ -49,8 +53,9 @@ class RegistrationsController < ApplicationController
     @registration = @student.registrations.build(registration_params)
 
     if @registration.save
-      redirect_to student_registrations_path(params[:student_id]), notice: I18n.t('mongoid.success.models.registration.create')
+      #redirect_to student_registrations_path(params[:student_id]), notice: I18n.t('mongoid.success.models.registration.create')
     else
+      @courses = @student.studies_programme.courses.order_by(semester: :asc)
       render :edit, alert: I18n.t('mongoid.errors.models.registration.create')
     end
   end
@@ -103,6 +108,6 @@ class RegistrationsController < ApplicationController
   private
 
   def registration_params
-    params.require(:registration).permit(course_ids:[])
+    params.require(:registration).permit(child_registrations_attributes:[:course_id])
   end
 end

@@ -4,12 +4,20 @@ class NoticesController < ApplicationController
   def index
     add_breadcrumb I18n.t('mongoid.models.notice.other')
 
+    if current_user.role? :superadmin
+      @notices = Notice.order_by(updated_at: :desc)
+    else
+      @notices = current_user.department.notices.order_by(updated_at: :desc)
+    end
+
     respond_to do |format|
       format.html
       format.json do
-        render(json: Notice.datatable(self, %w(title target)) do |notice|
+        render(json: @notices.datatable(self, %w(title target created_at updated_at)) do |notice|
           [
               notice.title,
+              notice.target_text,
+              (notice.department.title if notice.department.present?),
               notice.created_at.strftime('%d-%m-%Y %H:%M:%S'),
               notice.updated_at.strftime('%d-%m-%Y %H:%M:%S'),
               %{<div class="btn-group">
@@ -29,8 +37,12 @@ class NoticesController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.notice.other'), :notices_path
     add_breadcrumb I18n.t('notices.new.title')
 
-    @notice = Notice.new
-    collections
+    if current_user.role? :superadmin
+      @notice = Notice.new
+      @departments = Department.active
+    else
+      @notice = current_user.department.notices.build
+    end
 
     render :edit
   end
@@ -39,12 +51,17 @@ class NoticesController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.notice.other'), :notices_path
     add_breadcrumb I18n.t('notices.new.title')
 
-    @notice = Notice.new(notice_params)
+    if current_user.role? :superadmin
+      @notice = Notice.new(notice_params)
+    else
+      @notice = current_user.department.notices.build(notice_params)
+    end
 
     if @notice.save
       redirect_to notices_path, notice: I18n.t('mongoid.success.models.notice.create')
     else
-      collections
+      @departments = Department.active if current_user.role?(:superadmin)
+
       flash[:alert] = I18n.t('mongoid.errors.models.notice.create')
       render :edit
     end
@@ -64,7 +81,8 @@ class NoticesController < ApplicationController
     add_breadcrumb I18n.t('notices.edit.title')
 
     @notice = Notice.find(params[:id])
-    collections
+
+    @departments = Department.active if current_user.role?(:superadmin)
 
     render :edit
   end
@@ -78,7 +96,8 @@ class NoticesController < ApplicationController
     if @notice.update_attributes(notice_params)
       redirect_to notices_path, notice: I18n.t('mongoid.success.models.notice.update')
     else
-      collections
+      @departments = Department.active if current_user.role?(:superadmin)
+
       flash[:alert] = I18n.t('mongoid.errors.models.notice.update')
       render :edit
     end
@@ -102,14 +121,6 @@ class NoticesController < ApplicationController
 
   private
   def notice_params
-    params.require(:notice).permit(:title, :content, :institution_id, :department_id, :admin_id, :professor_id, :student_id)
-  end
-
-  def collections
-    @departments = Department.active
-    @courses = Course.all
-    @admins = Admin.all
-    @professors = Professor.all
-    @students = Student.all
+    params.require(:notice).permit(:title, :content, :target, :department_id)
   end
 end

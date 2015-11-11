@@ -5,9 +5,12 @@ class Registration
 
   field :grade, type: Float
 
+  validates_numericality_of :grade, greater_or_equal_than: 0, less_or_equal_to: 10, if: lambda{|attr| attr.grade.present?}
+
   recursively_embeds_many
   belongs_to :student
-  has_and_belongs_to_many :courses, inverse_of: nil
+  belongs_to :timetable
+  belongs_to :course
 
   accepts_nested_attributes_for :child_registrations, allow_destroy: true, reject_if: :all_blank
 end

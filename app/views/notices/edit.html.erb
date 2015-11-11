@@ -14,16 +14,12 @@
 
         <fieldset>
           <legend><%= t 'legends.notice.receivers' %></legend>
-
-          <div class="row">
-            <%= f.association :institution, wrapper_html:{class:'col-md-4'} %>
-            <%= f.association :department, input_html: {data: {size: 10, 'live-search'=> 'true'}},  collection: @departments ,wrapper_html:{class:'col-md-4'} %>
-            <%= f.association :course, collection: @courses, input_html: {data: {size: 10, 'live-search'=> 'true'}}, wrapper_html:{class:'col-md-4'} %>
+          <div class="alert alert-info">
+            <%= fa_icon 'info-circle', text: t('.department_id_info') %>
           </div>
           <div class="row">
-            <%= f.association :admin, collection: @admins, label_method: lambda{|obj| "#{obj.fullname}"}, input_html:{data:{size: 10, 'live-search'=> 'true'}} , wrapper_html:{class:'col-md-4'} %>
-            <%= f.association :professor, collection: @professors, input_html:{data:{size: 10, 'live-search'=> 'true'}}, wrapper_html:{class:'col-md-4'} %>
-            <%= f.association :student, collection: @students, input_html:{data:{size: 10, 'live-search'=> 'true'}}, wrapper_html:{class:'col-md-4'} %>
+            <%= f.input :target, label_value: :value , wrapper_html:{class:'col-md-6'} %>
+            <%= f.association :department, input_html: {data: {size: 10, 'live-search'=> 'true'}},  collection: @departments ,wrapper_html:{class:'col-md-6'} if current_user.role?(:superadmin) %>
           </div>
         </fieldset>
 

@@ -1,7 +1,8 @@
 class StudiesProgrammesController < ApplicationController
   include StudiesProgrammesHelper
 
-  load_and_authorize_resource
+  load_and_authorize_resource :department
+  load_and_authorize_resource :studies_programme, through: :department, shallow: true
 
   def index
     add_breadcrumb I18n.t('studies_programmes.index.title')

@@ -13,7 +13,7 @@
 
   <div class="tab-content">
     <div id="institution" class="list-group tab-pane fade in active">
-      <% if @institution_notices %>
+      <% if @institution_notices.present? %>
           <% @institution_notices.each do |n| %>
               <%= link_to n, remote: true, class:'list-group-item' do %>
                   <%= n.title %> <span class="badge badge-info pull-right"><%= n.created_at.strftime('%d-%m-%Y %H:%M:%S') %></span>
@@ -29,7 +29,7 @@
     </div>
 
     <div id="departments" class="list-group tab-pane fade in">
-      <% if @department_notices %>
+      <% if @department_notices.present? %>
           <% @department_notices.each do |n| %>
               <%= link_to n, remote: true, class:'list-group-item' do %>
                   <%= n.title %> <span class="badge badge-info pull-right"><%= n.created_at.strftime('%d-%m-%Y %H:%M:%S') %></span>
@@ -45,8 +45,8 @@
     </div>
 
     <div id="professors" class="list-group tab-pane fade in">
-      <% if @professor_notices %>
-          <% @dprofessor_notices.each do |n| %>
+      <% if @professor_notices.present? %>
+          <% @professor_notices.each do |n| %>
               <%= link_to n, remote: true, class:'list-group-item' do %>
                   <%= n.title %> <span class="badge badge-info pull-right"><%= n.created_at.strftime('%d-%m-%Y %H:%M:%S') %></span>
               <% end %>
@@ -61,7 +61,7 @@
     </div>
 
     <div id="students" class="list-group tab-pane fade in">
-      <% if @students_notices %>
+      <% if @students_notices.present? %>
           <% @students_notices.each do |n| %>
               <%= link_to n, remote: true, class:'list-group-item' do %>
                   <%= n.title %> <span class="badge badge-info pull-right"><%= n.created_at.strftime('%d-%m-%Y %H:%M:%S') %></span>

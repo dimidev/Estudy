@@ -5,28 +5,39 @@
    end
 %>
 
+<%= render 'general/form_errors', resource: @registration %>
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h2 class="panel-title"><%= Date.current.year.to_s + "-" + Date.current.next_year.year.to_s %></h2>
   </div>
 
-  <%= if @courses %>
-      <%= simple_form_for [@student, @registration] do |f| %>
+    <%= simple_nested_form_for [@student, @registration] do |f| %>
 
 
+      <table class="table">
+        <thead>
+          <th></th>
+          <th><%= t 'mongoid.attributes.course.title' %></th>
+          <th class="text-center"><%= t 'mongoid.attributes.course.semester' %></th>
+          <th><%= t 'mongoid.attributes.course.course_type' %></th>
+          <th class="text-center"><%= t 'mongoid.attributes.course.ects' %></th>
+          <th class="text-center"><%= t 'mongoid.attributes.course.hours' %></th>
+        </thead>
+        <tbody>
+          <% @courses.each do |c| %>
+            <%= f.simple_fields_for :child_registrations do |r| %>
+              <%= r.association :course, collection: c, as: :check_boxes %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
 
-      <div class="panel-footer">
-        <%= f.button :submit, class:'btn-success' %>
-            <%= cancel_btn(student_registrations_path(@registration.student)) %>
-        <% end %>
-      </div><!--//panel-footer-->
-  <% else %>
-    <div class="panel-body">
-      <div class="alert alert-warning">
-        <%= t('mongoid.errors.models.registration.no_courses') %>
-      </div>
-    </div>
-  <% end %>
+    <div class="panel-footer">
+      <%= f.button :submit, class:'btn-success' %>
+          <%= cancel_btn(student_registrations_path(@registration.student)) %>
+      <% end %>
+    </div><!--//panel-footer-->
 </div><!--//panel-->
 
 

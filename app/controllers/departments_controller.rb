@@ -1,7 +1,6 @@
 class DepartmentsController < ApplicationController
-  include DepartmentsHelper
-
   load_and_authorize_resource
+  include DepartmentsHelper
 
   def index
     add_breadcrumb I18n.t('mongoid.models.department.other')

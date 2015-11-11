@@ -21,7 +21,6 @@ class Institution
   embeds_many :contacts
   has_one :superadmin
   has_many :departments
-  has_many :notices
 
   accepts_nested_attributes_for :superadmin, :address, limit: 1
   accepts_nested_attributes_for :contacts, reject_if: :all_blank, allow_destroy: true

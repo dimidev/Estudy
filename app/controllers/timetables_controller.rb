@@ -1,5 +1,6 @@
 class TimetablesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :department
+  load_and_authorize_resource :timetable, through: :department, shallow: true
 
   def index
     add_breadcrumb I18n.t('timetables.index.title')
