@@ -18,6 +18,12 @@ class Student < User
 
   scope :active, lambda{ where(active: true) }
 
+  def available_courses
+    parent_courses = self.studies_programme.courses.pluck(:id)
+    child_courses = Course.where(parent_course_id: {'$in'=> parent_courses})
+    Course.or([studies_programme_id: self.studies_programme, id: {'$nin'=> child_courses.pluck(:parent_course_id).uniq}], [id: {'$in'=> child_courses.pluck(:id)}])
+  end
+
   private
   def defaults
     self.role= :student

@@ -12,7 +12,7 @@
     <h2 class="panel-title"><%= Date.current.year.to_s + "-" + Date.current.next_year.year.to_s %></h2>
   </div>
 
-    <%= simple_nested_form_for [@student, @registration] do |f| %>
+    <%= simple_form_for [@student, @registration], defaults:{label: false} do |f| %>
 
 
       <table class="table">
@@ -20,16 +20,23 @@
           <th></th>
           <th><%= t 'mongoid.attributes.course.title' %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.semester' %></th>
-          <th><%= t 'mongoid.attributes.course.course_type' %></th>
+          <th class="text-center"><%= t 'mongoid.attributes.course.course_type' %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.ects' %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.hours' %></th>
         </thead>
         <tbody>
           <% @courses.each do |c| %>
-            <%= f.simple_fields_for :child_registrations do |r| %>
-              <%= r.association :course, collection: c, as: :check_boxes %>
-            <% end %>
-          <% end %>
+            <tr>
+              <td class="text-center">
+                <%= f.input_field :course_ids, collection: c, label_method: lambda{|attr| ' '}, as: :check_boxes, class:'icheck' %>
+              </td>
+              <td><%= c.has_parent_course? ? "#{c.title} (#{c.course_part_text})" : c.title %></td>
+              <td class="text-center"><%= c.semester %></td>
+              <td class="text-center"><%= c.has_parent_course? ? c.parent_course.course_type_text : c.course_type_text %></td>
+              <td class="text-center"><%= c.has_parent_course? ? number_to_percentage(c.percent, precision: 0) : c.ects %></td>
+              <td class="text-center"><%= c.hours %></td>
+            </tr>
+        <% end %>
         </tbody>
       </table>
 

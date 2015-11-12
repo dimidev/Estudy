@@ -6,12 +6,16 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(params[:student_id])
     add_breadcrumb I18n.t('registrations.index.title')
 
+    # FIXME count per percent too not only ects
     respond_to do |format|
       format.html{ flash[:notice] = I18n.t('mongoid.success.models.registration.registrations_period') if Timetable.current }
       format.json do
         render(json: Student.find(params[:student_id]).registrations.datatable(self, %w(id)) do |registration|
                  [
-                     registration.id,
+                     %{<%= link_to registration.timetable.period, registration_path(registration) %>},
+                     registration.registrations.count,
+                     registration.registrations.map{|child| child.course.has_parent_course? ? child.course.parent_course.ects : child.course.ects}.sum,
+                     registration.registrations.map{|child| child.course.hours}.sum,
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
@@ -32,10 +36,10 @@ class RegistrationsController < ApplicationController
     if Timetable.current
       @student = Student.find(params[:student_id])
       @registration = @student.registrations.build
-      @registration.child_registrations.build
+      @registration.registrations.build
 
       if @student.studies_programme.courses.exists?
-        @courses = @student.studies_programme.courses.order_by(semester: :asc)
+        @courses = @student.available_courses
         render :edit
       else
         redirect_to department_students_path(@student.department), alert: t('mongoid.errors.models.registration.no_courses')
@@ -53,9 +57,9 @@ class RegistrationsController < ApplicationController
     @registration = @student.registrations.build(registration_params)
 
     if @registration.save
-      #redirect_to student_registrations_path(params[:student_id]), notice: I18n.t('mongoid.success.models.registration.create')
+      redirect_to student_registrations_path(params[:student_id]), notice: I18n.t('mongoid.success.models.registration.create')
     else
-      @courses = @student.studies_programme.courses.order_by(semester: :asc)
+      @courses = @student.available_courses
       render :edit, alert: I18n.t('mongoid.errors.models.registration.create')
     end
   end
@@ -75,19 +79,19 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(@registration.student)
     add_breadcrumb I18n.t('registrations.edit.title')
 
-    @courses = @registration.student.studies_programme.courses.order_by(semester: :asc)
+    @courses = @registration.student.available_courses
   end
 
   def update
-    add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(params[:student_id])
-    add_breadcrumb I18n.t('registrations.edit.title')
-
     @registration = Registration.find(params[:id])
+
+    add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(@registration.student)
+    add_breadcrumb I18n.t('registrations.edit.title')
 
     if @registration.update_attributes(registration_params)
       redirect_to student_registrations_path(@registration.student), notice: I18n.t('mongoid.success.models.registration.update')
     else
-      @courses = Course.all
+      @courses = @registration.student.available_courses
       flash[:alert] = I18n.t('mongoid.errors.models.registration.update')
       render :edit
     end
@@ -108,6 +112,6 @@ class RegistrationsController < ApplicationController
   private
 
   def registration_params
-    params.require(:registration).permit(child_registrations_attributes:[:course_id])
+    params.require(:registration).permit(course_ids:[])
   end
 end

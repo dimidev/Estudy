@@ -10,7 +10,7 @@ class Course
   field :description,   type: String
   enumerize :course_type, in: COURSE_TYPE
   enumerize :course_part, in: COURSE_PART
-  field :semester,      type: String,   default: 1
+  field :semester,      type: String
   field :ects,          type: Integer
   field :hours,         type: Integer, default: 0
   field :percent,       type: Integer
