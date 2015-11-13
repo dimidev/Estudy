@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <%= link_to fa_icon('plus', text: t('professors.new.title')), new_department_professor_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' %>
+    <%= link_to fa_icon('plus', text: t('professors.new.title')), new_department_professor_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' if (can? :manage, Professor) %>
     <h2 class="panel-title"><%= t('mongoid.models.professor.other') %></h2>
   </div><!--//panel-heading-->
   <div class="panel-body">
@@ -12,10 +12,11 @@
         <th><%= t('mongoid.attributes.user.name') %></th>
         <th><%= t('mongoid.attributes.user.lastname') %></th>
         <th><%= t('mongoid.attributes.user.email') %></th>
-        <th><%= t('mongoid.attributes.user.birthdate') %></th>
         <th><%= t('mongoid.attributes.professor.professor_type') %></th>
         <th class="no-sort"><%= t('enumerize.hall.type.office') %></th>
-        <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        <% if can? :manage, Professor %>
+            <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        <% end %>
       </tr>
       </thead>
       <tbody>

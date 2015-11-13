@@ -8,7 +8,9 @@ el:
       department:
         title: 'Τίτλος'
         foundation_date: 'Ημερομηνία Ιδρύσεως'
+        foundation_date_short: 'Ημ. Ιδρύσεως'
         department_logo: 'Λογότυπο Τμήματος'
+        head_of_department: 'Υπεύθυνος Τμήματος'
         status: 'Κατάσταση'
     success:
       models:

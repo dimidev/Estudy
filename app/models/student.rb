@@ -16,7 +16,7 @@ class Student < User
   belongs_to :studies_programme
   belongs_to :department
 
-  scope :active, lambda{ where(active: true) }
+  scope :active, lambda{ where(status: :active) }
 
   def available_courses
     parent_courses = self.studies_programme.courses.pluck(:id)

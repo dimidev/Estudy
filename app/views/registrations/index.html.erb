@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <%= link_to fa_icon('plus', text: t('registrations.new.title')), new_student_registration_path(params[:student_id]), class:'pull-right btn btn-sm btn-primary' %>
+        <%= link_to fa_icon('plus', text: t('registrations.new.title')), new_student_registration_path(params[:student_id]), class:'pull-right btn btn-sm btn-primary' if (can? :manage, Registration) %>
         <h2 class="panel-title"><%= t('mongoid.models.registration.other') %></h2>
     </div><!--//panel-heading-->
   <div class="panel-body">
@@ -13,7 +13,9 @@
         <th class="text-center"><%= t('mongoid.models.course.other') %></th>
         <th class="text-center"><%= t('mongoid.attributes.course.ects') %></th>
         <th class="text-center"><%= t('mongoid.attributes.course.hours') %></th>
-        <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        <% if can? :manage, Registration %>
+          <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        <% end %>
       </tr>
       </thead>
       <tbody>

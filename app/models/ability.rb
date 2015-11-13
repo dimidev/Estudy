@@ -6,7 +6,15 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     if user.role? :superadmin
-      can :manage, :all
+      can :manage, [Institution, Department]
+      can :manage, [Building, Hall]
+      can :manage, Admin
+      can :read, [Professor, Student]
+      can :read, [Registration, Grade]
+      can :read, CourseClass
+      can :read, StudiesProgramme
+      can :read, Timetable
+      can :manage, Notice
     elsif user.role? :admin
       can :manage, Department, id: user.department.id
       can :manage, [Admin, Professor, Student]
@@ -18,8 +26,10 @@ class Ability
     elsif user.role? :professor
 
     else
+      can :read, Department, id: user.department.id
       can :read, Student, id: user.id
       can :manage, Registration
+      can :read, [Timetable, StudiesProgramme]
     end
     #
     # The first argument to `can` is the action you are giving the user

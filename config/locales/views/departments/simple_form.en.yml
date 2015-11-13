@@ -2,4 +2,5 @@ en:
   simple_form:
     hints:
       department:
-        foundation_date: 'Type only the date ex. 2001'
+        foundation_date: 'Type only the year ex. 2001'
+        head_of_department: 'Type the full name of Head of Department'

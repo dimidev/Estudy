@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         resources :registrations do
           get 'current', on: :collection
         end
+        resources :grades
       end
       resources :studies_programmes do
         resources :courses
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
       resources :timetables do
         get 'current', on: :collection
       end
+      resources :course_classes
     end
     resources :notices
 

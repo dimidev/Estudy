@@ -14,7 +14,7 @@ class StudiesProgrammesController < ApplicationController
                  @prog = p
                  [
                      p.diploma_title,
-                     I18n.t("enumerize.studies_programme.studies_level.#{p.studies_level}"),
+                     p.studies_level_text,
                      p.semesters,
                      programme_status(p.status),
                      %{<div class="btn-group">

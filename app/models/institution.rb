@@ -7,6 +7,7 @@ class Institution
 
   field :title,           type: String
   field :foundation_date, type: Integer
+  field :rector,          type: String
 
   has_mongoid_attached_file :institution_logo, styles:{medium:'300x300>',thumb:'60x60>'},
                             url:"/system/:attachment/:style/institution.:extension",
@@ -14,7 +15,7 @@ class Institution
                             default_url: 'institution.png'
 
   validates_attachment :institution_logo, content_type: {content_type: /\Aimage\/.*\Z/}, size: {less_than: 2.megabytes}
-  validates_presence_of :title, :foundation_date
+  validates_presence_of :title, :foundation_date, :rector
   validates_numericality_of :foundation_date, only_integer: true
 
   embeds_one :address, autobuild: true

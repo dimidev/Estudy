@@ -8,8 +8,14 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-4 text-center">
-        <h3><%= t 'mongoid.attributes.institution.institution_logo' %></h3>
-        <%= image_tag @institution.institution_logo.url(:medium), class:'img-rounded' %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= t 'mongoid.attributes.institution.institution_logo' %></h3>
+          </div>
+          <div class="panel-body">
+            <%= image_tag @institution.institution_logo.url(:medium), class:'img-medium img-rounded' %>
+          </div>
+        </div>
       </div><!--//col-->
 
       <div class="col-md-8">
@@ -22,6 +28,10 @@
           <tr>
             <td><b><%= t 'mongoid.attributes.institution.foundation_date' %></b></td>
             <td><%= @institution.foundation_date %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.institution.rector' %></b></td>
+            <td><%= @institution.rector %></td>
           </tr>
         </table>
 

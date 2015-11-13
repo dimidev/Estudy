@@ -15,7 +15,6 @@ class ProfessorsController < ApplicationController
                      professor.name,
                      professor.lastname,
                      professor.email,
-                     professor.birthdate,
                      professor.professor_type_text,
                      professor.professor_office.name,
                      %{<div class="btn-group">

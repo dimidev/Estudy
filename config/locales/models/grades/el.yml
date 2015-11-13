@@ -1,0 +1,10 @@
+el:
+  mongoid:
+    models:
+      grade:
+        one: 'Βαθμός'
+        other: 'Βαθμοί'
+        special: 'Βαθμολογία'
+    attributes:
+      grade:
+        grade: 'Βαθμός'

@@ -10,10 +10,11 @@ class DepartmentsController < ApplicationController
       format.json do
         render(json: Department.datatable(self, %w(title foundation_date status)) do |department|
                  [
-                     "<%= link_to department.title, department_path(department) %>",
+                     %{<%= link_to department.title, department_path(department) %>},
                      department.foundation_date,
                      department_status(department.status),
                      department.students.active.count,
+                     Professor.where(department_ids: department.id).count,
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
@@ -110,7 +111,7 @@ class DepartmentsController < ApplicationController
 
   private
   def department_params
-    params.require(:department).permit(:department_logo, :delete_img, :title, :foundation_date, :status,
+    params.require(:department).permit(:department_logo, :delete_img, :title, :foundation_date, :status, :head_of_department,
                                        address_attributes: [:country, :city, :postal_code, :address],
                                        contacts_attributes: [:id, :_destroy, :type, :value])
   end

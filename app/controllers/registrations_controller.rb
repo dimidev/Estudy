@@ -68,9 +68,14 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(params[:student_id])
     add_breadcrumb I18n.t('registrations.current.title')
 
-    # FIXME
-    @registration = Student.find(params[:student_id]).registrations.first
-    @courses = @registration.courses
+    @registration = Timetable.current.registrations.find_by(student_id: params[:student_id])
+    render :show
+  end
+
+  def show
+    @registration = Registration.find(params[:id])
+    add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(@registration.student)
+    add_breadcrumb I18n.t('registrations.show.title')
   end
 
   def edit

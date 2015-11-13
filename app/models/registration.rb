@@ -12,7 +12,7 @@ class Registration
 
   validates_numericality_of :grade, greater_or_equal_than: 0, less_or_equal_to: 10, if: lambda{|attr| attr.grade.present?}
 
-  has_many :registrations, as: :course_registration
+  has_many :registrations, as: :course_registration, dependent: :destroy
   belongs_to :course_registration, polymorphic: true
 
   belongs_to :student
@@ -21,7 +21,6 @@ class Registration
 
   accepts_nested_attributes_for :registrations, allow_destroy: true, reject_if: :all_blank
 
-  #FIXME update not working properly
   def save_courses
     course_ids.reject!{|attr| attr.empty?}
 
@@ -31,7 +30,7 @@ class Registration
       end
     else
       course_ids.each do |c|
-        self.registrations.where(course_id: c) || self.registrations.build(course_id: c)
+        self.registrations.where(course_id: c).exists? || self.registrations.build(course_id: c)
       end
 
       self.registrations.where(course_id: {'$nin'=> course_ids}).delete_all
@@ -40,6 +39,7 @@ class Registration
 
   private
   def defaults
+    self.timetable = Timetable.current if self.new_record?
     self.course_ids = self.registrations.map(&:course_id) unless self.new_record?
     self.course_ids ||= []
   end

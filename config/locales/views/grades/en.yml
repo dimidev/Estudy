@@ -1,0 +1,10 @@
+en:
+  students:
+    index:
+      title: 'View Students'
+    new:
+      title: 'Register Student'
+    show:
+      title: 'Show Student'
+    edit:
+      title: 'Edit Student'

@@ -12,7 +12,9 @@
         <th><%= t('mongoid.attributes.timetable.title') %></th>
         <th><%= t('mongoid.attributes.timetable.from') %></th>
         <th><%= t('mongoid.attributes.timetable.to') %></th>
-        <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        <% if can? :manage, Timetable %>
+          <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        <% end %>
       </tr>
       </thead>
       <tbody>

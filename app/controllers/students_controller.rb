@@ -20,10 +20,13 @@ class StudentsController < ApplicationController
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
-                          <li><%= link_to fa_icon('file-o', text: I18n.t('mongoid.models.registration.other')), student_registrations_path(student) %></li>
-                          <li class='divider'></li>
-                          <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_student_path(student) %></li>
-                          <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), student_path(student), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
+                          <li><%= link_to fa_icon('tasks', text: I18n.t('mongoid.models.grade.special')), student_grades_path(student) %></li>
+                          <li><%= link_to fa_icon('tasks', text: I18n.t('mongoid.models.registration.other')), student_registrations_path(student) %></li>
+                          <% if can? :manage, Student %>
+                            <li class='divider'></li>
+                            <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_student_path(student) %></li>
+                            <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), student_path(student), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
+                          <% end %>
                         </ul>
                       </div>}
                  ]

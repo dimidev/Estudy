@@ -2,19 +2,21 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <%= link_to fa_icon('plus', text: t('studies_programmes.new.title')), new_department_studies_programme_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' %>
+    <%= link_to fa_icon('plus', text: t('studies_programmes.new.title')), new_department_studies_programme_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' if (can? :manage, StudiesProgramme) %>
     <h2 class="panel-title"><%= t('mongoid.models.studies_programme.other') %></h2>
   </div><!--//panel-heading-->
   <div class="panel-body">
         <table id="studies-programmes-table" class="datatable table table-hover table-striped" data-source="<%= department_studies_programmes_path(params[:department_id], format: :json) %>">
           <thead>
-          <tr>
-            <th><%= t('mongoid.attributes.studies_programme.diploma_title') %></th>
-            <th><%= t('mongoid.attributes.studies_programme.studies_level') %></th>
-            <th><%= t('mongoid.attributes.studies_programme.semesters') %></th>
-            <th class="text-center"><%= t('mongoid.attributes.studies_programme.status') %></th>
-            <th class="no-sort text-center"><%= t('datatable.options') %></th>
-          </tr>
+            <tr>
+              <th><%= t('mongoid.attributes.studies_programme.diploma_title') %></th>
+              <th><%= t('mongoid.attributes.studies_programme.studies_level') %></th>
+              <th class="text-center"><%= t('mongoid.attributes.studies_programme.semesters') %></th>
+              <th class="text-center"><%= t('mongoid.attributes.studies_programme.status') %></th>
+              <% if can? :manage, StudiesProgramme %>
+                <th class="no-sort text-center"><%= t('datatable.options') %></th>
+              <% end %>
+            </tr>
           </thead>
           <tbody>
           </tbody>

@@ -1,0 +1,40 @@
+<%
+  if controller.action_name == 'show'
+    title t('registrations.show.title')
+  else
+    title t('registrations.current.title')
+  end
+%>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"><%= @registration.timetable.period %></h2>
+  </div>
+    <% if @registration.has_registrations? %>
+        <table class="table">
+        <thead>
+          <th><%= t 'mongoid.attributes.course.title' %></th>
+          <th class="text-center"><%= t 'mongoid.attributes.course.semester' %></th>
+          <th class="text-center"><%= t 'mongoid.attributes.course.course_type' %></th>
+          <th class="text-center"><%= t 'mongoid.attributes.course.ects' %></th>
+          <th class="text-center"><%= t 'mongoid.attributes.course.hours' %></th>
+          <th class="text-center"><%= 'grade' %></th>
+        </thead>
+        <tbody>
+          <% @registration.registrations.each do |r| %>
+            <tr>
+              <td><%= r.course.has_parent_course? ? "#{r.course.title} (#{r.course.course_part_text})" : r.course.title %></td>
+              <td class="text-center"><%= r.course.semester %></td>
+              <td class="text-center"><%= r.course.has_parent_course? ? r.course.parent_course.course_type_text : r.course.course_type_text %></td>
+              <td class="text-center"><%= r.course.has_parent_course? ? number_to_percentage(r.course.percent, precision: 0) : r.course.ects %></td>
+              <td class="text-center"><%= r.course.hours %></td>
+              <td class="text-center"><%= r.grade || '-' %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% end %>
+</div><!--//panel-->
+
+
+

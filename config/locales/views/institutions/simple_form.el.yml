@@ -1,6 +1,11 @@
 el:
   helpers:
     submit:
-      department:
-        create: 'Δημιουργία Τμήματος'
-        update: 'Ενημέρωση Τμήματος'
+      institution:
+        create: 'Δημιουργία Ιδρύματος'
+        update: 'Ενημέρωση Ιδρύματος'
+  simple_form:
+    hints:
+      institution:
+        foundation_date: 'Πληκτρολογήστε μόνο το έτος π.χ. 2001'
+        rector: 'Πληκτρολογήστε το ονοματεπώνυμο του Πρύτανη Ιδρύματος'

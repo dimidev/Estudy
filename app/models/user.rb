@@ -5,9 +5,9 @@ class User
   extend Enumerize
   extend ActiveModel::Naming
   # Include default devise modules. Others available are:
-  # :confirmable,  and :omniauthable,
+  # :confirmable,  and :omniauthable, :registerable
   devise :database_authenticatable, :recoverable, :rememberable,
-         :trackable, :validatable ,:lockable, :timeoutable, :registerable
+         :trackable, :validatable ,:lockable, :timeoutable
 
   # User Roles
   ROLES = %w(superadmin admin instructor student)

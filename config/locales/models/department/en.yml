@@ -6,6 +6,7 @@ en:
         other: 'Departments'
     attributes:
       department:
+        foundation_date_short: 'Foun. Date'
     success:
       models:
         department:

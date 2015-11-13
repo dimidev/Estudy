@@ -1,0 +1,10 @@
+en:
+  mongoid:
+    models:
+      grade:
+        one: 'Grade'
+        other: 'Grades'
+        special: 'Grades'
+    attributes:
+      grade:
+        grade: 'Grade'

@@ -1,7 +1,7 @@
 <div role="tabpanel" class="tab-pane active fade in" id="general">
 
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
       <fieldset>
         <legend><%= t('mongoid.attributes.department.department_logo') %></legend>
         <%= image_tag f.object.department_logo.url(:medium), id:'avatar-img', class:'center-block img-responsive img-rounded' %>
@@ -21,9 +21,10 @@
 
     </div><!--//col-->
 
-    <div class="col-md-9">
+    <div class="col-md-8">
       <%= f.input :title %>
       <%= f.input :foundation_date %>
+      <%= f.input :head_of_department %>
 
       <%= f.input :status, as: :select, include_blank: false %>
     </div><!--//col-->

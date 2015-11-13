@@ -1,1 +1,6 @@
 en:
+  simple_form:
+    hints:
+      institution:
+        foundation_date: 'Type only the year ex. 2001'
+        rector: 'Type the full name of Institution Rector'
