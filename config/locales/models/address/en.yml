@@ -4,3 +4,7 @@ en:
       address:
        one: 'Address'
        other: 'Addresses'
+  errors:
+     models:
+       address:
+         no_exists: 'There is no address'

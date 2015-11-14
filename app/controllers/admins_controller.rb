@@ -4,18 +4,17 @@ class AdminsController < ApplicationController
 
   def index
     @department = Department.find(params[:department_id])
-    add_breadcrumb @department.title, department_admins_path(@department), if: lambda{current_user.role? :superadmin}
+    add_breadcrumb @department.title, department_admins_path(@department) if current_user.role?(:superadmin)
     add_breadcrumb I18n.t('mongoid.models.admin.other'), department_admins_path(@department)
 
     respond_to do |format|
       format.html
       format.json do
-        render(json: @department.admins.datatable(self, %w(name lastname)) do |admin|
+        render(json: @department.admins.datatable(self, %w(name lastname email)) do |admin|
                  [
-                     admin.name,
-                     admin.lastname,
+                     %{<%= link_to admin.name, admin_path(admin) %>},
+                     %{<%= link_to admin.lastname, admin_path(admin) %>},
                      admin.email,
-                     admin.birthdate,
                      %{<li class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
@@ -32,6 +31,7 @@ class AdminsController < ApplicationController
   def new
     add_breadcrumb I18n.t('mongoid.models.admin.other'), department_admins_path(params[:department_id])
     add_breadcrumb I18n.t('admins.new.title')
+
     @department = Department.find(params[:department_id])
     @admin = @department.admins.build
     render :edit
@@ -50,6 +50,17 @@ class AdminsController < ApplicationController
       flash[:alert] = t('mongoid.errors.models.user.create', model: Admin.model_name.human, name: @admin.fullname)
       render :edit
     end
+  end
+
+  def show
+    @admin = Admin.find(params[:id])
+    add_breadcrumb I18n.t('mongoid.models.admin.other'), department_admins_path(@admin.department)
+    add_breadcrumb I18n.t('admins.show.title')
+
+    @addresses = @admin.addresses
+    @phones = @admin.contacts.where(type: 'phone').map(&:value).join(', ')
+    @fax = @admin.contacts.where(type: 'fax').map(&:value).join(', ')
+    @emails = [@admin.email, @admin.contacts.where(type: 'email').map(&:value)].flatten.join(', ')
   end
 
   def edit
@@ -94,7 +105,7 @@ class AdminsController < ApplicationController
 
   def admin_params
     params.require(:admin).permit(:user_avatar, :delete_img, :email, :password, :password_confirmation,
-                                  :name, :lastname, :gender, :birthdate, :nic, :trn,
+                                  :name, :lastname, :gender, :birthdate, :nic, :trn, :ssn, :tax_office,
                                   addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
                                   contacts_attributes:[:id, :_destroy, :type, :value])
   end

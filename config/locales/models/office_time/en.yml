@@ -1,0 +1,12 @@
+en:
+  mongoid:
+    models:
+      office_time:
+        one: 'Office Time'
+        other: 'Office Time'
+    attributes:
+      office_time:
+    errors:
+      models:
+        office_time:
+          no_exists: 'There is no office time'

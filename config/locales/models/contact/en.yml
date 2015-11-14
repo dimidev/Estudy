@@ -8,3 +8,7 @@ en:
     attributes:
       contact:
         value: 'Value'
+    errors:
+      models:
+        contact:
+          no_exists: 'There is no contact informations'

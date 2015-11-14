@@ -11,3 +11,7 @@ el:
         postal_code: 'Ταχυδρομικός Κώδικας'
         address: 'Διεύθυνση'
         primary: 'Κύρια Κατοικία'
+    errors:
+      models:
+        address:
+          no_exists: 'Δεν υπάρχουν διευθύνσεις'

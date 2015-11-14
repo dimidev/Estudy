@@ -1,0 +1,35 @@
+<div role="tabpanel" class="tab-pane fade in" id="address">
+<% if @addresses.present? %>
+    <caption><h4><%= t 'mongoid.models.address.other' %></h4></caption>
+    <% @addresses.each do |a| %>
+        <table class="table table-half table-bordered">
+          <tr>
+            <td><b><%= t 'mongoid.attributes.address.country' %></b></td>
+            <td><%= a.country %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.address.city' %></b></td>
+            <td><%= a.city %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.address.postal_code' %></b></td>
+            <td><%= a.postal_code %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.address.address' %></b></td>
+            <td><%= a.address %></td>
+          </tr>
+          <% if a.primary %>
+              <tr>
+                <td><b><%= t 'mongoid.attributes.address.primary' %></b></td>
+                <td><span class='badge badge-success'><i class='fa fa-check'></i></span></td>
+              </tr>
+          <% end %>
+        </table>
+    <% end %>
+<% else %>
+    <div class="alert alert-warning text-center">
+      <%= fa_icon'exclamation-circle', text: t('mongoid.errors.models.address.no_exists') %>
+    </div>
+<% end %>
+</div>

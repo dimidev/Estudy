@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <%= link_to fa_icon('plus', text: t('professors.new.title')), new_department_professor_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' if (can? :manage, Professor) %>
+    <%= link_to fa_icon('plus', text: t('professors.new.title')), new_department_professor_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' if (can? :create, Professor) %>
     <h2 class="panel-title"><%= t('mongoid.models.professor.other') %></h2>
   </div><!--//panel-heading-->
   <div class="panel-body">

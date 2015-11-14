@@ -1,0 +1,23 @@
+<div role="tabpanel" class="tab-pane fade in" id="contact">
+<% if resource.has_contacts? %>
+    <table class="table table-half table-bordered">
+      <caption><h4><%= Contact.model_name.human %></h4></caption>
+      <tr>
+        <td><b><%= t 'enumerize.contact.type.phone' %></b></td>
+        <td><%= @phones %></td>
+      </tr>
+      <tr>
+        <td><b><%= t 'enumerize.contact.type.fax' %></b></td>
+        <td><%= @fax %></td>
+      </tr>
+      <tr>
+        <td><b><%= t 'enumerize.contact.type.email' %></b></td>
+        <td><%= @emails %></td>
+      </tr>
+    </table>
+<% else %>
+    <div class="alert alert-warning text-center">
+      <%= fa_icon'exclamation-circle', text: t('mongoid.errors.models.contact.no_exists') %>
+    </div>
+<% end %>
+</div>

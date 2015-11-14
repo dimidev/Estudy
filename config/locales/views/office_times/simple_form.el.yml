@@ -1,0 +1,9 @@
+el:
+  simple_form:
+    prompts:
+      office_times:
+        day: 'Επιλέξτε μέρα ευδομάδας'
+    placeholders:
+      office_times:
+        from: 'Από'
+        to: 'Εώς'

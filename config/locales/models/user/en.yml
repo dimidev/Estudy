@@ -4,6 +4,7 @@ en:
       user:
         nic: 'National Indentity Card'
         trn: 'Tax Registration Number'
+        ssn: 'Social Security Number'
     success:
       models:
         user:

@@ -5,18 +5,20 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
+
+    alias_action :create, :read, :update, :destroy, to: :crud
+
     if user.role? :superadmin
       can :manage, [Institution, Department]
       can :manage, [Building, Hall]
       can :manage, Admin
       can :read, [Professor, Student]
       can :read, [Registration, Grade]
-      can :read, CourseClass
       can :read, StudiesProgramme
       can :read, Timetable
       can :manage, Notice
     elsif user.role? :admin
-      can :manage, Department, id: user.department.id
+      can [:show, :update], Department, id: user.department.id
       can :manage, [Admin, Professor, Student]
       can :manage, StudiesProgramme
       can :manage, Registration

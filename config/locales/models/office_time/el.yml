@@ -1,0 +1,25 @@
+el:
+  mongoid:
+    models:
+      office_time:
+        one: 'Ώρα Γραφείου'
+        other: 'Ώρες Γραφείου'
+    attributes:
+      office_time:
+        day: 'Ημέρα'
+        from: 'Από'
+        to: 'Εώς'
+    errors:
+      models:
+        office_time:
+          no_exists: 'Δεν υπάρχουν ώρες γραφείου'
+  enumerize:
+    office_time:
+      day:
+        monday: 'Δευτέρα'
+        tuesday: 'Τρίτη'
+        wednesday: 'Τετάρτη'
+        thursday: 'Πέμπτη'
+        friday: 'Παρασκευή'
+        saturday: 'Σάββατο'
+        sunday: 'Κυριακή'

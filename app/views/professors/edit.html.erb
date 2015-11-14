@@ -13,6 +13,7 @@
       <li role="presentation" class="active"><a href="#general" role="tab" data-toggle="tab"><%= fa_icon'user', text: t('mongoid.models.professor.one')%></a></li>
       <li role="presentation"><a href="#address" role="tab" data-toggle="tab"><%= fa_icon'globe', text: t('mongoid.models.address.other')%></a></li>
       <li role="presentation"><a href="#contact" role="tab" data-toggle="tab"><%= fa_icon'phone', text: t('mongoid.models.contact.one')%></a></li>
+      <li role="presentation"><a href="#office_time" role="tab" data-toggle="tab"><%= fa_icon'clock-o', text: t('mongoid.models.office_time.other')%></a></li>
     </ul>
   </div><!--//panel-heading-->
   <div class="panel-body">
@@ -22,6 +23,7 @@
             <%= render 'professors/tabs/general', f: f %>
             <%= render 'users/forms/address', f: f %>
             <%= render 'general/tabs/contact', f: f %>
+            <%= render 'professors/tabs/office_time', f: f %>
         </div><!--//tab-content-->
 
   </div><!--//panel-body-->
@@ -36,6 +38,7 @@
         <% else %>
           <%= cancel_btn(department_professors_path(current_user.department)) %>
         <% end %>
+        <%= delete_btn(@professor) if can?(:destroy, Professor) %>
     <% end %>
   </div><!--//panel-footer-->
 </div><!--//panel-->

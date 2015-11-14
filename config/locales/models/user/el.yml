@@ -7,6 +7,7 @@ el:
         password_confirmation: 'Επαλήθευση κωδικού'
         name: 'Όνομα'
         lastname: 'Επώνυμο'
+        fullname: 'Ονοματεπώνυμο'
         gender: 'Φύλο'
         birthdate: 'Ημ.Γενήσεως'
         age: 'Ηλικία'
@@ -15,6 +16,8 @@ el:
         user_avatar: 'Εικόνα χρήστη'
         nic: 'Δελτιο Αστυνομικής Ταυτότητας'
         trn: 'Αριθμός Φορολογικού Μητρώου'
+        ssn: 'ΑΜΚΑ'
+        tax_office: 'ΔΟΥ'
     success:
       models:
         user:

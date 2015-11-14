@@ -1,0 +1,21 @@
+<div role="tabpanel" class="tab-pane fade" id="office_time">
+  <div class="form-group">
+    <%= add_nested_resource(f, :office_times, target: '.office_times', localize: true) %>
+  </div>
+
+  <div class="office_times">
+
+    <%= f.simple_fields_for :office_times, defaults:{label: false}  do |a| %>
+        <div class="row">
+          <%= a.input :day, prompt: t('simple_form.prompts.contacts.type'), wrapper_html:{class:'col-md-4'} %>
+          <%= a.input :from, as: :time_picker, wrapper_html:{class:'col-md-3'} %>
+          <%= a.input :to, as: :time_picker, wrapper_html:{class:'col-md-3'} %>
+          <div class="col-md-2 text-center">
+            <%= remove_nested_resource(a, content: false)%>
+          </div>
+        </div><!--//row-->
+    <% end %>
+
+  </div><!--//office_times-->
+
+</div><!--//office_time-->

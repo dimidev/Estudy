@@ -28,11 +28,14 @@ class Department
   embeds_one :address
   embeds_many :contacts
   has_many :admins
+  has_many :professors
   has_many :students
   has_many :studies_programmes
   has_many :timetables
   belongs_to :institution
   has_many :notices
+  has_many :course_classes
+  has_many :exams
 
   accepts_nested_attributes_for :address, :contacts, reject_if: :all_blank, allow_destroy: true
 

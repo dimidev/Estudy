@@ -1,3 +1,5 @@
+<li><%= link_to fa_icon('institution',text: Department.model_name.human), department_path(current_user.department) %></li>
+
 <li class="has-sub">
   <a>
     <%= fa_icon('users',text: t('mongoid.models.admin.other')) %>

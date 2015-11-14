@@ -4,5 +4,7 @@ en:
       title: 'View Admins'
     new:
       title: 'New Admin'
+    show:
+      title: 'View Admin'
     edit:
       title: 'Edit Admin'

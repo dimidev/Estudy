@@ -9,7 +9,13 @@ el:
       contact:
         type: 'Είδος Επικοινωνίας'
         value: 'Τιμή'
+    errors:
+      models:
+        contact:
+          no_exists: 'Δεν υπάρχουν πληροφορίες επικοινωνίας'
   enumerize:
     contact:
       type:
         phone: 'Τηλέφωνο'
+        fax: 'Fax'
+        email: 'Email'

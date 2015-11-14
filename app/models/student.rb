@@ -12,9 +12,11 @@ class Student < User
   validates_numericality_of :semester, only_integer: true, greater_than_or_equal_to: 1
 
   validates_associated :studies_programme
-  has_many :registrations
-  belongs_to :studies_programme
-  belongs_to :department
+  has_many    :registrations
+  belongs_to  :studies_programme
+  belongs_to  :department
+  embeds_many :grades
+  has_many    :attendances
 
   scope :active, lambda{ where(status: :active) }
 

@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       end
       resources :course_classes
     end
+    resources :exams
     resources :notices
 
     get 'users/sign_out', as: :logout

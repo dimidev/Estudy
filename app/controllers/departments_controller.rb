@@ -60,7 +60,7 @@ class DepartmentsController < ApplicationController
   end
 
   def show
-    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path
+    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path if current_user.role?(:superadmin)
     add_breadcrumb I18n.t('departments.show.title')
 
     @department = Department.find(params[:id])
@@ -71,7 +71,7 @@ class DepartmentsController < ApplicationController
   end
 
   def edit
-    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path
+    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path if current_user.role?(:superadmin)
     add_breadcrumb I18n.t('departments.edit.title')
 
     @department = Department.find(params[:id])
@@ -80,13 +80,14 @@ class DepartmentsController < ApplicationController
   end
 
   def update
-    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path
+    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path if current_user.role?(:superadmin)
     add_breadcrumb I18n.t('departments.edit.title')
 
     @department = Department.find(params[:id])
 
     if @department.update_attributes(department_params)
-      redirect_to departments_path, notice: I18n.t('mongoid.success.models.department.update', title: @department.title)
+      flash[:notice] = I18n.t('mongoid.success.models.department.update', title: @department.title)
+      redirect_to current_user.role?(:superadmin) ? departments_path : department_path(@department)
     else
       flash[:alert] = I18n.t('mongoid.errors.models.department.update')
       render :edit

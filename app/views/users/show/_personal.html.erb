@@ -1,0 +1,15 @@
+<table class="table table-half">
+  <caption><h4><%= t 'legends.user.personal_informations' %></h4></caption>
+  <tr>
+    <td><b><%= t 'mongoid.attributes.user.fullname' %></b></td>
+    <td><%= resource.fullname %></td>
+  </tr>
+  <tr>
+    <td><b><%= t 'mongoid.attributes.user.gender' %></b></td>
+    <td><%= resource.gender_text %></td>
+  </tr>
+  <tr>
+    <td><b><%= t 'mongoid.attributes.user.birthdate' %></b></td>
+    <td><%= resource.birthdate.strftime('%d-%m-%Y') %></td>
+  </tr>
+</table>

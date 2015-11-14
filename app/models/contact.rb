@@ -1,6 +1,7 @@
 class Contact
   include Mongoid::Document
   extend Enumerize
+  extend ActiveModel::Naming
 
   field :type
   field :value, type: String

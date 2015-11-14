@@ -19,6 +19,7 @@ class Timetable
   recursively_embeds_many
   belongs_to :department
   has_many :registrations
+  has_many :exams
 
   def self.current
    self.where(:from.lte => Date.current, :to.gte => Date.current).first

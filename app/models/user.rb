@@ -61,6 +61,8 @@ class User
   ## Legal Informations
   field :nic, type: String
   field :trn, type: String
+  field :ssn, type: String
+  field :tax_office, type: String
 
   has_mongoid_attached_file :user_avatar, style:{medium:'150x150',thumb:'60x60'},
                             url:"/system/:attachment/:style/:basename.:extension",

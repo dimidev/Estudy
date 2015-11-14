@@ -1,0 +1,26 @@
+<div role="tabpanel" class="tab-pane fade in" id="office_time">
+  <% if @office_time.present? %>
+
+    <table class="table table-bordered">
+      <caption><h4><%= t 'mongoid.models.office_time.other' %></h4></caption>
+      <thead>
+        <th class="col-sm-6"><%= t 'mongoid.attributes.office_time.day' %></th>
+        <th class="text-center col-sm-3"><%= t 'mongoid.attributes.office_time.from' %></th>
+        <th class="text-center col-sm-3"><%= t 'mongoid.attributes.office_time.to' %></th>
+      </thead>
+      <tbody>
+        <% @office_time.each do |o| %>
+          <tr>
+            <td><%= o.day_text %></td>
+            <td class="text-center"><%= o.from.to_s(:time) %></td>
+            <td class="text-center"><%= o.to.to_s(:time) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+      <div class="alert alert-warning text-center">
+        <%= fa_icon'exclamation-circle', text: t('mongoid.errors.models.office_time.no_exists') %>
+      </div>
+  <% end %>
+</div>

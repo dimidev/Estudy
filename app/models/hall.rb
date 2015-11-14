@@ -22,6 +22,7 @@ class Hall
 
   belongs_to :building
   has_many :professors, as: :professor_office
+  has_many :exams
 
-  scope :office, lambda{where(type: :office)}
+  scope :offices, lambda{where(type: :office)}
 end

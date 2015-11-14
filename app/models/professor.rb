@@ -6,13 +6,16 @@ class Professor < User
   field :professor_type
   enumerize :professor_type, in: PROFESSOR_TYPE
 
-  validates_associated :departments
   validates_presence_of :professor_type
 
-  has_and_belongs_to_many :departments, inverse_of: nil
+  belongs_to  :department
+  embeds_many :office_times
+  has_many    :course_classes
 
   # FIXME association saved like string, not like BSON:ObjectID
   belongs_to :professor_office, class_name:'Hall', polymorphic: true
+
+  accepts_nested_attributes_for :office_times, allow_destroy: true, reject_if: :all_blank
 
   private
   def defaults

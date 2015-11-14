@@ -3,17 +3,17 @@ class ProfessorsController < ApplicationController
 
   def index
     @department = Department.find(params[:department_id])
-    add_breadcrumb @department.title, department_professors_path(@department), if: lambda{current_user.role? :superadmin}
+    add_breadcrumb @department.title, department_professors_path(@department) if current_user.role?(:superadmin)
     add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(@department)
     add_breadcrumb I18n.t('professors.index.title')
 
     respond_to do |format|
       format.html
       format.json do
-        render(json: Professor.where(department_ids: params[:department_id]).datatable(self, %w(name lastname professor_type)) do |professor|
+        render(json: @department.professors.datatable(self, %w(name lastname email professor_type)) do |professor|
                  [
-                     professor.name,
-                     professor.lastname,
+                     %{<%= link_to professor.name, professor_path(professor) %>},
+                     %{<%= link_to professor.lastname, professor_path(professor) %>},
                      professor.email,
                      professor.professor_type_text,
                      professor.professor_office.name,
@@ -34,15 +34,9 @@ class ProfessorsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(params[:department_id])
     add_breadcrumb I18n.t('professors.new.title')
     @department = Department.find(params[:department_id])
-    @professor = Professor.new
+    @professor = @department.professors.build
 
-    @offices = Hall.office
-
-    if current_user.role? :superadmin
-      @departments = Department.all
-    else
-      # TODO add code for admin
-    end
+    @offices = Hall.offices
 
     render :edit
   end
@@ -51,7 +45,7 @@ class ProfessorsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(params[:department_id])
     add_breadcrumb I18n.t('professors.new.title')
     @department = Department.find(params[:department_id])
-    @professor = Professor.new(professor_params)
+    @professor =  @department.professors.build(professor_params)
 
 
     if @professor.save
@@ -59,47 +53,43 @@ class ProfessorsController < ApplicationController
       redirect_to department_professors_path(params[:department_id])
     else
       @departments = Department.active
-      @offices = Hall.office
+      @offices = Hall.offices
 
       flash[:alert] = t('mongoid.errors.models.user.create', model: Professor.model_name.human, name: @professor.fullname)
       render :edit
     end
   end
 
+  def show
+    @professor = Professor.find(params[:id])
+    add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(@professor.department)
+    add_breadcrumb I18n.t('professors.show.title')
+
+    @office_time = @professor.office_times.order_by(day: :asc)
+    @addresses = @professor.addresses
+    @phones = @professor.contacts.where(type: 'phone').map(&:value).join(', ')
+    @fax = @professor.contacts.where(type: 'fax').map(&:value).join(', ')
+    @emails = [@professor.email, @professor.contacts.where(type: 'email').map(&:value)].flatten.join(', ')
+  end
+
   def edit
     @professor = Professor.find(params[:id])
-
-    # FIXME breadcrumb not working properly on superadmin mode
-    # add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(current_user.department), if: lambda{current_user.role? :admin}
+    add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(current_user.department) if current_user.role?(:admin)
     add_breadcrumb I18n.t('professors.edit.title')
 
-    @offices = Hall.office
-
-    if current_user.role? :superadmin
-      @departments = Department.all
-    else
-      # TODO add code for admin
-    end
+    @offices = Hall.offices
   end
 
   def update
     @professor = Professor.find(params[:id])
-
-    # FIXME breadcrumb not working properly on superadmin mode
-    #add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(current_user.department)
+    add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(@professor.department)
     add_breadcrumb I18n.t('professors.edit.title')
 
     if update_resource(@professor, professor_params)
       flash[:notice] = I18n.t('mongoid.success.models.user.update', model: Professor.model_name.human, name: @professor.fullname)
-
-      if current_user.role? :admin
-        redirect_to department_professors_path(current_user.department)
-      else
-        redirect_to root_path
-      end
+      redirect_to department_professors_path(current_user.department)
     else
-      @departments = Department.active
-      @offices = Hall.office
+      @offices = Hall.offices
 
       flash[:alert] = I18n.t('mongoid.errors.models.user.update', model: Professor.model_name.human)
       render :edit
@@ -112,7 +102,7 @@ class ProfessorsController < ApplicationController
     respond_to do |format|
       if @professor.destroy
         message = I18n.t('mongoid.success.models.user.destroy', model: Professor.model_name.human, name: @professor.fullname)
-        format.html { redirect_to department_professors_path(current_user.department), notice: message }
+        format.html { redirect_to department_professors_path(@professor.department), notice: message }
         format.js { flash.now[:notice] = message }
       else
         message = I18n.t('mongoid.errors.models.user.destroy', model: Professor.model_name.human, name: @professor.fullname)
@@ -126,9 +116,10 @@ class ProfessorsController < ApplicationController
 
   def professor_params
     params.require(:professor).permit(:user_avatar, :email, :password, :password_confirmation, :role, :professor_type, :professor_office_id,
-                                      :name, :lastname, :gender, :birthdate, :nic, :trn, department_ids: [],
+                                      :name, :lastname, :gender, :birthdate, :nic, :trn, :ssn, :tax_office,
                                       addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
-                                      contacts_attributes: [:id, :_destroy, :type, :value])
+                                      contacts_attributes: [:id, :_destroy, :type, :value],
+                                      office_times_attributes: [:id, :_destroy, :day, :from, :to])
 
   end
 

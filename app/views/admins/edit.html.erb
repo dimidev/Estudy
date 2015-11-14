@@ -24,11 +24,11 @@
           <%= render 'general/tabs/contact', f: f %>
         </div><!--//tab-content-->
 
-        </div><!--//panel-body-->
-        <div class="panel-footer">
-          <%= f.button :submit, class:'btn-success' %>
-          <%= cancel_btn(department_admins_path(@admin.department)) %>
-          <%= delete_btn(@admin) %>
+    </div><!--//panel-body-->
+    <div class="panel-footer">
+      <%= f.button :submit, class:'btn-success' %>
+      <%= cancel_btn(department_admins_path(@admin.department)) %>
+      <%= delete_btn(@admin) if can?(:destroy, Admin) %>
     <% end %>
     </div><!--//panel-footer-->
 </div><!--//panel-->

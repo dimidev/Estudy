@@ -10,7 +10,7 @@ class Building
   validates_numericality_of :area, :floors, only_integer: true, greater_or_equal_to: 0
 
   embeds_one :address, autobuild: true
-  has_many :halls
+  has_many :halls, dependent: :destroy
 
   accepts_nested_attributes_for :address, reject_if: :all_blank
 end

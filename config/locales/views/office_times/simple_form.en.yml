@@ -1,0 +1,9 @@
+en:
+  simple_form:
+    prompts:
+      office_times:
+        day: 'Choose day of week'
+    placeholders:
+      office_times:
+        from: 'From'
+        to: 'To'

@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <%= link_to fa_icon('plus', text: t('admins.new.title')), new_department_admin_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' %>
+    <%= link_to fa_icon('plus', text: t('admins.new.title')), new_department_admin_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' if (can? :create, Admin) %>
     <h2 class="panel-title"><%= t('mongoid.models.admin.other') %></h2>
   </div><!--//panel-heading-->
   <div class="panel-body">
@@ -12,8 +12,9 @@
         <th><%= t('mongoid.attributes.user.name') %></th>
         <th><%= t('mongoid.attributes.user.lastname') %></th>
         <th><%= t('mongoid.attributes.user.email') %></th>
-        <th><%= t('mongoid.attributes.user.birthdate') %></th>
-        <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        <% if can? :manage, Admin %>
+            <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        <% end %>
       </tr>
       </thead>
       <tbody>

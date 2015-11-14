@@ -1,0 +1,40 @@
+<% title t('.title') %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to fa_icon('pencil-square-o', text: t('registrations.edit.title')), edit_registration_path(@registration), class:'btn btn-sm btn-warning pull-right' %>
+    <h2 class="panel-title"><%= Date.current.year.to_s + "-" + Date.current.next_year.year.to_s %></h2>
+  </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+          <th class="text-center"><%= t('mongoid.attributes.course.semester') %></th>
+          <th><%= t('mongoid.attributes.course.title') %></th>
+          <th><%= t('mongoid.attributes.course.course_type') %></th>
+          <th class="text-center"><%= t('mongoid.attributes.course.ects') %></th>
+          <th class="text-center"><%= t('mongoid.attributes.course.hours') %></th>
+      </thead>
+      <tbody>
+        <% @courses.each do |course| %>
+            <tr>
+              <td class="text-center"><%= course.semester %></td>
+              <td>
+                <%= course.title %>
+                <%= '- ' << t("enumerize.course.course_part.#{course.course_part}") if course.has_parent_course? %>
+              </td>
+              <td>
+                <% if course.has_parent_course? %>
+                    <%= t("enumerize.course.course_type.#{course.parent_course.course_type}") %>
+                <% else %>
+                    <%= t("enumerize.course.course_type.#{course.course_type}") %>
+                <% end %>
+              </td>
+              <td class="text-center"><%= course.has_parent_course? ? course.percent : course.ects %></td>
+              <td class="text-center"><%= course.hours %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div><!--//panel-->
+
+
+

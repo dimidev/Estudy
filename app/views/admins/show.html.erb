@@ -1,0 +1,21 @@
+<% title t('admins.show.title') %>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), edit_admin_path(@admin), class:'btn btn-warning btn-sm pull-right' if (can? :update, Admin) %>
+    <h2 class="panel-title"><%= @admin.fullname %></h2>
+  </div><!--//panel-heading-->
+  <div class="panel-body">
+    <ul class="nav nav-pills">
+      <li role="presentation" class="active"><a href="#general" role="tab" data-toggle="tab"><%= fa_icon'user', text: t('mongoid.models.admin.admin')%></a></li>
+      <li role="presentation"><a href="#address" role="tab" data-toggle="tab"><%= fa_icon'globe', text: t('mongoid.models.address.other')%></a></li>
+      <li role="presentation"><a href="#contact" role="tab" data-toggle="tab"><%= fa_icon'phone', text: Contact.model_name.human %></a></li>
+    </ul>
+
+    <div class="tab-content">
+      <%= render 'admins/tabs/show_general' %>
+      <%= render 'users/show/address' %>
+      <%= render 'users/show/contact', resource: @admin %>
+    </div><!--//tab-content-->
+  </div><!--//panel-body-->
+</div><!--//panel-->
