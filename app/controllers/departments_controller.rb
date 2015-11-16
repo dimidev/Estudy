@@ -14,19 +14,34 @@ class DepartmentsController < ApplicationController
                      department.foundation_date,
                      department_status(department.status),
                      department.students.active.count,
-                     Professor.where(department_ids: department.id).count,
+                     department.professors.count,
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
-                          <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.admin.admins')), department_admins_path(department) %></li>
-                          <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.professor.other')), department_professors_path(department) %></li>
-                          <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.student.other')), department_students_path(department) %></li>
+                          <% if can? :index, Admin %>
+                            <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.admin.admins')), department_admins_path(department) %></li>
+                          <% end %>
+                          <% if can? :index, Professor %>
+                            <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.professor.other')), department_professors_path(department) %></li>
+                          <% end %>
+                          <% if can? :index, Student %>
+                            <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.student.other')), department_students_path(department) %></li>
                           <li class='divider'></li>
-                          <li><%= link_to fa_icon('book', text: I18n.t('mongoid.models.studies_programme.other')), department_studies_programmes_path(department) %></li>
-                          <li><%= link_to fa_icon('calendar', text: Timetable.model_name.human), department_timetables_path(department) %></li>
-                          <li class='divider'></li>
-                          <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_department_path(department) %></li>
-                          <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), department_path(department), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
+                          <% end %>
+                          <% if can? :index, StudiesProgramme %>
+                            <li><%= link_to fa_icon('book', text: I18n.t('mongoid.models.studies_programme.other')), department_studies_programmes_path(department) %></li>
+                          <% end %>
+                          <% if can? :index, Exam %>
+                            <li><%= link_to fa_icon('calendar', text: I18n.t('mongoid.models.exam.other')), department_exams_path(department) %></li>
+                          <% end %>
+                          <% if can? :index, Timetable %>
+                            <li><%= link_to fa_icon('calendar', text: Timetable.model_name.human), department_timetables_path(department) %></li>
+                          <% end %>
+                          <% if can? [:update, :destroy], Department %>
+                            <li class='divider'></li>
+                            <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_department_path(department) %></li>
+                            <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), department_path(department), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
+                          <% end %>
                         </ul>
                       </div>}
                  ]
@@ -52,9 +67,8 @@ class DepartmentsController < ApplicationController
     @department = Institution.first.departments.build(department_params)
 
     if @department.save
-      redirect_to departments_path, notice: I18n.t('mongoid.success.models.department.create', title: @department.title)
+      redirect_to departments_path, notice: I18n.t('mongoid.success.departments.create', title: @department.title)
     else
-      flash[:alert] = I18n.t('mongoid.errors.models.department.create')
       render :edit
     end
   end
@@ -86,10 +100,9 @@ class DepartmentsController < ApplicationController
     @department = Department.find(params[:id])
 
     if @department.update_attributes(department_params)
-      flash[:notice] = I18n.t('mongoid.success.models.department.update', title: @department.title)
+      flash[:notice] = I18n.t('mongoid.success.departments.update', title: @department.title)
       redirect_to current_user.role?(:superadmin) ? departments_path : department_path(@department)
     else
-      flash[:alert] = I18n.t('mongoid.errors.models.department.update')
       render :edit
     end
   end
@@ -99,11 +112,11 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.destroy
-        message = I18n.t('mongoid.success.models.department.destroy', title: @department.title)
+        message = I18n.t('mongoid.success.departments.destroy', title: @department.title)
         format.html { redirect_to departments_path, notice: message }
         format.js { flash.now[:notice] = message }
       else
-        message = I18n.t('mongoid.errors.models.department.destroy', title: @department.title)
+        message = I18n.t('mongoid.errors.departments.destroy', title: @department.title)
         format.html { render :edit, flash[:alert] = message }
         format.js { flash.now[:notice] = message }
       end

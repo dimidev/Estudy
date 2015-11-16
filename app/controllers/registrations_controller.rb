@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
   load_and_authorize_resource :student
-  load_and_authorize_resource :registration, through: :department, shallow: true
+  load_and_authorize_resource :registration, through: :student, shallow: true
 
   def index
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(params[:student_id])
@@ -33,14 +33,19 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(params[:student_id])
     add_breadcrumb I18n.t('registrations.new.title')
 
-    if Timetable.current
+    if timetable = Timetable.current
       @student = Student.find(params[:student_id])
       @registration = @student.registrations.build
       @registration.registrations.build
 
       if @student.studies_programme.courses.exists?
-        @courses = @student.available_courses
-        render :edit
+        # OPTIMIZE make this condition from model
+        if @student.registrations.where(timetable_id: Timetable.current).exists?
+          redirect_to student_registrations_path(@student), alert: I18n.t('mongoid.errors.models.registration.current_exists')
+        else
+          @courses = @student.available_courses
+          render :edit
+        end
       else
         redirect_to department_students_path(@student.department), alert: t('mongoid.errors.models.registration.no_courses')
       end
@@ -68,8 +73,12 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(params[:student_id])
     add_breadcrumb I18n.t('registrations.current.title')
 
-    @registration = Timetable.current.registrations.find_by(student_id: params[:student_id])
-    render :show
+    # FIXME make this run from model scope
+    if @registration = Timetable.current.registrations.find_by(student_id: params[:student_id])
+      render :show
+    else
+      redirect_to student_registrations_path(params[:student_id]), alert: I18m.t('mongoid.errors.models.registration.current_not_exists')
+    end
   end
 
   def show
@@ -117,6 +126,6 @@ class RegistrationsController < ApplicationController
   private
 
   def registration_params
-    params.require(:registration).permit(course_ids:[])
+    params.require(:registration).permit(course_ids:[], course_class_ids:[])
   end
 end

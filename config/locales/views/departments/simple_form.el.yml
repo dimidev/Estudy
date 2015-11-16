@@ -1,7 +1,7 @@
 el:
   helpers:
     submit:
-      institution:
+      department:
         create: 'Δημιουργία Ιδρύματος'
         update: 'Ενημέρωση Ιδρύματος'
   simple_form:

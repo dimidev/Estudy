@@ -1,0 +1,17 @@
+en:
+  mongoid:
+    models:
+      course_class:
+        one: 'Course Class'
+        other: 'Course Classes'
+    attributes:
+    success:
+      course_classes:
+        create: 'Class for <b>%{course}</b> is created'
+        update: 'Class for <b>%{course}</b> is updated'
+        destroy: 'Class for <b>%{course}</b> is deleted'
+    errors:
+      course_classes:
+        create: 'Class for is not created'
+        update: 'Class for is not updated'
+        destroy: 'Class for <b>%{course}</b> is not deleted'

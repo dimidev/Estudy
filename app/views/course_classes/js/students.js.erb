@@ -1,0 +1,19 @@
+$('.modal').remove();
+$('.page-header').after("<%= j render 'course_classes/students' %>");
+
+$('#course-class-students-table').DataTable({
+  processing: true,
+  serverSide: true,
+  ajax: $('#course-class-students-table').data('source'),
+  pagingType: "full_numbers",
+  responsive: true,
+  lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
+  order: [],
+  columnDefs: [
+    {targets: 'no-sort', orderable: false},
+    {targets: 'text-center', class: 'text-center'}
+  ]
+});
+
+$('select').selectpicker();
+$('#modal').modal();

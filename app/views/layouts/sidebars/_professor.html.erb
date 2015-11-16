@@ -1,0 +1,26 @@
+<li><%= link_to fa_icon('institution',text: Department.model_name.human), department_path(current_user.department) %></li>
+
+<li class="has-sub">
+  <a>
+    <%= fa_icon('file-o',text: t('sidebar.programme.programme')) %>
+    <%= fa_icon 'caret-down', class:'pull-right' %>
+  </a>
+  <ul class="sub-menu">
+    <li><%= link_to t('sidebar.programme.studies'), department_studies_programmes_path(current_user.department) %></li>
+    <li><%= link_to t('sidebar.programme.exams'), department_exams_path(current_user.department) %></li>
+  </ul>
+</li>
+
+<li class="has-sub">
+  <a>
+    <%= fa_icon('book',text: t('mongoid.models.course_class.other')) %>
+    <%= fa_icon 'caret-down', class:'pull-right' %>
+  </a>
+  <ul class="sub-menu">
+    <li><%= link_to t('course_classes.index.title'), department_course_classes_path(current_user.department) %></li>
+  </ul>
+</li>
+
+<li><%= link_to fa_icon('calendar', text: Timetable.model_name.human), current_department_timetables_path(current_user.department) %></li>
+
+<li><%= link_to fa_icon('bell-o',text: t('mongoid.models.notice.other')), notices_path %></li>

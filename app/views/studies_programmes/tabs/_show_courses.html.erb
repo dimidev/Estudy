@@ -1,0 +1,26 @@
+<div role="tabpanel" class="tab-pane fade" id="courses">
+  <% if @courses %>
+      <table id="courses-table" class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center"><%= t('mongoid.attributes.course.semester') %></th>
+            <th><%= t('mongoid.attributes.course.title') %></th>
+            <th class="text-center"><%= t('mongoid.attributes.course.course_type') %></th>
+            <th class="text-center"><%= t('mongoid.attributes.course.ects') %></th>
+            <th class="text-center"><%= t('mongoid.attributes.course.hours') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @courses.each do |course| %>
+            <tr>
+              <td class="text-center"><%= course.semester %></td>
+              <td><%= course.title %></td>
+              <td class="text-center"><%= course.course_type_text %></td>
+              <td class="text-center"><%= course.ects %></td>
+              <td class="text-center"><%= course.hours %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  <% end %>
+</div><!--//courses-->

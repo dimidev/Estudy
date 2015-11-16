@@ -1,0 +1,52 @@
+<div role="tabpanel" class="tab-pane active fade in" id="general">
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-half table-bordered">
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_programme.diploma_title' %></b></td>
+          <td><%= @studies_programme.diploma_title %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_programme.studies_level' %></b></td>
+          <td><%= @studies_programme.studies_level_text %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_programme.semesters' %></b></td>
+          <td><%= @studies_programme.semesters %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_programme.status' %></b></td>
+          <td><%= @studies_programme.status_text %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_programme.fees' %></b></td>
+          <td><%= @studies_programme.fees ? t('simple_form.yes') : t('simple_form.no') %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_programme.orientation' %></b></td>
+          <td><%= @studies_programme.orientation ? t('simple_form.yes') : t('simple_form.no') %></td>
+        </tr>
+      </table>
+    </div>
+
+    <% if @rules %>
+      <div class="col-md-6">
+        <table class="table table-half table-bordered">
+          <caption><h4><%= t 'mongoid.models.programme_rule.other' %></h4></caption>
+          <thead>
+            <th><%= t 'mongoid.attributes.programme_rule.course_type' %></th>
+            <th class="text-center"><%= t 'mongoid.attributes.programme_rule.operator' %></th>
+            <th class="text-center"><%= t 'mongoid.attributes.programme_rule.value' %></th>
+          </thead>
+          <% @rules.each do |r| %>
+            <tr>
+              <td><%= r.course_type_text %></td>
+              <td class="text-center"><%= r.operator %></td>
+              <td class="text-center"><%= r.value %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+  </div><!--//row-->
+</div><!--//general-->

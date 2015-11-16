@@ -1,0 +1,27 @@
+<div role="tabpanel" class="tab-pane active fade in" id="general">
+<div class="row">
+  <div class="col-md-3 text-center">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= t 'mongoid.attributes.user.user_avatar' %></h3>
+      </div>
+      <div class="panel-body">
+        <%= image_tag @student.user_avatar.url(:medium), class:'img-medium img-medium img-rounded' %>
+      </div>
+    </div>
+    <h3></h3>
+  </div><!--//col-->
+
+  <div class="col-md-9">
+    <%= render 'users/show/personal', resource: @student %>
+  </div><!--//col-->
+</div><!--//row-->
+<div class="row">
+  <div class="col-md-6">
+    <%= render 'students/tabs/show_academic' %>
+  </div><!--//col-->
+  <div class="col-md-6">
+    <%= render 'users/show/legal', resource: @student %>
+  </div><!--//col-->
+</div>
+</div><!--//tab-->

@@ -18,4 +18,4 @@ en:
           update: 'Timetable is not updated'
           destroy: 'Timetable %{title} is not deleted'
           current:
-            not_exists: 'Timetable not exists for current semester'
+            not_exists: 'Timetable not exists for current period'

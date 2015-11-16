@@ -10,11 +10,8 @@ el:
         institution_logo: 'Λογότυπο Ιδρύματος'
         rector: 'Πρύτανης'
     success:
-      models:
-        institution:
-          update: 'Οι πληροφορίες του Ιδρύματος αποθηκεύτηκαν επιτυχώς'
+      institutions:
+        update: 'Οι πληροφορίες του Ιδρύματος αποθηκεύτηκαν επιτυχώς'
     errors:
-      models:
-        institution:
-          create: 'Το Ιδρυμα δεν δημιουργήθηκε επιτυχώς'
-          update: 'Οι πληροφορίες του Ιδρύματος δεν αποθηκεύτηκαν επιτυχώς'
+      institutions:
+        create: 'Το Ιδρυμα δεν δημιουργήθηκε επιτυχώς'

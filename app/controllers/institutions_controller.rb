@@ -44,9 +44,8 @@ class InstitutionsController < ApplicationController
     @institution = Institution.first
 
     if @institution.update_attributes(institution_params)
-      redirect_to institution_path, notice: I18n.t('mongoid.success.models.institution.update')
+      redirect_to institution_path, notice: I18n.t('mongoid.success.institutions.update')
     else
-      flash[:alert] = I18n.t('mongoid.errors.models.institution.update')
       render :edit
     end
   end

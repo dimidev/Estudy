@@ -6,15 +6,11 @@ en:
         other: 'Studies Programmes'
     attributes:
     success:
-      models:
-        studies_programme:
-          create: 'Studies Programme %{title} is created'
-          update: 'Studies Programme %{title} is updated'
-          destroy: 'Studies Programme %{title} is deleted'
+      studies_programmes:
+        create: 'Studies Programme %{title} is created'
+        update: 'Studies Programme %{title} is updated'
+        destroy: 'Studies Programme %{title} is deleted'
     errors:
-      models:
-        studies_programme:
-          create: 'Studies Programme is not created'
-          update: 'Studies Programme is not updated'
-          destroy: 'Studies Programme %{title} is not deleted'
-          no_exists: 'There is no available Studies Programme, please create one'
+      studies_programmes:
+        destroy: 'Studies Programme %{title} is not deleted'
+        no_exists: 'There is no available Studies Programme, please create one'

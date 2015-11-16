@@ -27,10 +27,4 @@ $(function(){
             ]
         });
     });
-
-    $('.students_datatable_options').submit(function(e){
-        e.preventDefault();
-
-        $('#students-table').DataTable().column(1).search($('#students_datatable_options_name').val());
-    });
 });

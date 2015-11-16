@@ -62,7 +62,8 @@ class TimetablesController < ApplicationController
       flash[:alert] = I18n.t('mongoid.errors.models.timetable.current.not_exists')
 
       if (current_user.role? :student) || (current_user.role? :professor)
-        redirect_to root_path
+        flash[:alert] = I18n.t('mongoid.errors.models.timetable.current.not_exists')
+        redirect_to current_department_timetables_path(params[:department_id])
       else
         render :index
       end

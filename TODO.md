@@ -1,5 +1,4 @@
--[ ] Make Datatable Multilangage
--[ ] Bootstrap Select Datatables make it smaller (show entries select)
--[ ] Fix Top Right, user avatar not showing properly
--[ ] Todo Find how translate nested attributes (association)
--[ ] Remove devise message 'you must sign in before....'
+- [ ] TODO Make Datatable Multilangage
+- [ ] Todo Find how translate nested attributes (association)
+- [ ] TODO Remove devise message 'you must sign in before....'
+- [ ] TODO translate cancan error message

@@ -7,11 +7,8 @@ en:
       institution:
         institution_logo: 'Institution Logo'
     success:
-      models:
-        institution:
-          update: 'Institution is updated'
+      institutions:
+        update: 'Institution is updated'
     errors:
-      models:
-        institution:
-          create: 'Institution is not created'
-          update: 'Institution is not updated'
+      institutions:
+        create: 'Institution is not created'

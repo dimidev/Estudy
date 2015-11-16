@@ -1,0 +1,31 @@
+el:
+  mongoid:
+    models:
+      course_class:
+        one: 'Τμήμα Μαθήματος'
+        other: 'Τμήματα Μαθημάτων'
+        available_seats: '%{count} Διαθέσιμες Θέσεις'
+    attributes:
+      course_class:
+        day: 'Μέρα'
+        from: 'Από'
+        to: 'Εώς'
+        registared_students: 'Εγγεγραμμένοι Φοιτητές'
+    success:
+      course_classses:
+        create: 'Το Τμήμα για <b>%{course}</b> έχει δημιουργηθεί επιτυχώς'
+        update: 'Το Τμήμα για <b>%{course}</b> έχει ανανεωθεί επιτυχώς'
+        destroy: 'Το Τμήμα <b>%{course}</b> διαγράφηκε με επιτυχία'
+    errors:
+      course_classses:
+        destroy: 'Δεν πραγματοποιήθηκε η διαγραφή του Τμήματος για <b>%{course}</b>'
+  enumerize:
+    course_class:
+      day:
+        monday: 'Δευτέρα'
+        tuesday: 'Τρίτη'
+        wednesday: 'Τετάρτη'
+        thursday: 'Πέμπτη'
+        friday: 'Παρασκευή'
+        saturday: 'Σάββατο'
+        sunday: 'Κυριακή'

@@ -1,0 +1,10 @@
+el:
+  course_classes:
+    index:
+      title: 'Προβολή Τμημάτων'
+    new:
+      title: 'Δημιουργία Τμήματος'
+    edit:
+      title: 'Επεξεργασία Τμήματος'
+    show:
+      title: 'Προβολή Τμήματος'

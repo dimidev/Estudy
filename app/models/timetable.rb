@@ -22,11 +22,11 @@ class Timetable
   has_many :exams
 
   def self.current
-   self.where(:from.lte => Date.current, :to.gte => Date.current).first
+    where(:from.lte => Date.current, :to.gte => Date.current).first
   end
 
   def current?
-    self.from <= Date.current && self.to >= Date.current
+    from <= Date.current && self.to >= Date.current
   end
 
   accepts_nested_attributes_for :child_timetables, reject_if: :all_blank, allow_destroy: true

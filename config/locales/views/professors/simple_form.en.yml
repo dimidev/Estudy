@@ -2,4 +2,4 @@ en:
   simple_form:
     labels:
       professor:
-        department_ids: 'Departments'
+        professor_office_id: 'Office'

@@ -19,7 +19,7 @@ class BuildingsController < ApplicationController
                     <% if can? :read, Hall %>
                       <li><%= link_to fa_icon('building-o', text: I18n.t('mongoid.models.hall.other')), building_halls_path(building) %></li>
                     <% end %>
-                    <% if can? :manage, Building %>
+                    <% if can? [:edit, :update], Building %>
                       <li class='divider'></li>
                       <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_building_path(building) %></li>
                       <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), building_path(building), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
@@ -48,9 +48,8 @@ class BuildingsController < ApplicationController
     @building = Building.new(building_params)
 
     if @building.save
-      redirect_to buildings_path, notice: I18n.t('mongoid.success.models.building.create', name: @building.name)
+      redirect_to buildings_path, notice: I18n.t('mongoid.success.buildings.create', name: @building.name)
     else
-      flash[:alert] = I18n.t('mongoid.errors.models.building.create')
       render :edit
     end
   end
@@ -71,9 +70,8 @@ class BuildingsController < ApplicationController
     @building = Building.find(params[:id])
 
     if @building.update_attributes(building_params)
-      redirect_to buildings_path, notice: I18n.t('mongoid.success.models.building.update', name: @building.name)
+      redirect_to buildings_path, notice: I18n.t('mongoid.success.buildings.update', name: @building.name)
     else
-      flash[:alert] = I18n.t('mongoid.errors.models.building.update')
       render :edit
     end
   end
@@ -83,11 +81,11 @@ class BuildingsController < ApplicationController
 
     respond_to do |format|
       if @building.destroy
-        message = I18n.t('mongoid.success.models.building.destroy', name: @building.name)
+        message = I18n.t('mongoid.success.buildings.destroy', name: @building.name)
         format.html { redirect_to buildings_path, notice: message }
         format.js { flash.now[:notice] = message }
       else
-        message = I18n.t('mongoid.errors.models.building.destroy', name: @building.name)
+        message = I18n.t('mongoid.errors.buildings.destroy', name: @building.name)
         format.html { render :edit, flash[:alert] = message }
         format.js { flash.now[:notice] = message }
       end

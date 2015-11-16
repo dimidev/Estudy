@@ -5,18 +5,18 @@ en:
         one: 'Notice'
         other: 'Notices'
     success:
-      models:
-        notice:
-          create: 'Notice is created'
-          update: 'Notice is updated'
-          destroy: 'Notice is deleted'
+      notices:
+        create: 'Notice is created'
+        update: 'Notice is updated'
+        destroy: 'Notice is deleted'
     errors:
+      notices:
+        destroy: 'Notice is not deleted'
+        no_notices: 'There is no avalable notices'
       models:
         notice:
-          create: 'Notice is not created'
-          update: 'Notice is not updated'
-          destroy: 'Notice is not deleted'
-          no_notices: 'There is no avalable notices'
+          attributes:
+            department_id: 'You did not choose Department'
   enumerize:
     notice:
       institution: 'Institution'

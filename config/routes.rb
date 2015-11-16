@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     resources :buildings, shallow: true do
       resources :halls, except: :show
     end
+    scope '/halls', controller: :halls do
+      get 'view_all_halls', action: :view_all
+    end
   
     resources :departments, shallow: true do
       resources :admins
@@ -37,9 +40,11 @@ Rails.application.routes.draw do
       resources :timetables do
         get 'current', on: :collection
       end
-      resources :course_classes
+      resources :course_classes do
+        get 'students', on: :member
+      end
+      resources :exams
     end
-    resources :exams
     resources :notices
 
     get 'users/sign_out', as: :logout

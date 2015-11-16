@@ -4,14 +4,16 @@ class Hall
   extend Enumerize
   extend ActiveModel::Naming
 
+  after_initialize :defaults
+
   field :name,  type: String
   field :area,  type: Integer, default: 0
   field :floor, type: Integer, default: 0
   field :type
   enumerize :type, in: [:office, :lab, :auditorium]
 
-  field :pc,    type: Integer
-  field :seats, type: Integer
+  field :pc,    type: Integer, default: 0
+  field :seats, type: Integer, default: 0
 
   validates_associated :building
   validates_presence_of :name, :type, :area, :floor
@@ -25,4 +27,9 @@ class Hall
   has_many :exams
 
   scope :offices, lambda{where(type: :office)}
+
+  def defaults
+    self.pc ||= 0
+    self.seats ||= 0
+  end
 end

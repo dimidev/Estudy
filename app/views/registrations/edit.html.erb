@@ -21,6 +21,7 @@
           <th><%= t 'mongoid.attributes.course.title' %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.semester' %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.course_type' %></th>
+          <th class="text-center"><%= t 'mongoid.models.hall.other' %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.ects' %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.hours' %></th>
         </thead>
@@ -31,6 +32,7 @@
                 <%= f.input_field :course_ids, collection: c, label_method: lambda{|attr| ' '}, as: :check_boxes, class:'icheck' %>
               </td>
               <td><%= c.has_parent_course? ? "#{c.title} (#{c.course_part_text})" : c.title %></td>
+              <td><%= f.input :course_class_ids, input_html:{name: 'registration[course_class_ids][]'}, collection: c.course_classes, as: :select, label_method: lambda{|obj| "#{obj.hall.name} (#{t 'mongoid.models.course_class.available_seats', count: obj.hall.seats})"} if c.course_classes? %></td>
               <td class="text-center"><%= c.semester %></td>
               <td class="text-center"><%= c.has_parent_course? ? c.parent_course.course_type_text : c.course_type_text %></td>
               <td class="text-center"><%= c.has_parent_course? ? number_to_percentage(c.percent, precision: 0) : c.ects %></td>

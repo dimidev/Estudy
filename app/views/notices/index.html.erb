@@ -1,8 +1,10 @@
 <% title t('.title') %>
 
+<%= render 'notices/modal' %>
+
 <div class="panel panel-default">
   <div class="panel-heading">
-    <%= link_to fa_icon('plus', text: t('notices.new.title')), new_notice_path, class:'btn btn-sm btn-primary pull-right' if can?(:manage, Notice) %>
+    <%= link_to fa_icon('plus', text: t('notices.new.title')), new_notice_path, class:'btn btn-sm btn-primary pull-right' if can?(:create, Notice) %>
     <h2 class="panel-title"><%= t('mongoid.models.notice.other') %></h2>
   </div><!--//panel-heading-->
   <div class="panel-body">
@@ -14,7 +16,7 @@
         <th><%= Department.model_name.human %></th>
         <th><%= t('mongoid.attributes.notice.created_at') %></th>
         <th><%= t('mongoid.attributes.notice.updated_at') %></th>
-        <% if can? :manage, Notice %>
+        <% if can? [:update, :destroy], Notice %>
           <th class="no-sort text-center"><%= t('datatable.options') %></th>
         <% end %>
       </tr>

@@ -20,4 +20,4 @@
     </ul>
 </li>
 
-<li><%= link_to fa_icon('calendar', text: t('mongoid.models.timetable.one')), current_department_timetables_path(current_user.department) %></li>
+<li><%= link_to fa_icon('calendar', text: Timetable.model_name.human), current_department_timetables_path(current_user.department) %></li>

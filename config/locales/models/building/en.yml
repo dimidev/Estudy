@@ -4,17 +4,14 @@ en:
       building:
         one: 'Building'
         other: 'Buildings'
+        special: 'Building'
     attributes:
       building:
     success:
-      models:
-        building:
-          create: 'Building <b>%{name}</b> is created'
-          update: 'Building <b>%{name}</b> is updated'
-          destroy: 'Building <b>%{name}</b> is deleted'
+      buildings:
+        create: 'Building <b>%{name}</b> is created'
+        update: 'Building <b>%{name}</b> is updated'
+        destroy: 'Building <b>%{name}</b> is deleted'
     errors:
-      models:
-        building:
-          create: 'Building is not created'
-          update: 'Building is not updated'
-          destroy: 'Building <b>%{name}</b> is not deleted'
+      buildings:
+        destroy: 'Building <b>%{name}</b> is not deleted'

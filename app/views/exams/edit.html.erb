@@ -1,0 +1,45 @@
+<% if %w(new create).include?(controller.action_name)
+     title(t('exams.new.title'))
+   else
+     title(t('exams.edit.title'))
+   end
+%>
+
+<%= render 'general/form_errors', resource: @exam %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <%= simple_nested_form_for [@department, @exam] do |f| %>
+
+        <div class="form-group">
+          <%= add_nested_resource(f, :addresses, target: '.addresses', localize: true) %>
+        </div>
+
+        <div class="addresses">
+
+          <%= f.simple_fields_for :addresses do |a| %>
+              <div class="well">
+                <div class="row">
+                  <%= a.input :country, include_blank: false, priority: ['GR'], input_html: {data: {size: 10, 'live-search'=> 'true'}}, wrapper_html:{class:'col-md-6'} %>
+                  <%= a.input :city, wrapper_html:{class:'col-md-6'} %>
+                  <%= a.input :postal_code, wrapper_html:{class:'col-md-6'} %>
+                  <%= a.input :address, wrapper_html:{class:'col-md-6'} %>
+                </div><!--//row-->
+
+                <%= a.input :primary, as: :boolean, inline_label: t('mongoid.attributes.address.primary'), input_html:{class:'icheck'} %>
+
+                <%= remove_nested_resource(a)%>
+              </div><!--//well-->
+          <% end %>
+
+        </div><!--//addresses-->
+
+  </div><!--//pane-body-->
+  <div class="panel-footer">
+        <%= f.button :submit, class:'btn-success' %>
+        <%= cancel_btn(department_exams_path(@exam.department)) %>
+        <%= delete_btn(@exam) %>
+    <% end %>
+  </div><!--//pane-footer-->
+</div><!--//panel-->

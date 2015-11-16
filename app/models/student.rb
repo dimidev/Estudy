@@ -1,11 +1,13 @@
 class Student < User
-  #before_create :auto_increment
+  before_create :auto_increment
   after_initialize :defaults
+
+  attr_readonly :stc
 
   field :semester,  type: Integer, default: 1
   field :stc,       type: Integer # Student Code
   field :status
-  enumerize :status, in: [:active, :not_active, :postpoment, :graduate], default: :active
+  enumerize :status, in: [:active, :not_active, :postponement, :graduate], default: :active
 
   validates_associated :department, :studies_programme
   validates_presence_of :semester, :status
@@ -32,7 +34,10 @@ class Student < User
   end
 
   def auto_increment
-    if self.new_record?
+    if Student.exists?
+      self.stc = Student.order_by(stc: :desc).first.stc.to_i + 1
+    else
+      self.stc = 1
     end
   end
 end

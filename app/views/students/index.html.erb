@@ -2,19 +2,19 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <%= link_to fa_icon('plus', text: t('students.new.title')), new_department_student_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' if (can? :manage, Student) %>
+    <%= link_to fa_icon('plus', text: t('students.new.title')), new_department_student_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' if (can? :create, Student) %>
     <h2 class="panel-title"><%= t('mongoid.models.student.other') %></h2>
   </div><!--//panel-heading-->
   <div class="panel-body">
     <table id="students-table" class="datatable table table-hover table-striped" data-source="<%= department_students_path(params[:department_id], format: :json) %>">
       <thead>
       <tr>
-        <th><%= t('mongoid.attributes.student.stc') %></th>
+        <th class="text-center"><%= t('mongoid.attributes.student.stc') %></th>
         <th><%= t('mongoid.attributes.user.name') %></th>
         <th><%= t('mongoid.attributes.user.lastname') %></th>
         <th><%= t('mongoid.attributes.user.birthdate') %></th>
-        <th><%= t('mongoid.attributes.student.semester') %></th>
-        <th><%= t('mongoid.attributes.student.status') %></th>
+        <th class="text-center"><%= t('mongoid.attributes.student.semester') %></th>
+        <th class="text-center"><%= t('mongoid.attributes.student.status') %></th>
         <th class="no-sort text-center"><%= t('datatable.options') %></th>
       </tr>
       </thead>

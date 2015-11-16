@@ -7,14 +7,10 @@ en:
     attributes:
       building:
     success:
-      models:
-        hall:
-          create: 'Hall <b>%{number}</b> is created'
-          update: 'Hall <b>%{number}</b> is updated'
-          destroy: 'Hall <b>%{number}</b> is deleted'
+      halls:
+        create: 'Hall <b>%{number}</b> is created'
+        update: 'Hall <b>%{number}</b> is updated'
+        destroy: 'Hall <b>%{number}</b> is deleted'
     errors:
-      models:
-        hall:
-          create: 'Hall is not created'
-          update: 'Hall is not updated'
-          destroy: 'Hall <b>%{number}</b> is not deleted'
+      halls:
+        destroy: 'Hall <b>%{number}</b> is not deleted'

@@ -1,5 +1,6 @@
 class ProfessorsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :department
+  load_and_authorize_resource :professor, through: :department, shallow: true
 
   def index
     @department = Department.find(params[:department_id])
@@ -49,13 +50,11 @@ class ProfessorsController < ApplicationController
 
 
     if @professor.save
-      flash[:notice] = t('mongoid.success.models.user.create', model: Professor.model_name.human, name: @professor.fullname)
+      flash[:notice] = t('mongoid.success.users.create', model: Professor.model_name.human, name: @professor.fullname)
       redirect_to department_professors_path(params[:department_id])
     else
       @departments = Department.active
       @offices = Hall.offices
-
-      flash[:alert] = t('mongoid.errors.models.user.create', model: Professor.model_name.human, name: @professor.fullname)
       render :edit
     end
   end
@@ -67,9 +66,9 @@ class ProfessorsController < ApplicationController
 
     @office_time = @professor.office_times.order_by(day: :asc)
     @addresses = @professor.addresses
-    @phones = @professor.contacts.where(type: 'phone').map(&:value).join(', ')
-    @fax = @professor.contacts.where(type: 'fax').map(&:value).join(', ')
-    @emails = [@professor.email, @professor.contacts.where(type: 'email').map(&:value)].flatten.join(', ')
+    @phones = @professor.contacts.phones.map(&:value).join(', ')
+    @fax = @professor.contacts.fax.map(&:value).join(', ')
+    @emails = [@professor.email, @professor.contacts.emails.map(&:value)].flatten.join(', ')
   end
 
   def edit
@@ -86,12 +85,10 @@ class ProfessorsController < ApplicationController
     add_breadcrumb I18n.t('professors.edit.title')
 
     if update_resource(@professor, professor_params)
-      flash[:notice] = I18n.t('mongoid.success.models.user.update', model: Professor.model_name.human, name: @professor.fullname)
+      flash[:notice] = I18n.t('mongoid.success.users.update', model: Professor.model_name.human, name: @professor.fullname)
       redirect_to department_professors_path(current_user.department)
     else
       @offices = Hall.offices
-
-      flash[:alert] = I18n.t('mongoid.errors.models.user.update', model: Professor.model_name.human)
       render :edit
     end
   end
@@ -101,11 +98,11 @@ class ProfessorsController < ApplicationController
 
     respond_to do |format|
       if @professor.destroy
-        message = I18n.t('mongoid.success.models.user.destroy', model: Professor.model_name.human, name: @professor.fullname)
+        message = I18n.t('mongoid.success.users.destroy', model: Professor.model_name.human, name: @professor.fullname)
         format.html { redirect_to department_professors_path(@professor.department), notice: message }
         format.js { flash.now[:notice] = message }
       else
-        message = I18n.t('mongoid.errors.models.user.destroy', model: Professor.model_name.human, name: @professor.fullname)
+        message = I18n.t('mongoid.errors.users.destroy', model: Professor.model_name.human, name: @professor.fullname)
         format.html { render :edit, flash[:alert]= message }
         format.js { flash.now[:alert] = message }
       end

@@ -6,15 +6,10 @@ en:
         trn: 'Tax Registration Number'
         ssn: 'Social Security Number'
     success:
-      models:
-        user:
-          create: 'New %{model} <b>%{name}</b> is registered'
-          update: '%{model} <b>%{name}</b> is now updated'
-          destroy: '%{model} <b>%{name}</b> successfully deleted'
+      users:
+        create: 'New %{model} <b>%{name}</b> is registered'
+        update: '%{model} <b>%{name}</b> is now updated'
+        destroy: '%{model} <b>%{name}</b> successfully deleted'
     errors:
-      messages:
-      models:
-        user:
-          create: 'Error on %{model} registration'
-          update: 'Could not update %{model} <b>%{name}</b>'
-          destroy: 'Could not delete %{model} <b>%{name}</b>'
+      users:
+        destroy: 'Could not delete %{model} <b>%{name}</b>'

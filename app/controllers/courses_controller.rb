@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
                  [
                      course.semester,
                      course.title,
-                     I18n.t("enumerize.course.course_type.#{course.course_type}"),
+                     course.course_type_text,
                      course.ects,
                      course.hours,
                      %{<div class="btn-group">
@@ -30,7 +30,7 @@ class CoursesController < ApplicationController
     @course = @studies_programme.courses.build
 
     respond_to do |format|
-      format.js { render 'courses/js/new' }
+      format.js { render 'courses/js/edit' }
     end
   end
 
@@ -40,12 +40,9 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        message = I18n.t('mongoid.success.models.course.create', title: @course.title)
-        flash.now[:notice] = message
+        flash.now[:notice] = I18n.t('mongoid.success.courses.create', title: @course.title)
         format.js { render 'courses/js/save' }
       else
-        message = I18n.t('mongoid.errors.models.course.create', title: @course.title)
-        flash.now[:alert] = message
         format.js { render 'courses/js/save' }
       end
     end
@@ -64,12 +61,9 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.update_attributes(course_params)
-        message = I18n.t('mongoid.success.models.course.update', title: @course.title)
-        flash.now[:notice] = message
+        flash.now[:notice] = I18n.t('mongoid.success.courses.update', title: @course.title)
         format.js { render 'courses/js/save' }
       else
-        message = I18n.t('mongoid.errors.models.course.update', title: @course.title)
-        flash.now[:alert] = message
         format.js { render 'courses/js/save' }
       end
     end
@@ -80,12 +74,10 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.destroy
-        message = I18n.t('mongoid.success.models.course.destroy', title: @course.title)
-        flash.now[:notice] = message
+        flash.now[:notice] = I18n.t('mongoid.success.courses.destroy', title: @course.title)
         format.js { render 'courses/js/destroy' }
       else
-        message = I18n.t('mongoid.errors.models.course.destroy', title: @course.title)
-        flash.now[:alert] = message
+        flash.now[:alert] = I18n.t('mongoid.errors.courses.destroy', title: @course.title)
         format.js { render 'courses/js/destroy' }
       end
     end

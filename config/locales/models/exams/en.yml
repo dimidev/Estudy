@@ -1,0 +1,25 @@
+en:
+  mongoid:
+    models:
+      exam:
+        one: 'Exam'
+        other: 'Exams'
+    attributes:
+      exam:
+    success:
+      models:
+        exam:
+          create: 'Department <b>%{title}</b> is created'
+          update: 'Department <b>%{title}</b> is updated'
+          destroy: 'Department <b>%{title}</b> is deleted'
+    errors:
+      models:
+        exam:
+          create: 'Department is not created'
+          update: 'Department is not updated'
+          destroy: 'Department <b>%{title}</b> is not deleted'
+  enumerize:
+    exam:
+      status:
+        active: 'Active'
+        not_active: 'Not Active'

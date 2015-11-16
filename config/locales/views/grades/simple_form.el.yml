@@ -1,11 +1,6 @@
 el:
-  simple_form:
-    labels:
-      student:
-        department: 'Τμήμα'
-        studies_programme: 'Πρόγραμμα Σπουδών'
   helpers:
     submit:
-      student:
-        create: 'Εγγραφή Φοιτητή'
-        update: 'Ενημέρωση Φοιτητή'
+      grade:
+        create: 'Εγγραφή Βαθμολογίας'
+        update: 'Ενημέρωση Βαθμολογίας'

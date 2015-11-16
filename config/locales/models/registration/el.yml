@@ -4,6 +4,7 @@ el:
       registration:
        one: 'Δήλωση'
        other: 'Δηλώσεις'
+       registrations: '%{count} Εγγραφές Φοιτητών'
     attributes:
       registration:
         title: 'Τίτλος'
@@ -22,3 +23,4 @@ el:
           destroy: 'Η Δήλωση Μαθημάτων δεν έχει διαγραφή'
           registrations_period: 'Η περίοδος δηλώσεων δεν είναι διαθέσιμη'
           no_courses: 'Δεν υπάρχουν διαθέσιμα μαθήματα'
+          current_registration_exists: 'Υπάρχει διαθέσιμη Δήλωση Μαθημάτων για τη τρέχουσα περίοδο'

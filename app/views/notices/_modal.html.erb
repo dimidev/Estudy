@@ -1,0 +1,20 @@
+<div class="modal fade" id="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= t('mongoid.models.notice.one') %></h4>
+      </div>
+      <div class="modal-body">
+        <h3 class='notice-title'><%= j @notice.title %></h3>
+
+        <% if @notice.content %>
+            <div class='well'><%= j @notice.content.html_safe %></div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'btn.close' %></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,4 +13,8 @@ class Contact
   embedded_in :institution
   embedded_in :department
   embedded_in :admin
+
+  scope :phones, lambda{where(type: 'phone')}
+  scope :fax, lambda{where(type: 'fax')}
+  scope :emails, lambda{where(type: 'email')}
 end

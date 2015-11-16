@@ -14,7 +14,7 @@
         <th><%= t('mongoid.attributes.user.email') %></th>
         <th><%= t('mongoid.attributes.professor.professor_type') %></th>
         <th class="no-sort"><%= t('enumerize.hall.type.office') %></th>
-        <% if can? :manage, Professor %>
+        <% if can? [:update, :destroy], Professor %>
             <th class="no-sort text-center"><%= t('datatable.options') %></th>
         <% end %>
       </tr>

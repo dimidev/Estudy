@@ -18,16 +18,12 @@ el:
         course_part: 'Μέρος Μαθήματος'
         percent: 'Ποσοστό'
     success:
-      models:
-        course:
+        courses:
           create: 'Το Μάθημα <b>%{title}</b> δημιουργήθηκε επιτυχώς'
           update: 'Το Μάθημα <b>%{title}</b> αποθηκεύτηκε επιτυχώς'
           destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> ήταν επιτυχής'
     errors:
-      models:
-        course:
-          create: 'Το Μάθημα <b>%{title}</b> δεν δημιουργήθηκε επιτυχώς'
-          update: 'Το Μάθημα <b>%{title}</b> δεν αποθηκεύτηκε επιτυχώς'
+        courses:
           destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> δεν ήταν επιτυχής'
   enumerize:
     course:

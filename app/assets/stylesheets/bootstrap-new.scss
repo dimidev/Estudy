@@ -157,6 +157,8 @@ fieldset {
 
 //== Table
 .table {
+  caption{padding-bottom: 0;}
+
   td {
     vertical-align: middle !important;
     border-bottom: 1px solid #DDD;

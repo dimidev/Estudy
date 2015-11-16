@@ -1,0 +1,15 @@
+<table class="table table-half table-bordered">
+  <caption><h4><%= t 'legends.user.academic_informations' %></h4></caption>
+  <tr>
+    <td><b><%= t 'mongoid.attributes.student.stc' %></b></td>
+    <td><%= @student.stc %></td>
+  </tr>
+  <tr>
+    <td><b><%= t 'mongoid.attributes.student.semester' %></b></td>
+    <td><%= @student.semester %></td>
+  </tr>
+  <tr>
+    <td><b><%= t 'mongoid.attributes.student.status' %></b></td>
+    <td><%= @student.status_text %></td>
+  </tr>
+</table>

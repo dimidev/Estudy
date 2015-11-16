@@ -1,0 +1,12 @@
+el:
+  simple_form:
+    labels:
+      course_class:
+        course: 'Μάθημα'
+        professor: 'Καθηγητής'
+        hall: 'Αίθουσα'
+  helpers:
+    submit:
+      course_class:
+        create: 'Δημιουργία Τμήματος'
+        update: 'Ενημέρωση Τμήματος'

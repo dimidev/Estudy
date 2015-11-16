@@ -12,7 +12,7 @@
         <th><%= t('mongoid.attributes.user.name') %></th>
         <th><%= t('mongoid.attributes.user.lastname') %></th>
         <th><%= t('mongoid.attributes.user.email') %></th>
-        <% if can? :manage, Admin %>
+        <% if can? [:update, :destroy], Admin %>
             <th class="no-sort text-center"><%= t('datatable.options') %></th>
         <% end %>
       </tr>

@@ -6,19 +6,14 @@ en:
         other: 'Departments'
     attributes:
       department:
-        foundation_date_short: 'Foun. Date'
     success:
-      models:
-        department:
-          create: 'Department <b>%{title}</b> is created'
-          update: 'Department <b>%{title}</b> is updated'
-          destroy: 'Department <b>%{title}</b> is deleted'
+      departments:
+        create: 'Department <b>%{title}</b> is created'
+        update: 'Department <b>%{title}</b> is updated'
+        destroy: 'Department <b>%{title}</b> is deleted'
     errors:
-      models:
-        department:
-          create: 'Department is not created'
-          update: 'Department is not updated'
-          destroy: 'Department <b>%{title}</b> is not deleted'
+      departments:
+        destroy: 'Department <b>%{title}</b> is not deleted'
   enumerize:
     department:
       status:

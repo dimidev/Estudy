@@ -44,10 +44,9 @@ class AdminsController < ApplicationController
     @admin = @department.admins.build(admin_params)
 
     if @admin.save
-      flash[:notice] = t('mongoid.success.models.user.create', model: Admin.model_name.human, name: @admin.fullname)
+      flash[:notice] = t('mongoid.success.users.create', model: Admin.model_name.human, name: @admin.fullname)
       redirect_to department_admins_path(params[:department_id])
     else
-      flash[:alert] = t('mongoid.errors.models.user.create', model: Admin.model_name.human, name: @admin.fullname)
       render :edit
     end
   end
@@ -58,9 +57,9 @@ class AdminsController < ApplicationController
     add_breadcrumb I18n.t('admins.show.title')
 
     @addresses = @admin.addresses
-    @phones = @admin.contacts.where(type: 'phone').map(&:value).join(', ')
-    @fax = @admin.contacts.where(type: 'fax').map(&:value).join(', ')
-    @emails = [@admin.email, @admin.contacts.where(type: 'email').map(&:value)].flatten.join(', ')
+    @phones = @admin.contacts.phones.map(&:value).join(', ')
+    @fax = @admin.contacts.fax.map(&:value).join(', ')
+    @emails = [@admin.email, @admin.contacts.emails.map(&:value)].flatten.join(', ')
   end
 
   def edit
@@ -77,10 +76,9 @@ class AdminsController < ApplicationController
     add_breadcrumb I18n.t('admins.edit.title')
 
     if update_resource(@admin, admin_params)
-      flash[:notice] = I18n.t('mongoid.success.models.user.update', model: Admin.model_name.human, name: @admin.fullname)
+      flash[:notice] = I18n.t('mongoid.success.users.update', model: Admin.model_name.human, name: @admin.fullname)
       redirect_to department_admins_path(@admin.department)
     else
-      flash[:alert] = I18n.t('mongoid.errors.models.user.update', model: Admin.model_name.human)
       render :edit
     end
   end
@@ -90,11 +88,11 @@ class AdminsController < ApplicationController
 
     respond_to do |format|
       if @admin.destroy
-        message = I18n.t('mongoid.success.models.user.destroy', model: Admin.model_name.human, name: @admin.fullname)
+        message = I18n.t('mongoid.success.users.destroy', model: Admin.model_name.human, name: @admin.fullname)
         format.html { redirect_to department_admins_path(@admin.department), notice: message }
         format.js { flash.now[:notice] = message }
       else
-        message = I18n.t('mongoid.errors.models.user.destroy', model: Admin.model_name.human, name: @admin.fullname)
+        message = I18n.t('mongoid.errors.users.destroy', model: Admin.model_name.human, name: @admin.fullname)
         format.html { render :edit, alert: message }
         format.js { flash.now[:alert] = message }
       end

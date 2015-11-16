@@ -1,0 +1,26 @@
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= t('courses.new.title') %></h4>
+      </div><!--//modal-header-->
+      <%= simple_form_for [@department, @course_class], remote: true do |f| %>
+          <div class="modal-body">
+            <%= f.association :course, collection: @courses, label_method: lambda{|obj| (obj.has_parent_course? ? "#{obj.title} (#{obj.course_part_text})" : obj.title).to_s << " - #{t 'mongoid.models.registration.registrations', count: obj.registrations.count}"}, input_html: {data: {size: 10, 'live-search'=> 'true'}} %>
+            <%= f.association :professor, collection: @professors, label_method: lambda{|obj| obj.fullname}, input_html: {data: {size: 10, 'live-search'=> 'true'}} %>
+            <%= f.association :hall, collection: @halls, label_method: lambda{|obj| "#{obj.name} - #{obj.type_text} (#{obj.seats} #{t('mongoid.attributes.hall.seats')} - #{obj.pc} #{t('mongoid.attributes.hall.pc')})"}, input_html: {data: {size: 10, 'live-search'=> 'true'}} %>
+            <%= f.input :day %>
+            <div class="row">
+              <%= f.input :from, as: :time_picker, wrapper_html:{class:'col-sm-6'} %>
+              <%= f.input :to, as: :time_picker, wrapper_html:{class:'col-sm-6'} %>
+            </div>
+          </div><!--//modal-body-->
+          <div class="modal-footer">
+            <%= f.button :submit, class:'btn-success pull-left' %>
+            <a class="btn btn-warning pull-right" data-dismiss="modal"><%= t('btn.cancel') %></a>
+          </div><!--//modal-footer-->
+      <% end %>
+    </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div>

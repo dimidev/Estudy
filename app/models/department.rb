@@ -36,8 +36,17 @@ class Department
   has_many :notices
   has_many :course_classes
   has_many :exams
+  has_many :courses
 
   accepts_nested_attributes_for :address, :contacts, reject_if: :all_blank, allow_destroy: true
 
   scope :active, lambda { where(status: true) }
+
+  def courses_for_class
+    studies_programmes = self.studies_programmes.pluck(:id)
+    parent_courses = Course.where(:studies_programme_id.in => studies_programmes).pluck(:id)
+    child_courses = Course.where(:parent_course_id.in => parent_courses)
+
+    Course.or([:studies_programme_id.in => studies_programmes, :id.nin => child_courses.pluck(:parent_course_id).uniq], [:id.in=> child_courses.pluck(:id)])
+  end
 end

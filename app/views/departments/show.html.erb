@@ -7,8 +7,8 @@
   </div><!--//panel-body-->
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-4 text-center">
-        <div class="panel panel-default">
+      <div class="col-md-4">
+        <div class="panel panel-default text-center">
           <div class="panel-heading">
             <h3 class="panel-title"><%= t 'mongoid.attributes.department.department_logo' %></h3>
           </div>
@@ -20,8 +20,8 @@
       </div><!--//col-->
 
       <div class="col-md-8">
-        <table class="table table-half">
-          <caption><h3><%= Department.model_name.human %></h3></caption>
+        <table class="table table-bordered">
+          <caption><h4><%= Department.model_name.human %></h4></caption>
           <tr>
             <td><b><%= t 'mongoid.attributes.department.title' %></b></td>
             <td><%= @department.title %></td>
@@ -39,11 +39,15 @@
             <td><%= @department.status_text %></td>
           </tr>
         </table>
+      </div><!--//col-->
+    </div><!--//row-->
 
-        <table class="table table-half">
-          <caption><h3><%= Address.model_name.human %></h3></caption>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-bordered">
+          <caption><h4><%= Address.model_name.human %></h4></caption>
           <tr>
-            <td><b><%= t 'mongoid.attributes.address.country' %></b></td>
+            <td class="col-sm-6"><b><%= t 'mongoid.attributes.address.country' %></b></td>
             <td><%= @department.address.country %></td>
           </tr>
           <tr>
@@ -59,12 +63,14 @@
             <td><%= @department.address.address %></td>
           </tr>
         </table>
+      </div><!--//col-->
 
+      <div class="col-md-6">
         <% if @department.has_contacts? %>
-          <table class="table table-half">
-            <caption><h3><%= Contact.model_name.human %></h3></caption>
+          <table class="table table-bordered">
+            <caption><h4><%= Contact.model_name.human %></h4></caption>
             <tr>
-              <td><b><%= t 'enumerize.contact.type.phone' %></b></td>
+              <td class="col-sm-6"><b><%= t 'enumerize.contact.type.phone' %></b></td>
               <td><%= @phones %></td>
             </tr>
             <tr>

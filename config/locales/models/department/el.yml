@@ -7,23 +7,18 @@ el:
     attributes:
       department:
         title: 'Τίτλος'
-        foundation_date: 'Ημερομηνία Ιδρύσεως'
-        foundation_date_short: 'Ημ. Ιδρύσεως'
+        foundation_date: 'Έτος Ιδρύσεως'
         department_logo: 'Λογότυπο Τμήματος'
         head_of_department: 'Υπεύθυνος Τμήματος'
         status: 'Κατάσταση'
     success:
-      models:
-        department:
-          create: 'Το Τμήμα <b>%{title}</b> δημιουργήθηκε με επιτυχία'
-          update: 'Τα στοιχεία του Τμήματος <b>%{title}</b> αποθηκεύτηκαν επιτυχώς'
-          destroy: 'Το Τμήμα <b>%{title}</b> διαγράφηκε με επιτυχία'
+      departments:
+        create: 'Το Τμήμα <b>%{title}</b> δημιουργήθηκε με επιτυχία'
+        update: 'Τα στοιχεία του Τμήματος <b>%{title}</b> αποθηκεύτηκαν επιτυχώς'
+        destroy: 'Το Τμήμα <b>%{title}</b> διαγράφηκε με επιτυχία'
     errors:
-      models:
-        department:
-          create: 'Το Ιδρυμα δεν δημιουργήθηκε επιτυχώς'
-          update: 'Τα στοιχεία του Τμήματος δεν αποθηκεύτηκαν επιτυχώς'
-          destroy: 'Δεν πραγματοποιήθηκε η διαγραφή του Τμήματος <b>%{title}</b>'
+      departments:
+        destroy: 'Δεν πραγματοποιήθηκε η διαγραφή του Τμήματος <b>%{title}</b>'
   enumerize:
     department:
       status:

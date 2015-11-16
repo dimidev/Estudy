@@ -19,17 +19,13 @@ el:
         ssn: 'ΑΜΚΑ'
         tax_office: 'ΔΟΥ'
     success:
-      models:
-        user:
-          create: 'Η εγγραφή %{model} <b>%{name}</b> ήταν επιτυχής'
-          update: 'Η αποθήκευση δεδομένων %{model} <b>%{name}</b> ήταν επιτυχής'
-          destroy: 'Η διαγραφή %{model} <b>%{name}</b> ήταν επιτυχής'
+      users:
+        create: 'Η εγγραφή %{model} <b>%{name}</b> ήταν επιτυχής'
+        update: 'Η αποθήκευση δεδομένων %{model} <b>%{name}</b> ήταν επιτυχής'
+        destroy: 'Η διαγραφή %{model} <b>%{name}</b> ήταν επιτυχής'
     errors:
-      models:
-        user:
-          create: 'Η εγγραφή %{model} δεν ήταν επιτυχής'
-          update: 'Η αποθήκευση δεδομένων %{model} δεν ήταν επιτυχής'
-          destroy: 'Η διαγραφή %{model} <b>%{name}</b> δεν ήταν επιτυχής'
+      users:
+        destroy: 'Η διαγραφή %{model} <b>%{name}</b> δεν ήταν επιτυχής'
   enumerize:
     user:
       gender:

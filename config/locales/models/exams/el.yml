@@ -1,0 +1,25 @@
+el:
+  mongoid:
+    models:
+      exam:
+        one: 'Εξέταση'
+        other: 'Εξετάσεις'
+    attributes:
+      exam:
+    success:
+      models:
+        exam:
+          create: 'Το Τμήμα <b>%{title}</b> δημιουργήθηκε με επιτυχία'
+          update: 'Τα στοιχεία του Τμήματος <b>%{title}</b> αποθηκεύτηκαν επιτυχώς'
+          destroy: 'Το Τμήμα <b>%{title}</b> διαγράφηκε με επιτυχία'
+    errors:
+      models:
+        exam:
+          create: 'Το Ιδρυμα δεν δημιουργήθηκε επιτυχώς'
+          update: 'Τα στοιχεία του Τμήματος δεν αποθηκεύτηκαν επιτυχώς'
+          destroy: 'Δεν πραγματοποιήθηκε η διαγραφή του Τμήματος <b>%{title}</b>'
+  enumerize:
+    exam:
+      status:
+        active: 'Ενεργό'
+        not_active: 'Μη Ενεργό'

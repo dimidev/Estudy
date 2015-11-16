@@ -1,0 +1,24 @@
+<% title t('halls.index.title') %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table id="halls-table" class="datatable table table-hover table-striped" data-source="<%= view_all_halls_path(format: :json) %>">
+      <thead>
+      <tr>
+        <th><%= t('mongoid.attributes.hall.name') %></th>
+        <th class="text-center"><%= t('mongoid.attributes.hall.type') %></th>
+        <th class="text-center"><%= Building.model_name.human %></th>
+        <th class="text-center"><%= t('mongoid.attributes.hall.floor') %></th>
+        <th class="text-center"><%= t('mongoid.attributes.hall.area') %></th>
+        <th class="text-center"><%= t('mongoid.attributes.hall.seats') %></th>
+        <th class="text-center"><%= t('mongoid.attributes.hall.pc') %></th>
+        <% if can? [:edit, :destroy], Hall %>
+          <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div><!--//panel-body-->
+</div><!--//panel-->

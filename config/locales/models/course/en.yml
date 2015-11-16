@@ -8,15 +8,11 @@ en:
        one: 'Course'
        other: 'Courses'
     attributes:
-  success:
-    models:
-      course:
+    success:
+      courses:
         create: 'Course <b>%{title}</b> is created'
         update: 'Course <b>%{title}</b> is updated'
         destroy: 'Course <b>%{title}</b> is deleted'
-  errors:
-    models:
-      course:
-        create: 'Course is not created'
-        update: 'Course is not updated'
+    errors:
+      courses:
         destroy: 'Course <b>%{title}</b> is not deleted'

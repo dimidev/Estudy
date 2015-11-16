@@ -1,10 +1,10 @@
 en:
-  students:
+  grades:
     index:
-      title: 'View Students'
+      title: 'View Grades'
     new:
-      title: 'Register Student'
+      title: 'Register Grade'
     show:
-      title: 'Show Student'
+      title: 'Show Grade'
     edit:
-      title: 'Edit Student'
+      title: 'Edit Grade'

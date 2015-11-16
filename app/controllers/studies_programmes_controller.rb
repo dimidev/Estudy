@@ -13,9 +13,10 @@ class StudiesProgrammesController < ApplicationController
         render(json: StudiesProgramme.datatable(self, %w(diploma_title studies_level semesters)) do |p|
                  @prog = p
                  [
-                     p.diploma_title,
+                     %{<%= link_to @prog.diploma_title, studies_programme_path(@prog) %>},
                      p.studies_level_text,
                      p.semesters,
+                     p.courses.count,
                      programme_status(p.status),
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
@@ -48,12 +49,20 @@ class StudiesProgrammesController < ApplicationController
     @studies_programme = @department.studies_programmes.build(studies_programme_params)
 
     if @studies_programme.save
-      flash[:notice] = t('mongoid.success.models.studies_programme.create', title: @studies_programme.diploma_title)
+      flash[:notice] = t('mongoid.success.studies_programmes.create', title: @studies_programme.diploma_title)
       redirect_to department_studies_programmes_path(params[:department_id])
     else
-      flash[:alert] = t('mongoid.errors.models.studies_programme.create')
       render :edit
     end
+  end
+
+  def show
+    @studies_programme = StudiesProgramme.find(params[:id])
+    add_breadcrumb I18n.t('mongoid.models.studies_programme.other'), department_studies_programmes_path(@studies_programme)
+    add_breadcrumb I18n.t('studies_programmes.show.title')
+
+    @courses = @studies_programme.courses.order_by(semester: :asc)
+    @rules = @studies_programme.programme_rules
   end
 
   def edit
@@ -70,10 +79,9 @@ class StudiesProgrammesController < ApplicationController
     add_breadcrumb I18n.t('studies_programmes.edit.title')
 
     if @studies_programme.update_attributes(studies_programme_params)
-      flash[:notice] = I18n.t('mongoid.success.models.studies_programme.update')
+      flash[:notice] = I18n.t('mongoid.success.studies_programmes.update')
       redirect_to department_studies_programmes_path(@studies_programme.department)
     else
-      flash[:alert] = I18n.t('mongoid.errors.models.studies_programme.update')
       render :edit
     end
   end
@@ -83,11 +91,11 @@ class StudiesProgrammesController < ApplicationController
 
     respond_to do |format|
       if @studies_programme.destroy
-        message = I18n.t('mongoid.success.models.studies_programme.destroy', title: @studies_programme.diploma_title)
+        message = I18n.t('mongoid.success.studies_programmes.destroy', title: @studies_programme.diploma_title)
         format.html { redirect_to department_students_path(@student.department), notice: message }
         format.js { flash.now[:notice] = message }
       else
-        message = I18n.t('mongoid.errors.models.studies_programme.destroy', title: @studies_programme.diploma_title)
+        message = I18n.t('mongoid.errors.studies_programmes.destroy', title: @studies_programme.diploma_title)
         format.html { render :edit, alert: message }
         format.js { flash.now[:alert] = message }
       end

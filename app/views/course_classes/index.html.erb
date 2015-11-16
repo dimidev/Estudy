@@ -1,0 +1,27 @@
+<% title t('.title') %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to fa_icon('plus', text: t('course_classes.new.title')), new_department_course_class_path(params[:department_id]), remote: true, class:'btn btn-sm btn-primary pull-right' if can?(:create, CourseClass) %>
+    <h2 class="panel-title"><%= t('mongoid.models.course_class.other') %></h2>
+  </div>
+  <div class="panel-body">
+    <table id="course-classes-table" class="datatable table table-hover table-striped" data-source="<%= department_course_classes_path(params[:department_id], format: :json) %>">
+      <thead>
+      <tr>
+        <th><%= Course.model_name.human %></th>
+        <th><%= Hall.model_name.human %></th>
+        <th><%= t 'mongoid.models.building.special' %></th>
+        <th><%= Professor.model_name.human %></th>
+        <th class="text-center"><%= t 'mongoid.models.student.other' %></th>
+        <th class="text-center"><%= t('mongoid.attributes.course_class.from') << ' - ' << t('mongoid.attributes.course_class.to') %></th>
+        <% if can? :manage, CourseClass %>
+          <th class="no-sort text-center"><%= t('datatable.options') %></th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div><!--//panel-body-->
+</div><!--//panel-->
