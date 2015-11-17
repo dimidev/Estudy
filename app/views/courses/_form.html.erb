@@ -12,7 +12,6 @@
         <%= c.input :ects, wrapper_html:{class:'col-xs-4'} %>
         <%= c.input :hours, wrapper_html:{class:'col-xs-4'} %>
       </div><!--//row-->
-      <%= c.input :description, as: :ckeditor, input_html:{ ckeditor: {toolbar: 'mini'} } %>
 
       <div class="form-group">
         <%= add_nested_resource c, :courses, target: '.course-childs', localize: true %>
@@ -21,11 +20,12 @@
       <div class="course-childs">
         <%= c.simple_fields_for :courses do |ch| %>
             <div class="well">
-              <%= ch.input :title %>
               <div class="row">
-                <%= ch.input :course_part, as: :select, include_blank: false, wrapper_html:{class:'col-xs-4'} %>
+                <%= ch.input :title, wrapper_html:{class:'col-xs-6'} %>
+                <%= ch.input :course_part, as: :select, include_blank: false, wrapper_html:{class:'col-xs-6'} %>
                 <%= ch.input :percent, wrapper_html:{class:'col-xs-4'} %>
                 <%= ch.input :hours, wrapper_html:{class:'col-xs-4'} %>
+                <%= ch.input :attendances_limit, wrapper_html:{class:'col-xs-4'} %>
               </div><!--//row-->
               <%= remove_nested_resource(ch) %>
             </div><!--//well-->

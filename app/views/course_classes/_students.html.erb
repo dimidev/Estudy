@@ -12,6 +12,10 @@
                 <th><%= t 'mongoid.attributes.user.fullname' %></th>
                 <th class="text-center"><%= t 'mongoid.attributes.student.stc' %></th>
                 <th class="text-center"><%= t 'mongoid.attributes.student.semester' %></th>
+                <th class="text-center"><%= t 'mongoid.models.attendance.other' %></th>
+                <% if controller.action_name == 'show' %>
+                  <th class="text-center"><%= t 'datatable.options' %></th>
+                <% end %>
               </tr>
               </thead>
               <tbody>

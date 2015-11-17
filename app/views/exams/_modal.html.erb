@@ -1,0 +1,22 @@
+<div class="modal fade" id="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= t('exams.new.title') %></h4>
+      </div>
+      <%= simple_form_for [@department, @exam], remote: true do |f| %>
+      <div class="modal-body">
+            <div class="row">
+              <%= f.input :professor_max_attendances,wrapper_html:{class:'col-sm-4'} %>
+              <%= f.input :student_max_courses,wrapper_html:{class:'col-sm-4'} %>
+            </div>
+      </div>
+      <div class="modal-footer">
+          <%= f.button :submit, class:'btn-success' %>
+          <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'btn.close' %></button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -29,6 +29,8 @@
 //= require bootstrap-toggle.min
 //= require ckeditor/init
 //= require datatables
+//= require fullcalendar
+//= require calendars
 
 $(function(){
     // Full Height main section

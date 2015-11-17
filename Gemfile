@@ -32,6 +32,7 @@ gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'underscore-rails'
 gem 'jquery-datatables-rails'
 gem 'mongoid_datatable', path:'vendor/gems/mongoid_datatable'
+gem 'fullcalendar-rails'
 gem 'rails-i18n'
 gem 'rails', '4.2.4'
 gem 'sass-rails', '~> 5.0'

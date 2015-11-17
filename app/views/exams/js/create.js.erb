@@ -1,0 +1,12 @@
+<% if @exam.errors.any? %>
+$('.modal-body').find('.alert').remove();
+$('.modal-body').prepend("<%= j render 'general/form_errors', resource: @exam %>");
+<% else %>
+$('#modal').modal('hide');
+$('#exams-table').DataTable().draw(false);
+<% end %>
+
+<% if notice || alert %>
+$('.alert-warning').remove();
+$('.modal-body').prepend("<%= j render 'general/flash_messages' %>");
+<% end %>

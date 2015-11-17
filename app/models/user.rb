@@ -15,7 +15,13 @@ class User
   # This function determinate the role of user
   # check the user's roles in the Ability class
   def role?(role)
-    self.role==role.to_s && ROLES.index(role.to_s)
+    if role.is_a? Array
+      role.each do |r|
+        return true if self.role==r.to_s && ROLES.index(r.to_s)
+      end
+    else
+      self.role==role.to_s && ROLES.index(role.to_s)
+    end
   end
 
   attr_accessor :delete_img

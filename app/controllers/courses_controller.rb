@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render(json: StudiesProgramme.find(params[:studies_programme_id]).courses.order_by(semester: :asc).datatable(self, %w(title semester ects hours)) do |course|
+        render(json: StudiesProgramme.find(params[:studies_programme_id]).courses.order_by(semester: :asc).datatable(self, %w(semester title course_type ects hours)) do |course|
                  [
                      course.semester,
                      course.title,
@@ -85,7 +85,7 @@ class CoursesController < ApplicationController
 
   private
   def course_params
-    params.require(:course).permit(:title, :description, :course_type, :semester, :ects, :hours,
-                                   courses_attributes:[:id, :_destroy, :title, :course_part, :percent, :hours])
+    params.require(:course).permit(:title, :course_type, :semester, :ects, :hours,
+                                   courses_attributes:[:id, :_destroy, :title, :course_part, :percent, :hours, :attendances_limit])
   end
 end

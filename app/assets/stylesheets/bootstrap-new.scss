@@ -175,8 +175,3 @@ fieldset {
 .badge-success{ background-color: $brand-success; }
 .badge-danger{ background-color: $brand-danger; }
 .badge-info{ background-color: $brand-info; }
-
-//== Wells
-.modal-body .well:last-of-type{
-  margin-bottom: 0;
-}

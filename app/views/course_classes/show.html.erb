@@ -1,0 +1,19 @@
+<% title t('course_classes.show.title') %>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), edit_course_class_path(@course_class), class:'btn btn-warning btn-sm pull-right' if (can? :update, CourseClass) %>
+    <h2 class="panel-title"><%= CourseClass.model_name.human %></h2>
+  </div><!--//panel-heading-->
+  <div class="panel-body">
+    <ul class="nav nav-pills">
+      <li role="presentation" class="active"><a href="#general" role="tab" data-toggle="tab"><%= fa_icon'book', text: CourseClass.model_name.human %></a></li>
+      <li role="presentation"><a href="#students" role="tab" data-toggle="tab"><%= fa_icon'users', text: t('mongoid.models.student.other')%></a></li>
+    </ul>
+
+    <div class="tab-content">
+      <%= render 'course_classes/tabs/general' %>
+      <%= render 'course_classes/tabs/students' %>
+    </div><!--//tab-content-->
+  </div><!--//panel-body-->
+</div><!--//panel-->

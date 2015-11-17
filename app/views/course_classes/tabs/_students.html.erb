@@ -1,0 +1,14 @@
+<div role="tabpanel" class="tab-pane fade in" id="students">
+  <table id="course-class-students-table" class="datatable table table-hover table-striped" data-source="<%= students_course_class_path(@course_class, format: :json) %>">
+    <thead>
+    <tr>
+      <th><%= t 'mongoid.attributes.user.fullname' %></th>
+      <th class="text-center"><%= t 'mongoid.attributes.student.stc' %></th>
+      <th class="text-center"><%= t 'mongoid.attributes.student.semester' %></th>
+      <th class="text-center"><%= t 'mongoid.models.attendance.other' %></th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div><!--//students-->

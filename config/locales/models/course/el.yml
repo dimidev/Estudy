@@ -10,21 +10,21 @@ el:
     attributes:
       course:
         title: 'Τίτλος'
-        description: 'Περιγραφή'
         semester: 'Εξάμηνο'
         ects: 'ECTS'
         hours: 'Ώρες'
         course_type: 'Τύπος Μαθήματος'
         course_part: 'Μέρος Μαθήματος'
-        percent: 'Ποσοστό'
+        percent: 'Ποσοστό ECTS'
+        attendances_limit: 'Όριο απουσιών'
     success:
-        courses:
-          create: 'Το Μάθημα <b>%{title}</b> δημιουργήθηκε επιτυχώς'
-          update: 'Το Μάθημα <b>%{title}</b> αποθηκεύτηκε επιτυχώς'
-          destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> ήταν επιτυχής'
+      courses:
+        create: 'Το Μάθημα <b>%{title}</b> δημιουργήθηκε επιτυχώς'
+        update: 'Το Μάθημα <b>%{title}</b> αποθηκεύτηκε επιτυχώς'
+        destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> ήταν επιτυχής'
     errors:
-        courses:
-          destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> δεν ήταν επιτυχής'
+      courses:
+        destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> δεν ήταν επιτυχής'
   enumerize:
     course:
       course_type:
