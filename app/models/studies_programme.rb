@@ -2,6 +2,7 @@ class StudiesProgramme
   include Mongoid::Document
   include Mongoid::Datatable
   extend Enumerize
+  extend ActiveModel::Naming
 
   field :diploma_title,   type: String
   field :studies_level

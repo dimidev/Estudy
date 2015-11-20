@@ -14,5 +14,10 @@ en:
         update: 'Course <b>%{title}</b> is updated'
         destroy: 'Course <b>%{title}</b> is deleted'
     errors:
+      models:
+        course:
+          attributes:
+            semester:
+              bigger_than_programm: 'is bigger than semester ot the programm'
       courses:
         destroy: 'Course <b>%{title}</b> is not deleted'

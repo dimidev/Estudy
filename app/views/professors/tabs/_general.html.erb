@@ -9,7 +9,7 @@
         <legend><%= t('legends.user.academic_informations') %></legend>
           <div class="row">
             <%= f.input :professor_type, as: :select, wrapper_html:{class:'col-md-6'} %>
-            <%= f.input :professor_office_id, as: :select, collection: @offices, input_html:{data: {size: 10, 'live-search'=> 'true'}}, wrapper_html:{class:'col-md-6'} %>
+            <%= f.association :professor_office, as: :select, collection: @offices, label_method: lambda{|obj| obj.name}, input_html:{data: {size: 10, 'live-search'=> 'true'}}, wrapper_html:{class:'col-md-6'} %>
           </div>
       </fieldset>
 

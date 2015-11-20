@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-6">
       <table class="table table-half table-bordered">
+        <caption><h4><%= t 'general.informations' %></h4></caption>
         <tr>
           <td><b><%= t 'mongoid.attributes.studies_programme.diploma_title' %></b></td>
           <td><%= @studies_programme.diploma_title %></td>
@@ -29,9 +30,9 @@
       </table>
     </div>
 
-    <% if @rules %>
+    <% if @rules.present? %>
       <div class="col-md-6">
-        <table class="table table-half table-bordered">
+        <table class="table table-bordered">
           <caption><h4><%= t 'mongoid.models.programme_rule.other' %></h4></caption>
           <thead>
             <th><%= t 'mongoid.attributes.programme_rule.course_type' %></th>

@@ -27,13 +27,13 @@
           <%= f.simple_fields_for :child_timetables do |a| %>
               <div class="well">
                 <div class="row">
-                  <%= a.input :title, wrapper_html:{class:'col-md-6'} %>
                   <%= a.input :type, wrapper_html:{class:'col-md-6'} %>
+                  <%= a.input :title, wrapper_html:{class:'col-md-6'} %>
                 </div><!--//row-->
-                  <div class='row datetimerange'>
-                    <%= a.input :from, as: :date_picker, wrapper: :ranged_datetime %>
-                    <%= a.input :to, as: :date_picker, wrapper: :ranged_datetime %>
-                  </div>
+                <div class='row datetimerange'>
+                  <%= a.input :from, as: :date_picker, wrapper: :ranged_datetime %>
+                  <%= a.input :to, as: :date_picker, wrapper: :ranged_datetime %>
+                </div>
 
                 <%= remove_nested_resource(a, conent: t('mongoid.models.child_timetable.period'))%>
               </div><!--//well-->

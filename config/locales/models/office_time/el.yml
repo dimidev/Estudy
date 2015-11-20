@@ -6,7 +6,7 @@ el:
         other: 'Ώρες Γραφείου'
     attributes:
       office_time:
-        day: 'Ημέρα'
+        day: 'Μέρα'
         from: 'Από'
         to: 'Εώς'
     errors:
@@ -21,5 +21,3 @@ el:
         wednesday: 'Τετάρτη'
         thursday: 'Πέμπτη'
         friday: 'Παρασκευή'
-        saturday: 'Σάββατο'
-        sunday: 'Κυριακή'

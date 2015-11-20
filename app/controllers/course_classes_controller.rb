@@ -19,10 +19,12 @@ class CourseClassesController < ApplicationController
         render(json: @course_classes.datatable(self, %w(from to)) do |course_class|
           [
               %{<%= link_to (course_class.course.has_parent_course? ? "#{course_class.course.title} (#{course_class.course.course_part_text})" : course_class.course.title), course_class_path(course_class) %>},
+              course_class.course.semester,
               course_class.hall.name,
               course_class.hall.building.name,
               course_class.professor.fullname,
               course_class.registrations.count,
+              course_class.day_text,
               "#{course_class.from.to_s(:time)} - #{course_class.to.to_s(:time)}",
               %{<div class="btn-group">
                   <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
@@ -140,9 +142,11 @@ class CourseClassesController < ApplicationController
                 <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                 <ul class="dropdown-menu dropdown-center">
                   <li><%= link_to fa_icon('users', text: I18n.t('mongoid.attributes.course_class.registared_students')), '#', remote: true %></li>
-                  <li class='divider'></li>
-                  <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), '#', remote: true %></li>
-                  <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), '#', method: :delete, remote: true, data:{confirm: 'Are you sure ?'} %></li>
+                  <% if can? [:update, :destroy], CourseClass %>
+                    <li class='divider'></li>
+                    <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), '#', remote: true %></li>
+                    <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), '#', method: :delete, remote: true, data:{confirm: 'Are you sure ?'} %></li>
+                  <% end %>
                 </ul>
               </div>}
           ]

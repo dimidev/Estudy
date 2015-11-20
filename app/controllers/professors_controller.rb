@@ -17,7 +17,7 @@ class ProfessorsController < ApplicationController
                      %{<%= link_to professor.lastname, professor_path(professor) %>},
                      professor.email,
                      professor.professor_type_text,
-                     professor.professor_office.name,
+                     (professor.professor_office.name if professor.has_professor_office?),
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
@@ -37,7 +37,7 @@ class ProfessorsController < ApplicationController
     @department = Department.find(params[:department_id])
     @professor = @department.professors.build
 
-    @offices = Hall.offices
+    @offices = Hall.available_offices
 
     render :edit
   end
@@ -48,13 +48,12 @@ class ProfessorsController < ApplicationController
     @department = Department.find(params[:department_id])
     @professor =  @department.professors.build(professor_params)
 
-
     if @professor.save
       flash[:notice] = t('mongoid.success.users.create', model: Professor.model_name.human, name: @professor.fullname)
       redirect_to department_professors_path(params[:department_id])
     else
       @departments = Department.active
-      @offices = Hall.offices
+      @offices = Hall.available_offices
       render :edit
     end
   end
@@ -76,7 +75,7 @@ class ProfessorsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(current_user.department) if current_user.role?(:admin)
     add_breadcrumb I18n.t('professors.edit.title')
 
-    @offices = Hall.offices
+    @offices = [@professor.professor_office, Hall.available_offices].flatten.compact.uniq
   end
 
   def update
@@ -88,7 +87,7 @@ class ProfessorsController < ApplicationController
       flash[:notice] = I18n.t('mongoid.success.users.update', model: Professor.model_name.human, name: @professor.fullname)
       redirect_to department_professors_path(current_user.department)
     else
-      @offices = Hall.offices
+      @offices = [@professor.professor_office, Hall.available_offices].flatten.compact.uniq
       render :edit
     end
   end

@@ -23,10 +23,16 @@ class Hall
   validates :office_desks, presence: true, numericality:{only_integer: true, greater_or_equal_to: 0}, if: lambda{|obj| obj.type == 'office'}
 
   belongs_to :building
-  has_many :professors, as: :professor_office
+  has_many :professors, as: :professor_office, class_name:'Professor'
   has_many :exams
 
   scope :offices, lambda{where(type: :office)}
   scope :halls, lambda{where(type: :hall)}
   scope :auditoriums, lambda{where(type: :auditorium)}
+
+  default_scope lambda{order_by(course_type: :asc)}
+
+  def self.available_offices
+    where(type: :office).select{|office| office if office.office_desks > office.professors.count}
+  end
 end

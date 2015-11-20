@@ -5,7 +5,7 @@ en:
     new:
       title: 'New Studies Programme'
       alerts:
-        save_first: 'To create %{model}, you must save first a Studies Programme'
+        save_first: 'To add Courses, you must save first a Studies Programme'
     show:
       title: 'Show Studies Programme'
     edit:

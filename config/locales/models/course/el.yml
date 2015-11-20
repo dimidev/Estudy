@@ -17,12 +17,18 @@ el:
         course_part: 'Μέρος Μαθήματος'
         percent: 'Ποσοστό ECTS'
         attendances_limit: 'Όριο απουσιών'
+        chain_course: 'Μάθημα Αλυσίδα'
     success:
       courses:
         create: 'Το Μάθημα <b>%{title}</b> δημιουργήθηκε επιτυχώς'
         update: 'Το Μάθημα <b>%{title}</b> αποθηκεύτηκε επιτυχώς'
         destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> ήταν επιτυχής'
     errors:
+      models:
+        course:
+          attributes:
+            semester:
+              bigger_than_programm: 'είναι μεγαλύτερο του εξαμήνου Προγράμματος'
       courses:
         destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> δεν ήταν επιτυχής'
   enumerize:

@@ -8,5 +8,5 @@
 
 <% if notice || alert %>
     $('.alert-warning').remove();
-    $('.modal-body').prepend("<%= j render 'general/flash_messages' %>");
+    $('.page-header').after("<%= j render 'general/flash_messages' %>");
 <% end %>

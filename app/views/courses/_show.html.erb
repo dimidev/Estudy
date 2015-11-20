@@ -1,0 +1,64 @@
+<div class="modal fade" id="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= t('courses.show.title') %></h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <tr>
+            <td><b><%= t 'mongoid.attributes.course.title' %></b></td>
+            <td><%= @course.title %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.course.semester' %></b></td>
+            <td><%= @course.semester %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.course.course_type' %></b></td>
+            <td><%= @course.course_type_text %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.course.ects' %></b></td>
+            <td><%= @course.ects %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.course.hours' %></b></td>
+            <td><%= @course.hours %></td>
+          </tr>
+          <tr>
+            <td><b><%= t 'mongoid.attributes.course.chain_course' %></b></td>
+            <td><%= link_to @course.chain_course.title, course_path(@course.chain_course), remote: true if @course.has_chain_course? %></td>
+          </tr>
+        </table>
+
+        <% if @course.has_child_courses? %>
+          <table class="table table-bordered">
+            <thead>
+              <th><%= t 'mongoid.attributes.course.title' %></th>
+              <th><%= t 'mongoid.attributes.course.course_part' %></th>
+              <th class="text-center"><%= t 'mongoid.attributes.course.percent' %></th>
+              <th class="text-center"><%= t 'mongoid.attributes.course.hours' %></th>
+              <th class="text-center"><%= t 'mongoid.attributes.course.attendances_limit' %></th>
+            </thead>
+            <tbody>
+              <% @course.child_courses.each do |course| %>
+                <tr>
+                  <td><%= course.title %></td>
+                  <td><%= course.course_part_text %></td>
+                  <td class="text-center"><%= number_to_percentage(course.percent, precision: 0) %></td>
+                  <td class="text-center"><%= course.hours %></td>
+                  <td class="text-center"><%= number_to_percentage(course.attendances_limit, precision: 0) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'btn.close' %></button>
+      </div>
+    </div>
+  </div>
+</div>

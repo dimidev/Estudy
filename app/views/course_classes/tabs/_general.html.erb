@@ -1,3 +1,40 @@
 <div role="tabpanel" class="tab-pane active fade in" id="general">
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-bordered">
+        <caption><h4><%= t 'general.informations' %></h4></caption>
+        <tbody>
+        <tr>
+          <td><b><%= t('mongoid.attributes.course.title') %></b></td>
+          <td><%= @course_class.course.has_parent_course? ? "#{@course_class.course.title} (#{@course_class.course.course_part_text})" : @course_class.course.title %></td>
+        </tr>
+        <tr>
+          <td><b><%= t('mongoid.attributes.course.semester') %></b></td>
+          <td><%= @course_class.course.semester %></td>
+        </tr>
+        <tr>
+          <td><b><%= Professor.model_name.human %></b></td>
+          <td><%= @course_class.professor.fullname %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.models.student.other' %></b></td>
+          <td><%= @course_class.registrations.count %></td>
+        </tr>
+        <tr>
+          <td><b><%= Hall.model_name.human %></b></td>
+          <td><%= @course_class.hall.name << " (#{@course_class.hall.building.name})" %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.course_class.day' %></b></td>
+          <td><%= @course_class.day_text %></td>
+        </tr>
+        <tr>
+          <td><b><%= t('mongoid.attributes.course_class.from') << ' - ' << t('mongoid.attributes.course_class.to') %></b></td>
+          <td><%= "#{@course_class.from.to_s(:time)} - #{@course_class.to.to_s(:time)}" %></td>
+        </tr>
+        </tbody>
+      </table>
+    </div><!--//col-->
+  </div><!--//row-->
 
 </div><!--//profile-->

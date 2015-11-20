@@ -13,3 +13,5 @@ el:
     delete: 'Διαγραφή'
   confirmation:
     delete: 'Είστε σίγουροι ?'
+  general:
+    informations: 'Πληροφορίες'

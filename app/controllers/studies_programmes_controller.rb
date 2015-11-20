@@ -50,7 +50,7 @@ class StudiesProgrammesController < ApplicationController
 
     if @studies_programme.save
       flash[:notice] = t('mongoid.success.studies_programmes.create', title: @studies_programme.diploma_title)
-      redirect_to department_studies_programmes_path(params[:department_id])
+      redirect_to edit_studies_programme_path(@studies_programme)
     else
       render :edit
     end
@@ -61,7 +61,7 @@ class StudiesProgrammesController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.studies_programme.other'), department_studies_programmes_path(@studies_programme)
     add_breadcrumb I18n.t('studies_programmes.show.title')
 
-    @courses = @studies_programme.courses.order_by(semester: :asc)
+    @courses = @studies_programme.courses
     @rules = @studies_programme.programme_rules
   end
 

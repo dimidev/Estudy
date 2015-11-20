@@ -11,12 +11,20 @@ el:
         from: 'Από'
         to: 'Εώς'
         registared_students: 'Εγγεγραμμένοι Φοιτητές'
+        professor: 'Καθηγητής'
+        hall: 'Αίθουσα'
     success:
       course_classses:
         create: 'Το Τμήμα για <b>%{course}</b> έχει δημιουργηθεί επιτυχώς'
         update: 'Το Τμήμα για <b>%{course}</b> έχει ανανεωθεί επιτυχώς'
         destroy: 'Το Τμήμα <b>%{course}</b> διαγράφηκε με επιτυχία'
     errors:
+      models:
+        course_class:
+          professor:
+            not_available: 'δεν είναι διαθέσιμος στην επιλεγμένη ώρα'
+          hall:
+            not_available: 'δεν είναι διαθέσιμη στην επιλεγμενη ώρα'
       course_classses:
         destroy: 'Δεν πραγματοποιήθηκε η διαγραφή του Τμήματος για <b>%{course}</b>'
   enumerize:

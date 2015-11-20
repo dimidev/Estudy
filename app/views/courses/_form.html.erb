@@ -8,24 +8,24 @@
       <div class="row">
         <%= c.input :title, wrapper_html:{class:'col-md-6'} %>
         <%= c.input :course_type, as: :select, include_blank: false, wrapper_html:{class:'col-md-6'} %>
-        <%= c.input :semester, wrapper_html:{class:'col-xs-4'} %>
-        <%= c.input :ects, wrapper_html:{class:'col-xs-4'} %>
-        <%= c.input :hours, wrapper_html:{class:'col-xs-4'} %>
+        <%= c.input :semester, wrapper_html:{class:'col-xs-2'} %>
+        <%= c.input :ects, wrapper_html:{class:'col-xs-2'} %>
+        <%= c.input :hours, wrapper_html:{class:'col-xs-2'} %>
+        <%= c.association :chain_course, as: :select, collection: @chain_courses, label_method: lambda{|obj| "#{obj.title} (#{obj.semester} #{t('mongoid.attributes.course.semester')})"}, input_html:{data: {size: 10, 'live-search'=> 'true'}}, wrapper_html:{class:'col-md-6'} %>
       </div><!--//row-->
 
       <div class="form-group">
-        <%= add_nested_resource c, :courses, target: '.course-childs', localize: true %>
+        <%= add_nested_resource c, :child_courses, target: '.child_courses', localize: true %>
       </div>
 
-      <div class="course-childs">
-        <%= c.simple_fields_for :courses do |ch| %>
+      <div class="child_courses">
+        <%= c.simple_fields_for :child_courses do |ch| %>
             <div class="well">
               <div class="row">
-                <%= ch.input :title, wrapper_html:{class:'col-xs-6'} %>
-                <%= ch.input :course_part, as: :select, include_blank: false, wrapper_html:{class:'col-xs-6'} %>
-                <%= ch.input :percent, wrapper_html:{class:'col-xs-4'} %>
-                <%= ch.input :hours, wrapper_html:{class:'col-xs-4'} %>
-                <%= ch.input :attendances_limit, wrapper_html:{class:'col-xs-4'} %>
+                <%= ch.input :course_part, as: :select, include_blank: false, wrapper_html:{class:'col-md-6'} %>
+                <%= ch.input :percent, wrapper_html:{class:'col-xs-4 col-md-2'} %>
+                <%= ch.input :hours, wrapper_html:{class:'col-xs-4 col-md-2'} %>
+                <%= ch.input :attendances_limit, wrapper_html:{class:'col-xs-4 col-md-2'} %>
               </div><!--//row-->
               <%= remove_nested_resource(ch) %>
             </div><!--//well-->

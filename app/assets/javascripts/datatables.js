@@ -15,11 +15,13 @@ $(function(){
         });
     });
 
-    $('table.simple-datatable').each(function(){
+    $('table.full-length-datatable').each(function(){
         $(this).DataTable({
-            pagingType: "full_numbers",
+            dom: "<'pull-left'i><'pull-right'f>st",
+            processing: true,
+            serverSide: true,
+            ajax: $(this).data('source'),
             responsive: true,
-            lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
             order: [],
             columnDefs: [
                 {targets: 'no-sort', orderable: false},

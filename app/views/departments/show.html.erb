@@ -1,4 +1,4 @@
-<% title t('departments.show.title') %>
+<% title t('.title') %>
 
 <div class="panel panel-info">
   <div class="panel-heading">
@@ -13,7 +13,7 @@
             <h3 class="panel-title"><%= t 'mongoid.attributes.department.department_logo' %></h3>
           </div>
           <div class="panel-body">
-            <%= image_tag @department.department_logo.url(:medium), class:'img-medium img-medium img-rounded' %>
+            <%= image_tag @department.department_logo.url(:medium), id:'avatar-img', class:'center-block img-medium img-medium img-rounded' %>
           </div>
         </div>
         <h3></h3>

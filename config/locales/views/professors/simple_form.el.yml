@@ -1,8 +1,4 @@
 el:
-  simple_form:
-    labels:
-      professor:
-        professor_office_id: 'Γραφείο'
   helpers:
     submit:
       professor:

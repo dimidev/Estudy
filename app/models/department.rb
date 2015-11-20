@@ -38,7 +38,6 @@ class Department
   has_many :notices,        dependent: :destroy
   has_many :course_classes
   has_many :exams
-  has_many :courses
 
   accepts_nested_attributes_for :address, :contacts, reject_if: :all_blank, allow_destroy: true
 

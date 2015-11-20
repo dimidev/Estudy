@@ -1,8 +1,8 @@
-.table.dataTable{
+.table.dataTable, table.table-bordered.dataTable{
   border-collapse: collapse !important;
 }
 
-.datatable, .dataTables_scroll{
+.datatable, .full-length-datatable, .dataTables_scroll{
   .no-sort, .text-center{
     padding-right: 8px !important;
   }

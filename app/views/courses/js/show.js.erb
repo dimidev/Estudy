@@ -1,0 +1,5 @@
+$('.modal').modal('hide');
+$('.modal-backdrop').remove();
+$('.modal').remove();
+$('.page-header').after("<%= j render 'courses/show' %>");
+$('.modal').modal();

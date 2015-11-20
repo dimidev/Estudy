@@ -1,7 +1,7 @@
 <div role="tabpanel" class="tab-pane fade" id="courses">
   <% if %w(new create).include?(controller.action_name) %>
     <div class="alert alert-warning text-center">
-      <%= fa_icon'exclamation-circle', text: t('studies_programmes.new.alerts.save_first', model: Course.model_name.human) %>
+      <%= fa_icon'exclamation-circle', text: t('studies_programmes.new.alerts.save_first') %>
     </div>
   <% else %>
       <div class="form-group">
