@@ -4,9 +4,6 @@ en:
       building:
         one: 'Building'
         other: 'Buildings'
-        special: 'Building'
-    attributes:
-      building:
     success:
       buildings:
         create: 'Building <b>%{name}</b> is created'

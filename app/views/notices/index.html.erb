@@ -1,12 +1,11 @@
 <% title t('.title') %>
 
-<%= render 'notices/modal' %>
-
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <%= link_to fa_icon('plus', text: t('notices.new.title')), new_notice_path, class:'btn btn-sm btn-primary pull-right' if can?(:create, Notice) %>
-    <h2 class="panel-title"><%= t('mongoid.models.notice.other') %></h2>
-  </div><!--//panel-heading-->
+  <% if can?(:create, Notice) %>
+    <div class="panel-heading">
+      <%= link_to fa_icon('plus', text: t('notices.new.title')), new_notice_path, class:'btn btn-sm btn-primary pull-right' %>
+    </div><!--//panel-heading-->
+  <% end %>
   <div class="panel-body">
     <table id="notices-table" class="datatable table table-hover table-striped" data-source="<%= notices_path(format: :json) %>">
       <thead>

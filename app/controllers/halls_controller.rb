@@ -2,12 +2,15 @@ class HallsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    building = Building.find(params[:building_id])
+    add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
+    add_breadcrumb building.name
     add_breadcrumb I18n.t('mongoid.models.hall.other')
 
     respond_to do |format|
       format.html
       format.json do
-        render(json: Building.find(params[:building_id]).halls.datatable(self, %w(name type area floors seats pc)) do |hall|
+        render(json: building.halls.datatable(self, %w(name type area floors seats pc)) do |hall|
           [
               hall.name,
               hall.type_text,
@@ -29,20 +32,23 @@ class HallsController < ApplicationController
   end
 
   def new
-    add_breadcrumb I18n.t('mongoid.models.hall.other'), building_halls_path(params[:building_id])
+    @building = Building.find(params[:building_id])
+
+    add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
+    add_breadcrumb @building.name, building_halls_path(params[:building_id])
     add_breadcrumb I18n.t('halls.new.title')
 
-    @building = Building.find(params[:building_id])
     @hall = @building.halls.build
-
     render :edit
   end
 
   def create
-    add_breadcrumb I18n.t('mongoid.models.hall.other'), building_halls_path(params[:building_id])
+    @building = Building.find(params[:building_id])
+
+    add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
+    add_breadcrumb @building.name, building_halls_path(params[:building_id])
     add_breadcrumb I18n.t('halls.new.title')
 
-    @building = Building.find(params[:building_id])
     @hall = @building.halls.build(hall_params)
 
     if @hall.save
@@ -53,6 +59,7 @@ class HallsController < ApplicationController
   end
 
   def view_all
+    add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
     add_breadcrumb I18n.t('mongoid.models.hall.other')
 
     respond_to do |format|
@@ -82,7 +89,7 @@ class HallsController < ApplicationController
 
   def edit
     @hall = Hall.find(params[:id])
-
+    add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
     add_breadcrumb I18n.t('mongoid.models.hall.other'), building_halls_path(@hall.building)
     add_breadcrumb I18n.t('halls.edit.title')
 
@@ -91,6 +98,9 @@ class HallsController < ApplicationController
 
   def update
     @hall = Hall.find(params[:id])
+    add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
+    add_breadcrumb I18n.t('mongoid.models.hall.other'), building_halls_path(@hall.building)
+    add_breadcrumb I18n.t('halls.edit.title')
 
     add_breadcrumb I18n.t('mongoid.models.hall.other'), building_halls_path(@hall.building)
     add_breadcrumb I18n.t('halls.edit.title')
@@ -120,6 +130,6 @@ class HallsController < ApplicationController
 
   private
   def hall_params
-    params.require(:hall).permit(:name, :type, :area, :floor, :pc, :seats)
+    params.require(:hall).permit(:name, :type, :area, :floor, :pc, :seats, :office_desks)
   end
 end

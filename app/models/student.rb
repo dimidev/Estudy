@@ -18,7 +18,7 @@ class Student < User
   belongs_to  :studies_programme
   belongs_to  :department
   embeds_many :grades
-  has_many    :attendances
+  has_many    :attendances, dependent: :destroy
 
   scope :active, lambda{ where(status: :active) }
 

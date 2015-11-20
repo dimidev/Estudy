@@ -3,7 +3,7 @@ class Timetable
   include Mongoid::Datatable
   extend Enumerize
 
-  TIMETABLE_TYPE = %w(registrations registrations_modification exams lab_exams other)
+  TIMETABLE_TYPE = %w(registrations registrations_modification theory_exams lab_exams other)
 
   field :period,   type: String
   field :title,   type: String

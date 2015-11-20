@@ -4,18 +4,11 @@ en:
       department:
         one: 'Department'
         other: 'Departments'
-    attributes:
-      department:
     success:
       departments:
-        create: 'Department <b>%{title}</b> is created'
+        create: 'New Department <b>%{title}</b> is created'
         update: 'Department <b>%{title}</b> is updated'
         destroy: 'Department <b>%{title}</b> is deleted'
     errors:
       departments:
         destroy: 'Department <b>%{title}</b> is not deleted'
-  enumerize:
-    department:
-      status:
-        active: 'Active'
-        not_active: 'Not Active'

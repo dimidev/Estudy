@@ -13,6 +13,7 @@ el:
         type: 'Τύπος'
         pc: 'Υπολογιστές'
         seats: 'Θέσεις'
+        office_desks: 'Γραφεία (Έπιπλα)'
     success:
       halls:
         create: 'Η αίθουσα <b>%{name}</b> αποθηκεύτηκε με επιτυχία'
@@ -26,4 +27,5 @@ el:
       type:
         office: 'Γραφείο'
         lab: 'Εργαστήριο'
+        hall: 'Αίθουσα'
         auditorium: 'Αμφιθέατρο'

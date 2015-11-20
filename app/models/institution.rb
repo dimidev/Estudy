@@ -18,10 +18,11 @@ class Institution
   validates_presence_of :title, :foundation_date, :rector
   validates_numericality_of :foundation_date, only_integer: true
 
-  embeds_one :address, autobuild: true
+  embeds_one :address,    autobuild: true
   embeds_many :contacts
-  has_one :superadmin
-  has_many :departments
+  has_one :superadmin,    dependent: :destroy
+  has_many :departments,  dependent: :restrict
+  has_many :buildings
 
   accepts_nested_attributes_for :superadmin, :address, limit: 1
   accepts_nested_attributes_for :contacts, reject_if: :all_blank, allow_destroy: true

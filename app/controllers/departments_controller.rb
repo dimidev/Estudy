@@ -51,17 +51,17 @@ class DepartmentsController < ApplicationController
   end
 
   def new
-    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path
+    add_breadcrumb I18n.t('mongoid.models.department.other'), departments_path
     add_breadcrumb I18n.t('departments.new.title')
 
-    @department = Institution.first.departments.build
+    @department = Department.new
     @department.build_address
 
     render :edit
   end
 
   def create
-    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path
+    add_breadcrumb I18n.t('mongoid.models.department.other'), departments_path
     add_breadcrumb I18n.t('departments.new.title')
 
     @department = Institution.first.departments.build(department_params)
@@ -74,7 +74,7 @@ class DepartmentsController < ApplicationController
   end
 
   def show
-    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path if current_user.role?(:superadmin)
+    add_breadcrumb I18n.t('mongoid.models.department.other'), departments_path if current_user.role?(:superadmin)
     add_breadcrumb I18n.t('departments.show.title')
 
     @department = Department.find(params[:id])
@@ -85,7 +85,7 @@ class DepartmentsController < ApplicationController
   end
 
   def edit
-    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path if current_user.role?(:superadmin)
+    add_breadcrumb I18n.t('mongoid.models.department.other'), departments_path if current_user.role?(:superadmin)
     add_breadcrumb I18n.t('departments.edit.title')
 
     @department = Department.find(params[:id])
@@ -94,7 +94,7 @@ class DepartmentsController < ApplicationController
   end
 
   def update
-    add_breadcrumb I18n.t('mongoid.models.department.other'), :departments_path if current_user.role?(:superadmin)
+    add_breadcrumb I18n.t('mongoid.models.department.other'), departments_path if current_user.role?(:superadmin)
     add_breadcrumb I18n.t('departments.edit.title')
 
     @department = Department.find(params[:id])

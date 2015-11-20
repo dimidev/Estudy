@@ -2,3 +2,4 @@
 - [ ] Todo Find how translate nested attributes (association)
 - [ ] TODO Remove devise message 'you must sign in before....'
 - [ ] TODO translate cancan error message
+- [ ] TODO modify devise sign_in method for users (not superadmin). If their department is not active then cannot sign in in application

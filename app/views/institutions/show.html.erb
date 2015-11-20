@@ -13,14 +13,14 @@
             <h3 class="panel-title"><%= t 'mongoid.attributes.institution.institution_logo' %></h3>
           </div>
           <div class="panel-body">
-            <%= image_tag @institution.institution_logo.url(:medium), class:'img-medium img-rounded' %>
+            <%= image_tag @institution.institution_logo.url(:medium),id:'avatar-img', class:'center-block img-medium img-rounded' %>
           </div>
         </div>
       </div><!--//col-->
 
       <div class="col-md-8">
         <table class="table table-half">
-          <caption><h3><%= Institution.model_name.human %></h3></caption>
+          <caption><h4><%= Institution.model_name.human %></h4></caption>
           <tr>
             <td><b><%= t 'mongoid.attributes.institution.title' %></b></td>
             <td><%= @institution.title %></td>
@@ -36,7 +36,7 @@
         </table>
 
         <table class="table table-half">
-          <caption><h3><%= Address.model_name.human %></h3></caption>
+          <caption><h4><%= Address.model_name.human %></h4></caption>
           <tr>
             <td><b><%= t 'mongoid.attributes.address.country' %></b></td>
             <td><%= @institution.address.country %></td>
@@ -57,7 +57,7 @@
 
         <% if @institution.has_contacts? %>
           <table class="table table-half">
-            <caption><h3><%= Contact.model_name.human %></h3></caption>
+            <caption><h4><%= Contact.model_name.human %></h4></caption>
             <tr>
               <td><b><%= t 'enumerize.contact.type.phone' %></b></td>
               <td><%= @phones %></td>

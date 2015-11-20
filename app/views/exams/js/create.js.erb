@@ -2,8 +2,7 @@
 $('.modal-body').find('.alert').remove();
 $('.modal-body').prepend("<%= j render 'general/form_errors', resource: @exam %>");
 <% else %>
-$('#modal').modal('hide');
-$('#exams-table').DataTable().draw(false);
+window.location.href = "<%= j edit_exam_path(@exam) %>";
 <% end %>
 
 <% if notice || alert %>

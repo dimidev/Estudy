@@ -5,6 +5,8 @@ class Notice
   extend Enumerize
   extend ActiveModel::Naming
 
+  before_save :check_department
+
   TARGETS = %w(institution department admins professors students)
 
   field :title, type: String
@@ -19,6 +21,10 @@ class Notice
   belongs_to :department
 
   private
+  def check_department
+    self.department_id = nil unless self.target == 'department'
+  end
+
   def ensure_department
     if target == 'department' && department_id.blank?
       errors[:department] << I18n.t('mongoid.errors.models.notice.attributes.department_id')

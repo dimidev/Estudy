@@ -19,7 +19,7 @@ class BuildingsController < ApplicationController
                     <% if can? :read, Hall %>
                       <li><%= link_to fa_icon('building-o', text: I18n.t('mongoid.models.hall.other')), building_halls_path(building) %></li>
                     <% end %>
-                    <% if can? [:edit, :update], Building %>
+                    <% if can? [:update, :destroy], Building %>
                       <li class='divider'></li>
                       <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_building_path(building) %></li>
                       <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), building_path(building), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
@@ -33,7 +33,7 @@ class BuildingsController < ApplicationController
   end
 
   def new
-    add_breadcrumb I18n.t('mongoid.models.building.other'), :buildings_path
+    add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
     add_breadcrumb I18n.t('buildings.new.title')
 
     @building = Building.new
@@ -42,7 +42,7 @@ class BuildingsController < ApplicationController
   end
 
   def create
-    add_breadcrumb I18n.t('mongoid.models.building.other'), :buildings_path
+    add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
     add_breadcrumb I18n.t('buildings.new.title')
 
     @building = Building.new(building_params)
@@ -55,7 +55,7 @@ class BuildingsController < ApplicationController
   end
 
   def edit
-    add_breadcrumb I18n.t('mongoid.models.building.other'), :buildings_path
+    add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
     add_breadcrumb I18n.t('buildings.edit.title')
 
     @building = Building.find(params[:id])
@@ -64,7 +64,7 @@ class BuildingsController < ApplicationController
   end
 
   def update
-    add_breadcrumb I18n.t('mongoid.models.building.other'), :buildings_path
+    add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
     add_breadcrumb I18n.t('buildings.edit.title')
 
     @building = Building.find(params[:id])

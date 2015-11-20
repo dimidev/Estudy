@@ -25,6 +25,7 @@ class Users::SessionsController < Devise::SessionsController
     @after_sign_in_path = after_sign_in_path(resource)
   end
 
+  # TODO modify to check if user department is active
   def sign_in_without_redirect(resource_or_scope, resource=nil)
     scope = Devise::Mapping.find_scope!(resource_or_scope)
     resource ||= resource_or_scope
@@ -46,7 +47,6 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.for(:sign_in) << :attribute
   # end
-
 
   def create_institution
     redirect_to new_institution_path

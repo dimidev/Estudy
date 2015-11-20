@@ -6,21 +6,14 @@ en:
         other: 'Notices'
     success:
       notices:
-        create: 'Notice is created'
-        update: 'Notice is updated'
-        destroy: 'Notice is deleted'
+        create: 'Notice <b>%{title}</b> is created'
+        update: 'Notice <b>%{title}</b> is updated'
+        destroy: 'Notice <b>%{title}</b> is deleted'
     errors:
       notices:
-        destroy: 'Notice is not deleted'
-        no_notices: 'There is no avalable notices'
+        destroy: 'Notice <b>%{title}</b> is not deleted'
+        no_notices: 'There is no available notices'
       models:
         notice:
           attributes:
-            department_id: 'You did not choose Department'
-  enumerize:
-    notice:
-      institution: 'Institution'
-      department: 'Department'
-      admins: 'Admins'
-      professors: 'Professors'
-      students: 'Students'
+            department_id: 'You did not select Department'

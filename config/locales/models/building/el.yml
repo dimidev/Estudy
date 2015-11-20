@@ -4,7 +4,7 @@ el:
       building:
         one: 'Ακίνητο'
         other: 'Ακίνητα'
-        special: 'Κτήριο'
+        building: 'Κτήριο'
     attributes:
       building:
         name: 'Ονομασία'

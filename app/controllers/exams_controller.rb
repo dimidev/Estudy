@@ -39,9 +39,9 @@ class ExamsController < ApplicationController
 
     respond_to do |format|
       if @exam.save
-        flash.now[:notice] = I18n.t('mongoid.success.exams.create')
+        flash[:notice] = I18n.t('mongoid.success.exams.create', period: @exam.timetable.period)
       else
-        flash.now[:alert] = I18n.t('mongoid.errors.exams.create')
+        flash.now[:alert] = I18n.t('mongoid.errors.exams.create', period: @exam.timetable.period)
       end
       format.js{render 'exams/js/create'}
     end
@@ -72,10 +72,10 @@ class ExamsController < ApplicationController
   end
 
   def edit
-    @hall = Hall.find(params[:id])
+    @exam = Exam.find(params[:id])
 
-    add_breadcrumb I18n.t('mongoid.models.hall.other'), building_halls_path(@hall.building)
-    add_breadcrumb I18n.t('halls.edit.title')
+    add_breadcrumb I18n.t('mongoid.models.exam.other'), department_exams_path(@exam.department)
+    add_breadcrumb I18n.t('exams.edit.title')
 
     render :edit
   end
@@ -110,8 +110,18 @@ class ExamsController < ApplicationController
     end
   end
 
+  def add_theory
+    @exam = Exam.find(params[:id])
+    department = @exam.department
+    @labs = department.courses.where()
+
+    respond_to do |format|
+      format.js{render 'exams/js/add_course'}
+    end
+  end
+
   private
   def exam_params
-    params.require(:exam).permit(:timetable_id)
+    params.require(:exam).permit(:timetable_id, :theory_start, :theory_end, :lab_start, :lab_end)
   end
 end

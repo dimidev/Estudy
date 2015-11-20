@@ -5,15 +5,15 @@ class NoticesController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.notice.other')
 
     if current_user.role? :superadmin
-      @notices = Notice.all
+      notices = Notice.all
     else
-      @notices = current_user.department.notices
+      notices = current_user.department.notices
     end
 
     respond_to do |format|
       format.html
       format.json do
-        render(json: @notices.order_by(updated_at: :desc).datatable(self, %w(title target created_at updated_at)) do |notice|
+        render(json: notices.order_by(updated_at: :desc).datatable(self, %w(title target created_at updated_at)) do |notice|
           [
               %{<%= link_to notice.title, notice_path(notice), remote: true %>},
               notice.target_text,
@@ -34,7 +34,7 @@ class NoticesController < ApplicationController
   end
 
   def new
-    add_breadcrumb I18n.t('mongoid.models.notice.other'), :notices_path
+    add_breadcrumb I18n.t('mongoid.models.notice.other'), notices_path
     add_breadcrumb I18n.t('notices.new.title')
 
     if current_user.role? :superadmin
@@ -48,7 +48,7 @@ class NoticesController < ApplicationController
   end
 
   def create
-    add_breadcrumb I18n.t('mongoid.models.notice.other'), :notices_path
+    add_breadcrumb I18n.t('mongoid.models.notice.other'), notices_path
     add_breadcrumb I18n.t('notices.new.title')
 
     if current_user.role? :superadmin
@@ -58,7 +58,7 @@ class NoticesController < ApplicationController
     end
 
     if @notice.save
-      redirect_to notices_path, notice: I18n.t('mongoid.success.notices.create')
+      redirect_to notices_path, notice: I18n.t('mongoid.success.notices.create', title: @notice.title)
     else
       @departments = Department.active if current_user.role?(:superadmin)
       render :edit
@@ -75,7 +75,7 @@ class NoticesController < ApplicationController
   end
 
   def edit
-    add_breadcrumb I18n.t('mongoid.models.notice.other'), :notices_path
+    add_breadcrumb I18n.t('mongoid.models.notice.other'), notices_path
     add_breadcrumb I18n.t('notices.edit.title')
 
     @notice = Notice.find(params[:id])
@@ -86,13 +86,13 @@ class NoticesController < ApplicationController
   end
 
   def update
-    add_breadcrumb I18n.t('mongoid.models.notice.other'), :notices_path
+    add_breadcrumb I18n.t('mongoid.models.notice.other'), notices_path
     add_breadcrumb I18n.t('notices.edit.title')
 
     @notice = Notice.find(params[:id])
 
     if @notice.update_attributes(notice_params)
-      redirect_to notices_path, notice: I18n.t('mongoid.success.notices.update')
+      redirect_to notices_path, notice: I18n.t('mongoid.success.notices.update', title: @notice.title)
     else
       @departments = Department.active if current_user.role?(:superadmin)
       render :edit
@@ -104,11 +104,11 @@ class NoticesController < ApplicationController
 
     respond_to do |format|
       if @notice.destroy
-        message = I18n.t('mongoid.success.notices.destroy')
+        message = I18n.t('mongoid.success.notices.destroy', title: @notice.title)
         format.html { redirect_to departments_path, notice: message }
         format.js { flash.now[:notice] = message }
       else
-        message = I18n.t('mongoid.errors.notices.destroy')
+        message = I18n.t('mongoid.errors.notices.destroy', title: @notice.title)
         format.html { render :edit, flash[:alert] = message }
         format.js { flash.now[:notice] = message }
       end

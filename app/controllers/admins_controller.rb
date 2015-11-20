@@ -15,13 +15,15 @@ class AdminsController < ApplicationController
                      %{<%= link_to admin.name, admin_path(admin) %>},
                      %{<%= link_to admin.lastname, admin_path(admin) %>},
                      admin.email,
-                     %{<li class="btn-group">
-                        <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
-                        <ul class="dropdown-menu dropdown-center">
-                          <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_admin_path(admin) %></li>
-                          <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), admin_path(admin), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
-                        </ul>
-                      </li>}
+                     %{<% if [:update, :destroy] %>
+                        <li class="btn-group">
+                          <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
+                          <ul class="dropdown-menu dropdown-center">
+                            <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_admin_path(admin) %></li>
+                            <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), admin_path(admin), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
+                          </ul>
+                        </li>
+                      <% end %>}
                  ]
                end)
       end

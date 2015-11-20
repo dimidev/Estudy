@@ -24,15 +24,16 @@
 
         <legend><%= t 'halls.legends.other_informations' %></legend>
         <div class="row">
-          <%= f.input :pc, wrapper_html:{class:'col-sm-6'} %>
-          <%= f.input :seats, wrapper_html:{class:'col-sm-6'} %>
+          <%= f.input :pc, wrapper_html:{class:'col-sm-4'} %>
+          <%= f.input :seats, wrapper_html:{class:'col-sm-4'} %>
+          <%= f.input :office_desks, wrapper_html:{class:'col-sm-4'} %>
         </div>
 
   </div><!--//pane-body-->
   <div class="panel-footer">
         <%= f.button :submit, class:'btn-success' %>
         <%= cancel_btn(building_halls_path(@hall.building)) %>
-        <%= delete_btn(@hall) %>
+        <%= delete_btn(@hall) if can?(:destroy, Hall) %>
     <% end %>
   </div><!--//pane-footer-->
 </div><!--//panel-->

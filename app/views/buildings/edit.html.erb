@@ -36,7 +36,7 @@
   <div class="panel-footer">
         <%= f.button :submit, class:'btn-success' %>
         <%= cancel_btn(buildings_path) %>
-        <%= delete_btn(@building) %>
+        <%= delete_btn(@building) if can?(:destroy, Building) %>
     <% end %>
   </div><!--//pane-footer-->
 </div><!--//panel-->

@@ -2,11 +2,7 @@ $(function(){
     $('.calendar').fullCalendar({
         weekends: false,
         firstDay: 1,
-        businessHours: {
-            start: '08:00',
-            end: '21:00',
-            dow: [1,2,3,4,5]
-        },
+        timeFormat: 'H(:mm)',
         events: {
             url: $('.calendar').data('source'),
             type: 'GET'
@@ -24,7 +20,11 @@ $(function(){
                 // options apply to agendaWeek and agendaDay views
             },
             week: {
-                // options apply to basicWeek and agendaWeek views
+                businessHours: {
+                    start: '08:00',
+                    end: '21:00',
+                    dow: [1,2,3,4,5]
+                }
             },
             day: {
                 // options apply to basicDay and agendaDay views

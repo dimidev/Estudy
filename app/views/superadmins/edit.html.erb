@@ -6,12 +6,14 @@
   <div class="panel-body">
     <%= simple_form_for @superadmin, url: superadmin_path do |f| %>
         <%= f.input :email %>
-        <%= f.input :password %>
-        <%= f.input :password_confirmation %>
+        <div class="row">
+          <%= f.input :password, wrapper_html:{class:'col-md-6'} %>
+          <%= f.input :password_confirmation, wrapper_html:{class:'col-md-6'} %>
+        </div>
   </div><!--//panel-body-->
   <div class="panel-footer">
-    <%= f.button :submit, class:'btn-success' %>
-    <%= cancel_btn(root_path) %>
+      <%= f.button :submit, class:'btn-success' %>
+      <%= cancel_btn(root_path) %>
     <% end %>
   </div><!--//panel-footer-->
 </div><!--//panel-->

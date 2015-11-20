@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
     resource :institution, except: :destroy
     resource :superadmin, only: [:edit, :update]
-    resources :buildings, shallow: true do
+    resources :buildings, except: :show, shallow: true do
       resources :halls, except: :show
     end
     scope '/halls', controller: :halls do
@@ -43,7 +43,11 @@ Rails.application.routes.draw do
       resources :course_classes do
         get 'students', on: :member
       end
-      resources :exams
+      resources :exams do
+        get 'add_lab', on: :member
+        get 'add_theory', on: :member
+        get 'generate', on: :member
+      end
     end
     resources :notices
 

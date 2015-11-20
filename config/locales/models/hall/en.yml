@@ -4,8 +4,6 @@ en:
       hall:
         one: 'Hall'
         other: 'Halls'
-    attributes:
-      building:
     success:
       halls:
         create: 'Hall <b>%{number}</b> is created'

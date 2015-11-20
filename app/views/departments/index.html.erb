@@ -1,10 +1,11 @@
 <% title t('.title') %>
 
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <%= link_to fa_icon('plus', text: t('departments.new.title')), new_department_path, class:'btn btn-sm btn-primary pull-right' if can?(:create, Department) %>
-    <h2 class="panel-title"><%= t('mongoid.models.department.other') %></h2>
-  </div>
+  <% if can?(:create, Department) %>
+    <div class="panel-heading">
+      <%= link_to fa_icon('plus', text: t('departments.new.title')), new_department_path, class:'btn btn-sm btn-primary' %>
+    </div>
+  <% end %>
   <div class="panel-body">
     <table id="departments-table" class="datatable table table-hover table-striped" data-source="<%= departments_path(format: :json) %>">
       <thead>

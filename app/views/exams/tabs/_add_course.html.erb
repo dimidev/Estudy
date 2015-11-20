@@ -5,13 +5,12 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><%= t('exams.new.title') %></h4>
       </div>
-      <%= simple_form_for [@department, @exam], remote: true do |f| %>
+      <%= simple_form_for @exam, remote: true do |f| %>
       <div class="modal-body">
         <div class="row">
-          <%= f.input :theory_start, as: :date_picker,wrapper_html:{class:'col-sm-3'} %>
-          <%= f.input :theory_end, as: :date_picker, wrapper_html:{class:'col-sm-3'} %>
-          <%= f.input :lab_start, as: :date_picker, wrapper_html:{class:'col-sm-3'} %>
-          <%= f.input :lab_end, as: :date_picker, wrapper_html:{class:'col-sm-3'} %>
+          <%= f.association :course_class %>
+          <%= f.association :course %>
+          <%= f.association :hall %>
         </div>
       </div>
       <div class="modal-footer">

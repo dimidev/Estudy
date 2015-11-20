@@ -15,7 +15,7 @@ class InstitutionsController < ApplicationController
     @institution = Institution.new(institution_params)
 
     if @institution.save
-      sign_in(:user, @institution.superadmin)
+      sign_in @institution.superadmin, bypass: true
       redirect_to root_path
     else
       render :new
@@ -23,7 +23,7 @@ class InstitutionsController < ApplicationController
   end
 
   def show
-    add_breadcrumb Institution.model_name.human, :institution_path
+    add_breadcrumb Institution.model_name.human, institution_path
     add_breadcrumb I18n.t('institutions.show.title')
     @institution = Institution.first
 

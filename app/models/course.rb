@@ -23,7 +23,7 @@ class Course
 
   belongs_to  :studies_programme
   has_many    :registrations
-  has_many    :course_classes
+  has_many    :course_classes, dependent: :destroy
   has_many    :courses, as: :parent_course, dependent: :destroy
   belongs_to  :parent_course, polymorphic: true
   belongs_to  :department

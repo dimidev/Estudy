@@ -7,10 +7,10 @@
         <%= image_tag f.object.department_logo.url(:medium), id:'avatar-img', class:'center-block img-responsive img-rounded' %>
         <div class="row">
           <%= f.input :department_logo, label: false, wrapper_html:{class:'col-sm-6'} do %>
-                    <span class="btn btn-primary btn-block">
-                      <%= fa_icon'upload',text: t('img_upload.upload') %>
-                      <%= f.input_field :department_logo, id:'avatar-upload' %>
-                    </span>
+            <span class="btn btn-primary btn-block">
+              <%= fa_icon'upload',text: t('img_upload.upload') %>
+              <%= f.input_field :department_logo, id:'avatar-upload' %>
+            </span>
           <% end %>
           <div class="col-sm-6">
             <%= f.input :delete_img, as: :hidden, input_html:{id:'delete_img'} %>

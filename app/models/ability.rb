@@ -14,7 +14,7 @@ class Ability
       can :manage, Admin
       can :manage, Notice
       can :read, [Professor, Student, Registration, Grade]
-      can :read, [StudiesProgramme, CourseClass, Timetable]
+      can :read, [StudiesProgramme, CourseClass, Timetable, Exam]
     elsif user.role? :admin
       can [:show, :update], Department, id: user.department_id
       can :manage, [Admin, Professor, Student]
