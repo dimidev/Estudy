@@ -28,6 +28,7 @@ class Course
   belongs_to  :studies_programme
   has_many    :registrations
   has_many    :course_classes, dependent: :destroy
+  has_many    :exam_courses
 
   has_many    :child_courses, as: :parent_course, class_name:'Course', dependent: :destroy
   belongs_to  :parent_course, polymorphic: true

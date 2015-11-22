@@ -4,6 +4,8 @@ el:
       course:
        one: 'Μάθημα'
        other: 'Μαθήματα'
+       labs: 'Εργαστηρια'
+       theories: 'Θεωρίες'
       child_course:
         one: 'Μάθημα'
         other: 'Μαθήματα'

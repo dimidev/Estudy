@@ -39,6 +39,9 @@ $(function(){
         $('main .wrapper').css('min-height',main_height);
     }
 
+    // Ahoy track events automatically
+    // ahoy.trackAll();
+
     // Bootstrap Tooltip init
     $('[data-toggle="tooltip"]').tooltip();
     // Tooltip on appended elements

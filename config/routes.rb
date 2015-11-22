@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
     root 'dashboards#show'
 
-    scope path: 'dashboard', controller: :dashboards do
+    scope '/dashboard', controller: :dashboards do
       get 'home', as: :dashboard_home
     end
 
@@ -44,11 +44,10 @@ Rails.application.routes.draw do
         get 'students', on: :member
       end
       resources :exams do
-        get 'add_lab', on: :member
-        get 'add_theory', on: :member
-        get 'generate', on: :member
+        resources :exam_courses
       end
     end
+    resources :conversations
     resources :notices
 
     get 'users/sign_out', as: :logout

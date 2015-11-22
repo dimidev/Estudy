@@ -22,7 +22,7 @@ class Institution
   embeds_many :contacts
   has_one :superadmin,    dependent: :destroy
   has_many :departments,  dependent: :restrict
-  has_many :buildings
+  has_many :buildings,    dependent: :destroy
 
   accepts_nested_attributes_for :superadmin, :address, limit: 1
   accepts_nested_attributes_for :contacts, reject_if: :all_blank, allow_destroy: true

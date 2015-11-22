@@ -6,19 +6,15 @@ en:
         other: 'Registrations'
         registrations: '%{count} Student Registrations'
     success:
-      models:
-        registration:
-          create: 'Registrations is created'
-          update: 'Registrations is updated'
-          destroy: 'Registrations is deleted'
-          registrations_period: 'Is Registrations Period, you can edit your registration'
+      registrations:
+        create: 'Registrations is created'
+        update: 'Registrations is updated'
+        destroy: 'Registrations is deleted'
+        registrations_period: 'Is Registrations Period, you can edit your registration'
     errors:
-      models:
-        registration:
-          create: 'Registrations is not created'
-          update: 'Registrations is not updated'
-          destroy: 'Registrations is not deleted'
-          registrations_period: 'Registrations Period is not available'
-          no_courses: 'There is no available courses'
-          current_exists: 'There is available registration for current period'
-          current_not_exists: 'There is no registration for current period'
+      registrations:
+        destroy: 'Registrations is not deleted'
+        registrations_period: 'Registrations Period is not available'
+        no_courses: 'There is no available courses'
+        current_exists: 'There is available registration for current period'
+        current_not_exists: 'There is no registration for current period'

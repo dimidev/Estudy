@@ -110,16 +110,6 @@ class ExamsController < ApplicationController
     end
   end
 
-  def add_theory
-    @exam = Exam.find(params[:id])
-    department = @exam.department
-    @labs = department.courses.where()
-
-    respond_to do |format|
-      format.js{render 'exams/js/add_course'}
-    end
-  end
-
   private
   def exam_params
     params.require(:exam).permit(:timetable_id, :theory_start, :theory_end, :lab_start, :lab_end)

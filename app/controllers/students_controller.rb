@@ -93,7 +93,12 @@ class StudentsController < ApplicationController
 
     if update_resource(@student, student_params)
       flash[:notice] = I18n.t('mongoid.success.users.update', model: Student.model_name.human, name: @student.fullname)
-      redirect_to department_students_path(@student.department)
+
+      if current_user.role? :student
+        redirect_to student_path(@student)
+      else
+        redirect_to department_students_path(@student.department)
+      end
     else
       render :edit
     end
@@ -119,10 +124,16 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:studies_programme_id, :user_avatar, :email, :password, :password_confirmation, :role, :status,
-                                    :name, :lastname, :gender, :birthdate, :nic, :trn, :semester,
-                                    addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
-                                    contacts_attributes: [:id, :_destroy, :type, :value])
+    if current_user.role? :student
+      params.require(:student).permit(:user_avatar, :email, :password, :password_confirmation,
+                                      addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
+                                      contacts_attributes: [:id, :_destroy, :type, :value])
+    else
+      params.require(:student).permit(:studies_programme_id, :user_avatar, :email, :password, :password_confirmation, :role, :status,
+                                      :name, :lastname, :gender, :birthdate, :nic, :trn, :semester,
+                                      addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
+                                      contacts_attributes: [:id, :_destroy, :type, :value])
+    end
   end
 
   def update_resource(resource, params)

@@ -23,7 +23,8 @@ class Timetable
   recursively_embeds_many
   belongs_to :department
   has_many :registrations
-  has_many :exams
+  has_many :exam
+  has_many :course_classes
 
   default_scope lambda{order_by(from: :desc)}
 

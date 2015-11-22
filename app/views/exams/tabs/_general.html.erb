@@ -1,0 +1,42 @@
+<div role="tabpanel" class="tab-pane active fade in" id="general">
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-bordered">
+        <tr>
+          <td><%= t 'mongoid.attributes.timetable.period' %></td>
+          <td><%= @exam.timetable.period %></td>
+        </tr>
+        <tr>
+          <td><%= t 'mongoid.models.exam.other' %></td>
+          <td><%= @exam.exam_courses.count %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-md-6">
+      <table class="table table-bordered">
+        <thead>
+          <th><%= t 'mongoid.models.exam.other' %></th>
+          <th><%= t 'mongoid.attributes.timetable.from' %></th>
+          <th><%= t 'mongoid.attributes.timetable.to' %></th>
+        </thead>
+        <tbody>
+        <% if @exam.timetable.child_timetables.where(type: 'lab_exams').exists? %>
+            <tr>
+              <td><%= @exam.timetable.child_timetables.find_by(type: 'lab_exams').type_text %></td>
+              <td><%= @exam.timetable.child_timetables.find_by(type: 'lab_exams').from.strftime('%d-%m-%Y') %></td>
+              <td><%= @exam.timetable.child_timetables.find_by(type: 'lab_exams').to.strftime('%d-%m-%Y') %></td>
+            </tr>
+        <% end %>
+        <% if @exam.timetable.child_timetables.where(type: 'theory_exams').exists? %>
+            <tr>
+              <td><%= @exam.timetable.child_timetables.find_by(type: 'theory_exams').type_text %></td>
+              <td><%= @exam.timetable.child_timetables.find_by(type: 'theory_exams').from.strftime('%d-%m-%Y') %></td>
+              <td><%= @exam.timetable.child_timetables.find_by(type: 'theory_exams').to.strftime('%d-%m-%Y') %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,11 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Mongoid::Paperclip
   include Mongoid::Datatable
   extend Enumerize
   extend ActiveModel::Naming
+
   # Include default devise modules. Others available are:
   # :confirmable,  and :omniauthable, :registerable
   devise :database_authenticatable, :recoverable, :rememberable,
@@ -70,7 +72,7 @@ class User
   field :ssn, type: String
   field :tax_office, type: String
 
-  has_mongoid_attached_file :user_avatar, style:{medium:'150x150',thumb:'60x60'},
+  has_mongoid_attached_file :user_avatar, styles:{medium:'300x300>',thumb:'60x60>'},
                             url:"/system/:attachment/:style/:basename.:extension",
                             path:":rails_root/public/system/:attachment/:style/:basename.:extension",
                             default_url: :set_default_avatar

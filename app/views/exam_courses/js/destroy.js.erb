@@ -1,0 +1,10 @@
+<% if @exam_course.has_course_class? %>
+  $("#labs-table").DataTable().draw(false);
+<% else %>
+  $("#theories-table").DataTable().draw(false);
+<% end %>
+
+<% if notice || alert %>
+    $('.alert').remove();
+    $('main .wrapper').find('.page-header').after("<%= j render 'general/flash_messages' %>");
+<% end %>

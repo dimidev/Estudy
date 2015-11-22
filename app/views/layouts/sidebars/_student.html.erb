@@ -1,3 +1,7 @@
+<li><%= link_to fa_icon('institution',text: Institution.model_name.human), institution_path %></li>
+<li><%= link_to fa_icon('institution',text: Department.model_name.human), department_path(current_user.department) %></li>
+<li><%= link_to fa_icon('user', text: t('sidebar.student.student_cart')), student_path(current_user) %></li>
+
 <li class="has-sub">
   <a>
     <%= fa_icon('file-o',text: t('mongoid.models.registration.other')) %>

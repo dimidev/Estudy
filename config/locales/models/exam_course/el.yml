@@ -1,0 +1,26 @@
+el:
+  mongoid:
+    models:
+      exam_course:
+        one: 'Εξέταση Μαθήματος'
+        other: 'Εξετάσεις Μαθημάτων'
+        add_lab_exam: 'Δημιουργία Εξέτασης Εργαστηρίου'
+        add_theory_exam: 'Δημιουργία Εξέτασης Θεωρίας'
+    attributes:
+      exam_course:
+        professors: 'Επιτηρητές'
+        course: 'Μάθημα Εξέτασης'
+        course_class: 'Τμήμα Εργαστηρίου'
+        halls: 'Αίθουσες'
+        day: 'Μέρα'
+        from: 'Έναρξη'
+        to: 'Λύξη'
+        exam_day: 'Ημ. Εξέτασης'
+    success:
+      exam_courses:
+        create: 'Η εξέταση μαθήματος έχει δημιουργηθεί'
+        update: 'Η εξέταση μαθήματος έχει ανανεωθεί'
+        destroy: 'Η εξέταση μαθήματος έχει διαγραφεί'
+    errors:
+      exam_courses:
+        destroy: 'Η εξέταση μαθήματος δεν έχει διαγραφεί'

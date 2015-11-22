@@ -1,6 +1,6 @@
 <% title t('.title') %>
 
-<div class="panel panel-info">
+<div class="panel panel-primary">
   <div class="panel-heading">
     <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), edit_department_path(@department), class:'btn btn-warning btn-sm pull-right' if (can? :update, Department) %>
     <h2 class="panel-title"><%= @department.title %></h2>

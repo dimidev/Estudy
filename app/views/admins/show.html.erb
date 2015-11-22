@@ -1,6 +1,6 @@
 <% title t('admins.show.title') %>
 
-<div class="panel panel-info">
+<div class="panel panel-primary">
   <div class="panel-heading">
     <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), edit_admin_path(@admin), class:'btn btn-warning btn-sm pull-right' if (can? :update, Admin) %>
     <h2 class="panel-title"><%= @admin.fullname %></h2>

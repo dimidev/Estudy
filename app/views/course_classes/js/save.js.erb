@@ -7,6 +7,6 @@
 <% end %>
 
 <% if notice || alert %>
-    $('.alert-warning').remove();
+    $('.alert').remove();
     $('.page-header').after("<%= j render 'general/flash_messages' %>");
 <% end %>

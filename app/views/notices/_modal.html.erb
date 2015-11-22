@@ -11,6 +11,10 @@
         <% if @notice.content.present? %>
             <div class='well'><%= j @notice.content.html_safe %></div>
         <% end %>
+
+        <blockquote>
+          <p><%= @notice.updated_at.strftime('%d-%m-%Y %H:%M:%S') %></p>
+        </blockquote>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'btn.close' %></button>

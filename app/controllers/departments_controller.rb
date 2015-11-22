@@ -13,6 +13,7 @@ class DepartmentsController < ApplicationController
                      %{<%= link_to department.title, department_path(department) %>},
                      department.foundation_date,
                      department_status(department.status),
+                     department.admins.count,
                      department.students.active.count,
                      department.professors.count,
                      %{<div class="btn-group">

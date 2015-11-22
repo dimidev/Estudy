@@ -6,24 +6,27 @@
   end
 %>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h2 class="panel-title"><%= @registration.timetable.period %></h2>
-  </div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), registration_path(@registration), class:'btn btn-sm btn-warning pull-right' if can?(:update, Registration) %>
+      <h2 class="panel-title"><%= @registration.timetable.period %></h2>
+    </div>
     <% if @registration.has_registrations? %>
         <table class="table">
         <thead>
           <th><%= t 'mongoid.attributes.course.title' %></th>
+          <th class="text-center"><%= t Hall.model_name.human %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.semester' %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.course_type' %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.ects' %></th>
           <th class="text-center"><%= t 'mongoid.attributes.course.hours' %></th>
-          <th class="text-center"><%= 'grade' %></th>
+          <th class="text-center"><%= t 'mongoid.attributes.registration.grade' %></th>
         </thead>
         <tbody>
-          <% @registration.registrations.each do |r| %>
+          <% @registration.registrations.sort_by{|reg| reg.course.semester}.each do |r| %>
             <tr>
               <td><%= r.course.has_parent_course? ? "#{r.course.title} (#{r.course.course_part_text})" : r.course.title %></td>
+              <td class="text-center"><%= "#{r.course_class.hall.name} (#{r.course_class.day_text} #{r.course_class.from.to_s(:time)}-#{r.course_class.to.to_s(:time)})" if r.has_course_class? %></td>
               <td class="text-center"><%= r.course.semester %></td>
               <td class="text-center"><%= r.course.has_parent_course? ? r.course.parent_course.course_type_text : r.course.course_type_text %></td>
               <td class="text-center"><%= r.course.has_parent_course? ? number_to_percentage(r.course.percent, precision: 0) : r.course.ects %></td>

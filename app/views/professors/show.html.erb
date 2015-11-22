@@ -1,6 +1,6 @@
 <% title t('professors.show.title') %>
 
-<div class="panel panel-info">
+<div class="panel panel-primary">
   <div class="panel-heading">
     <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), edit_professor_path(@professor), class:'btn btn-warning btn-sm pull-right' if (can? :update, Professor) %>
     <h2 class="panel-title"><%= @professor.fullname %></h2>

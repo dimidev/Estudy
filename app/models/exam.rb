@@ -2,23 +2,17 @@ class Exam
   include Mongoid::Document
   include Mongoid::Datatable
 
-  before_create :check_timetable_period
+  before_save :check_timetable_period
 
   after_initialize :defaults
 
   attr_accessor :lab_start, :lab_end, :theory_start, :theory_end
 
-  field :date, type: DateTime
-
   validate :validate_dates
-
-  has_many :exams, as: :parent_exam
-  belongs_to :parent_exam, polymorphic: true
 
   belongs_to :department
   belongs_to :timetable
-  belongs_to :hall
-  has_many :attendances
+  has_many :exam_courses, dependent: :destroy
 
   private
   def defaults

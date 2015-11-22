@@ -2,25 +2,22 @@ el:
   mongoid:
     models:
       registration:
-       one: 'Δήλωση'
-       other: 'Δηλώσεις'
-       registrations: '%{count} Εγγραφές Φοιτητών'
+        one: 'Δήλωση'
+        other: 'Δηλώσεις'
+        registrations: '%{count} Εγγραφές Φοιτητών'
     attributes:
       registration:
         title: 'Τίτλος'
+        grade: 'Βαθμός'
     success:
-      models:
-        registration:
-          create: 'Η Δήλωση Μαθημάτων έγινε επιτυχώς'
-          update: 'Η Δήλωση Μαθημάτων ανανεώθηκε επιτυχώς'
-          destroy: 'Η Δήλωση Μαθημάτων έχει διαγραφή επιτυχώς'
-          registrations_period: 'Είναι περίοδος δηλώσεων, έχετε τη δυνατότητα να κάνετε δήλωση μαθημάτων'
+      registrations:
+        create: 'Η Δήλωση Μαθημάτων έγινε επιτυχώς'
+        update: 'Η Δήλωση Μαθημάτων ανανεώθηκε επιτυχώς'
+        destroy: 'Η Δήλωση Μαθημάτων έχει διαγραφή επιτυχώς'
+        registrations_period: 'Είναι περίοδος δηλώσεων, έχετε τη δυνατότητα να κάνετε δήλωση μαθημάτων'
     errors:
-      models:
-        registration:
-          create: 'Η Δήλωση Μαθημάτων δεν ήταν επιτυχής'
-          update: 'Η Δήλωση Μαθημάτων δεν ανανεώθηκε επιτυχώς'
-          destroy: 'Η Δήλωση Μαθημάτων δεν έχει διαγραφή'
-          registrations_period: 'Η περίοδος δηλώσεων δεν είναι διαθέσιμη'
-          no_courses: 'Δεν υπάρχουν διαθέσιμα μαθήματα'
-          current_registration_exists: 'Υπάρχει διαθέσιμη Δήλωση Μαθημάτων για τη τρέχουσα περίοδο'
+      registrations:
+        destroy: 'Η Δήλωση Μαθημάτων δεν έχει διαγραφή'
+        registrations_period: 'Η περίοδος δηλώσεων δεν είναι διαθέσιμη'
+        no_courses: 'Δεν υπάρχουν διαθέσιμα μαθήματα'
+        current_registration_exists: 'Υπάρχει διαθέσιμη Δήλωση Μαθημάτων για τη τρέχουσα περίοδο'

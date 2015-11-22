@@ -24,13 +24,14 @@ class Hall
 
   belongs_to :building
   has_many :professors, as: :professor_office, class_name:'Professor'
-  has_many :exams
+  has_and_belongs_to_many :exam_courses
 
   scope :offices, lambda{where(type: :office)}
   scope :halls, lambda{where(type: :hall)}
+  scope :labs, lambda{where(type: :lab)}
   scope :auditoriums, lambda{where(type: :auditorium)}
 
-  default_scope lambda{order_by(course_type: :asc)}
+  default_scope lambda{order_by(type: :asc)}
 
   def self.available_offices
     where(type: :office).select{|office| office if office.office_desks > office.professors.count}

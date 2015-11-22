@@ -12,25 +12,27 @@ class Student < User
   validates_associated :department, :studies_programme
   validates_presence_of :semester, :status
   validates_numericality_of :semester, only_integer: true, greater_than_or_equal_to: 1
-
   validates_associated :studies_programme
-  has_many    :registrations
+
+  has_many    :registrations,   dependent: :destroy
   belongs_to  :studies_programme
   belongs_to  :department
-  embeds_many :grades
-  has_many    :attendances, dependent: :destroy
 
   scope :active, lambda{ where(status: :active) }
 
+  # FIXME chain courses
   def available_courses
-    parent_courses = self.studies_programme.courses.pluck(:id)
-    child_courses = Course.where(parent_course_id: {'$in'=> parent_courses})
-    Course.or([studies_programme_id: self.studies_programme, id: {'$nin'=> child_courses.pluck(:parent_course_id).uniq}], [id: {'$in'=> child_courses.pluck(:id)}])
+    passed_courses = self.registrations.map(&:registrations).flatten.select{|reg| reg.grade.to_f >= 5}.map(&:course_id).uniq
+    chain_courses = self.studies_programme.courses.where(:chain_course_id.ne => nil).map{|course| course.chain_course.has_child_courses? ? course.chain_course.child_courses.map(&:id) : course.chain_course_id}.flatten
+    parent_courses = self.studies_programme.courses.where(:id.nin => passed_courses).pluck(:id)
+    child_courses = Course.where(:parent_course_id.in => parent_courses, :id.nin => passed_courses)
+
+    Course.or({studies_programme_id: self.studies_programme, :id.nin => [passed_courses, child_courses.pluck(:parent_course_id)].flatten}, {:id.in => child_courses.pluck(:id)})
   end
 
   private
   def defaults
-    self.role= :student
+    self.role = :student
   end
 
   def auto_increment

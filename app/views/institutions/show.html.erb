@@ -1,8 +1,8 @@
 <% title t('.title') %>
 
-<div class="panel panel-info">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), edit_institution_path, class:'btn btn-warning btn-sm pull-right' %>
+    <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), edit_institution_path, class:'btn btn-warning btn-sm pull-right' if can?(:update, Institution) %>
     <h2 class="panel-title"><%= @institution.title %></h2>
   </div><!--//panel-body-->
   <div class="panel-body">
@@ -19,7 +19,7 @@
       </div><!--//col-->
 
       <div class="col-md-8">
-        <table class="table table-half">
+        <table class="table table-half table-bordered">
           <caption><h4><%= Institution.model_name.human %></h4></caption>
           <tr>
             <td><b><%= t 'mongoid.attributes.institution.title' %></b></td>
@@ -35,7 +35,7 @@
           </tr>
         </table>
 
-        <table class="table table-half">
+        <table class="table table-half table-bordered">
           <caption><h4><%= Address.model_name.human %></h4></caption>
           <tr>
             <td><b><%= t 'mongoid.attributes.address.country' %></b></td>
@@ -56,7 +56,7 @@
         </table>
 
         <% if @institution.has_contacts? %>
-          <table class="table table-half">
+          <table class="table table-half table-bordered">
             <caption><h4><%= Contact.model_name.human %></h4></caption>
             <tr>
               <td><b><%= t 'enumerize.contact.type.phone' %></b></td>

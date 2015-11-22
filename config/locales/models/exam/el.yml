@@ -6,6 +6,10 @@ el:
         other: 'Εξετάσεις'
     attributes:
       exam:
+        theory_start: 'Έναρξη Θεωριών'
+        theory_end: 'Τερματισμός Θεωριών'
+        lab_start: 'Έναρξη Εργασηρίων'
+        lab_end: 'Τερματισμός Εργασηρίων'
     success:
       exams:
         create: 'Η Εξεταστική για την περίοδο <b>%{period}</b> έχει αποθηκευτεί'

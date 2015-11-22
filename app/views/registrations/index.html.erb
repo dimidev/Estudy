@@ -1,10 +1,11 @@
 <% title t('.title') %>
 
 <div class="panel panel-default">
+  <% if can? :create, Registration %>
     <div class="panel-heading">
-        <%= link_to fa_icon('plus', text: t('registrations.new.title')), new_student_registration_path(params[:student_id]), class:'pull-right btn btn-sm btn-primary' if (can? :manage, Registration) %>
-        <h2 class="panel-title"><%= t('mongoid.models.registration.other') %></h2>
+      <%= link_to fa_icon('plus', text: t('registrations.new.title')), new_student_registration_path(params[:student_id]), class:'btn btn-sm btn-primary' %>
     </div><!--//panel-heading-->
+  <% end %>
   <div class="panel-body">
     <table id="registrations-table" class="datatable table table-hover table-striped" data-source="<%= student_registrations_path(params[:student_id], format: :json) %>">
       <thead>
@@ -13,7 +14,7 @@
         <th class="text-center"><%= t('mongoid.models.course.other') %></th>
         <th class="text-center"><%= t('mongoid.attributes.course.ects') %></th>
         <th class="text-center"><%= t('mongoid.attributes.course.hours') %></th>
-        <% if can? :manage, Registration %>
+        <% if can? [:update, :destroy], Registration %>
           <th class="no-sort text-center"><%= t('datatable.options') %></th>
         <% end %>
       </tr>

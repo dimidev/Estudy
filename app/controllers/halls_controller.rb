@@ -10,7 +10,7 @@ class HallsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render(json: building.halls.datatable(self, %w(name type area floors seats pc)) do |hall|
+        render(json: building.halls.datatable(self, %w(name type floor area seats pc)) do |hall|
           [
               hall.name,
               hall.type_text,
@@ -65,7 +65,7 @@ class HallsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render(json: Hall.datatable(self, %w(name type area floors seats pc)) do |hall|
+        render(json: Hall.datatable(self, %w(name type name floor area seats pc)) do |hall|
           [
               hall.name,
               hall.type_text,

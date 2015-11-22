@@ -1,29 +1,27 @@
-<% if %w(new create).include?(controller.action_name)
-     title t('exams.new.title')
-   else
-     title t('exams.edit.title')
-   end
-%>
+<% title t('.title') %>
 
 <%= render 'general/form_errors', resource: @exam %>
 
 <div class="panel panel-default">
   <div class="panel-heading">
     <ul class="nav nav-pills">
-      <li role="presentation" class="active"><a href="#events" role="tab" data-toggle="tab"><%= fa_icon'user', text: t('mongoid.models.department.one')%></a></li>
-      <li role="presentation"><a href="#address" role="tab" data-toggle="tab"><%= fa_icon'globe', text: t('mongoid.models.address.one')%></a></li>
+      <li role="presentation" class="active"><a href="#general" role="tab" data-toggle="tab"><%= fa_icon'info', text: t('mongoid.models.exam.other')%></a></li>
+      <li role="presentation"><a href="#labs" role="tab" data-toggle="tab"><%= fa_icon'calendar', text: t('mongoid.models.course.labs')%></a></li>
+      <li role="presentation"><a href="#theories" role="tab" data-toggle="tab"><%= fa_icon'calendar', text: t('mongoid.models.course.theories')%></a></li>
     </ul>
   </div><!--//pane-heading-->
 
   <div class="panel-body">
 
     <div class="tab-content">
-      <%= render 'exams/tabs/events' %>
+      <%= render 'exams/tabs/general' %>
+      <%= render 'exams/tabs/labs' %>
+      <%= render 'exams/tabs/theories' %>
     </div><!--//tab-content-->
 
   </div><!--//pane-body-->
   <div class="panel-footer">
     <%= cancel_btn(department_exams_path(@exam.department)) %>
-    <%= delete_btn(@exam) %>
+    <%= delete_btn(@exam) if can?(:destroy, Exam) %>
   </div><!--//pane-footer-->
 </div><!--//panel-->

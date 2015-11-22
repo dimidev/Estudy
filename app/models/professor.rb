@@ -11,6 +11,7 @@ class Professor < User
   belongs_to  :department
   embeds_many :office_times
   has_many    :course_classes
+  has_and_belongs_to_many :exam_courses
 
   # FIXME association saved like string, not like BSON:ObjectID
   belongs_to :professor_office, class_name:'Hall', polymorphic: true

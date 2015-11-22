@@ -20,8 +20,9 @@ class CourseClass
   belongs_to :course
   belongs_to :professor
   belongs_to :hall
-  has_many   :attendances, dependent: :destroy
   has_many   :registrations
+  belongs_to :timetable
+  has_one   :exam_course
 
   private
   def check_day

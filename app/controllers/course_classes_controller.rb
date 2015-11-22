@@ -43,7 +43,7 @@ class CourseClassesController < ApplicationController
 
   def new
     @department = Department.find(params[:department_id])
-    @course_class = @department.course_classes.build
+    @course_class = @department.course_classes.build(timetable: @department.timetables.current)
 
     @courses = @department.courses_for_class
     @professors = @department.professors
@@ -132,12 +132,12 @@ class CourseClassesController < ApplicationController
     respond_to do |format|
       format.js{render 'course_classes/js/students'}
       format.json do
-        render(json: @course_class.registrations.datatable(self, %w(fullname)) do |registration|
+        render(json: @course_class.registrations.datatable(self, %w(fullname)) do |reg|
+          @reg = reg
           [
-              %{<=link_to registration.student.fullname, student_path(registration.student) %>},
-              registration.student.stc,
-              registration.student.semester,
-              registration.student.attendances.where(course_class_id: @course_class).count,
+              %{<%= link_to @reg.course_registration.student.fullname, student_path(@reg.course_registration.student) %>},
+              reg.course_registration.student.stc,
+              reg.course_registration.student.semester,
               %{<div class="btn-group">
                 <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                 <ul class="dropdown-menu dropdown-center">
@@ -157,6 +157,6 @@ class CourseClassesController < ApplicationController
 
   private
   def course_class_params
-    params.require(:course_class).permit(:course_id, :professor_id, :hall_id, :day, :from, :to)
+    params.require(:course_class).permit(:timetable_id, :course_id, :professor_id, :hall_id, :day, :from, :to)
   end
 end

@@ -1,0 +1,21 @@
+<div role="tabpanel" class="tab-pane fade in" id="theories">
+
+  <div class="form-group">
+    <%=  link_to fa_icon('plus', text: t('mongoid.models.exam_course.add_theory_exam')), new_exam_exam_course_path(@exam, type: :theory), remote: true, class:'btn btn-default'%>
+  </div>
+
+  <table id="theories-table" class="datatable table table-hover table-striped" data-source="<%= exam_exam_courses_path(@exam, type: :theories, format: :json) %>">
+    <thead>
+    <tr>
+      <th><%= t('mongoid.attributes.exam_course.course') %></th>
+      <th><%= t 'mongoid.attributes.exam_course.exam_day' %></th>
+      <th><%= t 'mongoid.models.hall.other' %></th>
+      <th><%= t 'mongoid.models.professor.other' %></th>
+      <th class="text-center"><%= t('mongoid.attributes.course_class.registared_students') %></th>
+      <th class="no-sort text-center"><%= t('datatable.options') %></th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>

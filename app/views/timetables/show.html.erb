@@ -4,9 +4,9 @@
      title t('timetables.current.title')
    end
 %>
-<div class="panel panel-info">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), edit_timetable_path(@timetable), class:'btn btn-warning pull-right' if can?(:update, Timetable) %>
+    <%= link_to fa_icon('pencil-square-o', text: t('datatable.edit')), edit_timetable_path(@timetable), class:'btn btn-sm btn-warning pull-right' if can?(:update, Timetable) %>
     <h2 class="panel-title"><%= @timetable.period %></h2>
   </div>
     <table class="table table-bordered">
@@ -23,11 +23,11 @@
           </tr>
 
           <% if @timetable.has_child_timetables? %>
-            <% @timetable.child_timetables.each do |t| %>
+            <% @timetable.child_timetables.sort_by{|timetable| timetable.from}.each do |t| %>
               <tr>
                 <td><%= t.title.present? ? t.title : t.type_text %></td>
-                <td><%= t.from %></td>
-                <td><%= t.to %></td>
+                <td><%= t.from.strftime('%d-%m-%Y') %></td>
+                <td><%= t.to.strftime('%d-%m-%Y') %></td>
               </tr>
             <% end %>
           <% end %>

@@ -59,7 +59,7 @@ class TimetablesController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.timetable.other'), department_timetables_path(params[:department_id])
     add_breadcrumb I18n.t('timetables.current.title')
 
-    @timetable = Timetable.current
+    @timetable = Department.find(params[:department_id]).timetables.current
 
     if @timetable
       render :show

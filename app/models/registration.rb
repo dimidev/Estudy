@@ -24,7 +24,7 @@ class Registration
 
   # FIXME for some reason Timetable.current not return id
   def self.current
-    where(timetable_id: Timetable.current)
+    where(timetable_id: self.department.timetables.current)
   end
 
   # OPTIMIZE
@@ -57,13 +57,15 @@ class Registration
         end
       end
 
-      self.registrations.where(:course_id.nin => course_ids).delete_all
+      self.registrations.where(:course_id.nin => course_ids, grade: nil).delete_all
     end
   end
 
   private
+
+  #FIXME timetable from department
   def defaults
-    self.timetable = Timetable.current if self.new_record?
+    self.timetable ||= Timetable.current
     self.course_ids = self.registrations.map(&:course_id) unless self.new_record?
     self.course_class_ids = self.registrations.map(&:course_class_id) unless self.new_record?
     self.course_ids ||= []

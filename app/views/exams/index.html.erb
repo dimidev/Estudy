@@ -1,10 +1,11 @@
 <% title t('.title') %>
 
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <%= link_to fa_icon('plus', text: t('exams.new.title')), new_department_exam_path, class:'btn btn-sm btn-primary pull-right', remote: true if can?(:create, Exam) %>
-    <h2 class="panel-title"><%= t('mongoid.models.exam.other') %></h2>
-  </div>
+  <% if can? :create, Exam %>
+    <div class="panel-heading">
+      <%= link_to fa_icon('plus', text: t('exams.new.title')), new_department_exam_path, class:'btn btn-sm btn-primary', remote: true %>
+    </div>
+  <% end %>
   <div class="panel-body">
     <table id="exams-table" class="datatable table table-hover table-striped" data-source="<%= department_exams_path(params[:department_id], format: :json) %>">
       <thead>

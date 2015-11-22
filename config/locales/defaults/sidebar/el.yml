@@ -5,3 +5,5 @@ el:
       programme: 'Πρόγραμμα'
       studies: 'Σπουδών'
       exams: 'Εξετάσεων'
+    student:
+      student_cart: 'Καρτέλα Φοιτητή'

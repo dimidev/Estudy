@@ -27,9 +27,9 @@ class Department
   validates_presence_of :title, :foundation_date, :head_of_department
   validates_numericality_of :foundation_date, only_integer: true
 
-  belongs_to :institution
   embeds_one :address,      autobuild: true
   embeds_many :contacts
+  belongs_to :institution
   has_many :admins
   has_many :professors
   has_many :students

@@ -8,11 +8,11 @@ class RegistrationsController < ApplicationController
 
     # FIXME count per percent too not only ects
     respond_to do |format|
-      format.html{ flash[:notice] = I18n.t('mongoid.success.models.registration.registrations_period') if Timetable.current }
+      format.html{ flash[:notice] = I18n.t('mongoid.success.registrations.registrations_period') if Timetable.current }
       format.json do
         render(json: Student.find(params[:student_id]).registrations.datatable(self, %w(id)) do |registration|
                  [
-                     %{<%= link_to registration.timetable.period, registration_path(registration) %>},
+                     registration.timetable_id,
                      registration.registrations.count,
                      registration.registrations.map{|child| child.course.has_parent_course? ? child.course.parent_course.ects : child.course.ects}.sum,
                      registration.registrations.map{|child| child.course.hours}.sum,
@@ -33,24 +33,25 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(params[:student_id])
     add_breadcrumb I18n.t('registrations.new.title')
 
-    if timetable = Timetable.current
-      @student = Student.find(params[:student_id])
-      @registration = @student.registrations.build
+    @student = Student.find(params[:student_id])
+
+    if timetable = @student.department.timetables.current
+      @registration = @student.registrations.build(timetable_id: timetable.id)
       @registration.registrations.build
 
       if @student.studies_programme.courses.exists?
         # OPTIMIZE make this condition from model
-        if @student.registrations.where(timetable_id: Timetable.current).exists?
-          redirect_to student_registrations_path(@student), alert: I18n.t('mongoid.errors.models.registration.current_exists')
+        if @student.registrations.where(timetable_id: timetable.id).exists?
+          redirect_to student_registrations_path(@student), alert: I18n.t('mongoid.errors.registrations.current_exists')
         else
           @courses = @student.available_courses
           render :edit
         end
       else
-        redirect_to department_students_path(@student.department), alert: t('mongoid.errors.models.registration.no_courses')
+        redirect_to department_students_path(@student.department), alert: t('mongoid.errors.registrations.no_courses')
       end
     else
-      redirect_to student_registrations_path(params[:student_id]), alert: t('mongoid.errors.models.registration.registrations_period')
+      redirect_to student_registrations_path(@student), alert: t('mongoid.errors.registrations.registrations_period')
     end
   end
 
@@ -62,10 +63,10 @@ class RegistrationsController < ApplicationController
     @registration = @student.registrations.build(registration_params)
 
     if @registration.save
-      redirect_to student_registrations_path(params[:student_id]), notice: I18n.t('mongoid.success.models.registration.create')
+      redirect_to student_registrations_path(params[:student_id]), notice: I18n.t('mongoid.success.registrations.create')
     else
       @courses = @student.available_courses
-      render :edit, alert: I18n.t('mongoid.errors.models.registration.create')
+      render :edit
     end
   end
 
@@ -73,11 +74,13 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.registration.other'), student_registrations_path(params[:student_id])
     add_breadcrumb I18n.t('registrations.current.title')
 
+    student = Student.find(params[:student_id])
+
     # FIXME make this run from model scope
-    if @registration = Timetable.current.registrations.find_by(student_id: params[:student_id])
+    if @registration = @student.department.timetables.current.registrations
       render :show
     else
-      redirect_to student_registrations_path(params[:student_id]), alert: I18m.t('mongoid.errors.models.registration.current_not_exists')
+      redirect_to student_registrations_path(params[:student_id]), alert: I18m.t('mongoid.errors.registrations.current_not_exists')
     end
   end
 
@@ -103,10 +106,9 @@ class RegistrationsController < ApplicationController
     add_breadcrumb I18n.t('registrations.edit.title')
 
     if @registration.update_attributes(registration_params)
-      redirect_to student_registrations_path(@registration.student), notice: I18n.t('mongoid.success.models.registration.update')
+      redirect_to student_registrations_path(@registration.student), notice: I18n.t('mongoid.success.registrations.update')
     else
       @courses = @registration.student.available_courses
-      flash[:alert] = I18n.t('mongoid.errors.models.registration.update')
       render :edit
     end
   end
@@ -116,9 +118,9 @@ class RegistrationsController < ApplicationController
 
     respond_to do |format|
       if @registration.destroy
-        format.js{flash.now[:notice]= t('mongoid.success.models.registration.destroy')}
+        format.js{flash.now[:notice]= t('mongoid.success.registrations.destroy')}
       else
-        format.js{flash.now[:alert] = t('mongoid.errors.models.registration.destroy')}
+        format.js{flash.now[:alert] = t('mongoid.errors.registrations.destroy')}
       end
     end
   end

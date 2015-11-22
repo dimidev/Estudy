@@ -1,0 +1,33 @@
+<div class="modal fade" id="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= t('exams.new.title') %></h4>
+      </div>
+      <%= simple_form_for [@exam, @exam_course], remote: true do |f| %>
+      <div class="modal-body">
+
+        <div class="row">
+          <%= f.association :course, collection: @theory_courses, wrapper_html:{class:'col-md-6'} if @theory_courses %>
+          <%= f.association :professors, collection: @professors, wrapper_html:{class:'col-md-6'} if @theory_courses  %>
+        </div>
+
+        <%= f.association :course_class, collection: @lab_courses, label_method: lambda{|obj| "#{obj.course.title} (#{obj.day_text} #{obj.from.to_s(:time)}-#{obj.to.to_s(:time)}) - #{obj.registrations.count} #{t 'mongoid.attributes.course_class.registared_students'}"} if @lab_courses %>
+
+        <%= f.association :halls, collection: @halls if @theory_courses %>
+
+        <div class="row">
+          <%= f.input :day, as: :date_picker, wrapper_html:{class:'col-sm-4'} %>
+          <%= f.input :from, as: :time_picker, wrapper_html:{class:'col-sm-4'} %>
+          <%= f.input :to, as: :time_picker, wrapper_html:{class:'col-sm-4'} %>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <%= f.button :submit, class:'btn-success' %>
+          <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'btn.close' %></button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

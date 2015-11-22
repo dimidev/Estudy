@@ -1,0 +1,15 @@
+en:
+  mongoid:
+    models:
+      exam_course:
+        one: 'Course Exam'
+        other: 'Course Exams'
+    attributes:
+    success:
+      exam_courses:
+        create: 'Course exam is created'
+        update: 'Course exam is updated'
+        destroy: 'Course exam is deleted'
+    errors:
+      exam_courses:
+        destroy: 'Course exam is not deleted'
