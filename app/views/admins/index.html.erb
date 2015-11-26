@@ -3,7 +3,7 @@
 <div class="panel panel-default">
   <% if (can? :create, Admin) %>
     <div class="panel-heading">
-      <%= link_to fa_icon('plus', text: t('admins.new.title')), new_department_admin_path(params[:department_id]), class:'btn btn-sm btn-primary pull-right' %>
+      <%= link_to fa_icon('plus', text: t('admins.new.title')), new_department_admin_path(params[:department_id]), class:'btn btn-sm btn-primary' %>
     </div><!--//panel-heading-->
   <% end %>
   <div class="panel-body">

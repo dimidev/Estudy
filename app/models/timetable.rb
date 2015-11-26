@@ -24,7 +24,7 @@ class Timetable
   belongs_to :department
   has_many :registrations
   has_many :exam
-  has_many :course_classes
+  has_many :course_classes,   dependent: :restrict
 
   default_scope lambda{order_by(from: :desc)}
 

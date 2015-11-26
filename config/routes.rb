@@ -29,10 +29,11 @@ Rails.application.routes.draw do
       resources :admins
       resources :professors
       resources :students do
+        get 'grades', on: :member
+
         resources :registrations do
           get 'current', on: :collection
         end
-        resources :grades
       end
       resources :studies_programmes do
         resources :courses
@@ -42,9 +43,17 @@ Rails.application.routes.draw do
       end
       resources :course_classes do
         get 'students', on: :member
+        resources :attendances
       end
       resources :exams do
-        resources :exam_courses
+        resources :exam_courses do
+          member do
+            get 'edit_attendances'
+            get 'edit_grades'
+            patch 'save_attendances'
+            patch 'save_grades'
+          end
+        end
       end
     end
     resources :conversations

@@ -1,0 +1,6 @@
+en:
+  helpers:
+    submit:
+      exam:
+        create: 'Δημιουργία Εξέτασης'
+        update: 'Ενημέρωση Εξέτασης'

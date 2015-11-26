@@ -24,7 +24,6 @@
 //= require pickers
 //= require ahoy
 //= require underscore
-//= require best_in_place
 //= require bootstrap-select.min
 //= require bootstrap-toggle.min
 //= require ckeditor/init
@@ -38,9 +37,6 @@ $(function(){
         var main_height = $(document).outerHeight(true) - $('header').outerHeight(true) - $('footer').outerHeight(true);
         $('main .wrapper').css('min-height',main_height);
     }
-
-    // Ahoy track events automatically
-    // ahoy.trackAll();
 
     // Bootstrap Tooltip init
     $('[data-toggle="tooltip"]').tooltip();

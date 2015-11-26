@@ -16,5 +16,7 @@
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
-
+every 1.day do
+  rake "tmp:clear"
+end
 # Learn more: http://github.com/javan/whenever

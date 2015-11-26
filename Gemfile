@@ -14,7 +14,6 @@ gem 'bootstrap-kaminari-views'
 gem "breadcrumbs_on_rails"
 gem 'simple_form'
 gem 'nested_form'
-gem 'best_in_place'
 gem 'enumerize'
 gem 'chartkick'
 gem 'groupdate'
@@ -52,13 +51,11 @@ group :development, :test do
 end
 
 group :development do
-  gem "rubycritic", :require => false
   gem 'rubocop', require: false
   gem 'brakeman'
   gem 'traceroute'
   gem "better_errors"
   gem "binding_of_caller"
-  gem "rails_best_practices"
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end

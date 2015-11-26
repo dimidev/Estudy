@@ -355,3 +355,37 @@ footer{
   max-width: 300px;
   max-height: 150px;
 }
+
+#chat{
+  .contacts{
+    float: left;
+    width: 30%;
+
+    .search{}
+
+    .users{
+      overflow-y: scroll;
+      img{
+        height: 64px;
+        width: 64px;
+      }
+    }//.users
+  }//.contacts
+
+  .messages{
+    width: 70%;
+    float: left;
+
+    .messages-popups{
+      overflow-y: scroll;
+      img{
+        height: 64px;
+        width: 64px;
+      }
+    }//.messages-popups
+
+    form.new-message{
+
+    }
+  }//.messages
+}//chat

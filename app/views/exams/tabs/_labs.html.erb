@@ -1,7 +1,7 @@
 <div role="tabpanel" class="tab-pane fade in" id="labs">
 
   <div class="form-group">
-    <%=  link_to fa_icon('plus', text: t('mongoid.models.exam_course.add_lab_exam')), new_exam_exam_course_path(@exam, type: :theory), remote: true, class:'btn btn-default'%>
+    <%=  link_to fa_icon('plus', text: t('mongoid.models.exam_course.add_lab_exam')), new_exam_exam_course_path(@exam, type: :lab), remote: true, class:'btn btn-default'%>
   </div>
 
   <table id="labs-table" class="datatable table table-hover table-striped" data-source="<%= exam_exam_courses_path(@exam, type: :labs, format: :json) %>">

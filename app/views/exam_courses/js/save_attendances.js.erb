@@ -1,0 +1,17 @@
+<% if @exam_course.errors.any? %>
+  $('.modal-body').find('.alert').remove();
+  $('.modal-body').prepend("<%= j render 'general/form_errors', resource: @exam_course %>");
+<% else %>
+  $('.modal').modal('hide');
+
+  <% if @exam_course.has_course_class? %>
+    $("#labs-table").DataTable().draw(false);
+  <% else %>
+    $("#theories-table").DataTable().draw(false);
+  <% end %>
+<% end %>
+
+<% if notice || alert %>
+  $('.alert').remove();
+  $('.modal-body').prepend("<%= j render 'general/flash_messages' %>");
+<% end %>

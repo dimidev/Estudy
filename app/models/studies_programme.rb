@@ -16,9 +16,8 @@ class StudiesProgramme
   validates_presence_of :diploma_title, :studies_level, :semesters
   validates_numericality_of :semesters, only_integer: true, greater_than: 0
 
-  embeds_many :programme_rules
   has_many :courses,            dependent: :restrict
   belongs_to :department
 
-  accepts_nested_attributes_for :programme_rules, :courses, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :courses, allow_destroy: true, reject_if: :all_blank
 end

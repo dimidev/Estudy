@@ -1,0 +1,10 @@
+en:
+  exams:
+    index:
+      title: 'View Exams'
+    new:
+      title: 'New Exam'
+    edit:
+      title: 'Edit Exam'
+    show:
+      title: 'Show Exam'

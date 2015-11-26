@@ -1,13 +1,13 @@
 class ExamCoursesController < ApplicationController
-  load_and_authorize_resource :exam
-  load_and_authorize_resource :exam_course, through: :exam, shallow: true
+  #load_and_authorize_resource :exam
+  #load_and_authorize_resource :exam_course, through: :exam, shallow: true
 
   def index
     respond_to do |format|
       format.html
       format.json do
         if params[:type]=='labs'
-          render(json: Exam.find(params[:exam_id]).exam_courses.where(:course_class_id.ne=>nil).datatable(self, %w(exam_day exam_day name name)) do |exam_course|
+          render(json: Exam.find(params[:exam_id]).exam_courses.where(:course_class_id.ne => nil).datatable(self, %w(exam_day exam_day name name)) do |exam_course|
             [
                 "#{exam_course.course_class.course.title} (#{exam_course.course_class.day_text} #{exam_course.course_class.from.to_s(:time)}-#{exam_course.course_class.to.to_s(:time)})",
                 exam_course.exam_day,
@@ -17,6 +17,9 @@ class ExamCoursesController < ApplicationController
                 %{<div class="btn-group">
                 <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                 <ul class="dropdown-menu dropdown-center">
+                  <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_grades_exam_course_path(exam_course), remote: true %></li>
+                  <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_attendances_exam_course_path(exam_course), remote: true %></li>
+                  <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_attendances_exam_course_path(exam_course), remote: true %></li>
                   <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_exam_course_path(exam_course), remote: true %></li>
                   <li><%= link_to fa_icon('trash-o', text: I18n.t('datatable.delete')), exam_course_path(exam_course), method: :delete, remote: true, data:{confirm: I18n.t('confirmation.delete')} %></li>
                 </ul>
@@ -24,7 +27,7 @@ class ExamCoursesController < ApplicationController
             ]
           end)
         else
-          render(json: Exam.find(params[:exam_id]).exam_courses.where(:course_id.ne=>nil).datatable(self, %w(exam_day exam_day)) do |exam_course|
+          render(json: Exam.find(params[:exam_id]).exam_courses.where(:course_id.ne => nil).datatable(self, %w(exam_day exam_day)) do |exam_course|
             [
                 exam_course.course.title,
                 exam_course.exam_day,
@@ -59,7 +62,7 @@ class ExamCoursesController < ApplicationController
     end
 
     respond_to do |format|
-      format.js{render 'exam_courses/js/edit'}
+      format.js { render 'exam_courses/js/edit' }
     end
   end
 
@@ -80,7 +83,7 @@ class ExamCoursesController < ApplicationController
           @theory_courses = Course.all
         end
       end
-      format.js{render 'exam_courses/js/save'}
+      format.js { render 'exam_courses/js/save' }
     end
   end
 
@@ -97,7 +100,7 @@ class ExamCoursesController < ApplicationController
     end
 
     respond_to do |format|
-      format.js{render 'exam_courses/js/edit'}
+      format.js { render 'exam_courses/js/edit' }
     end
   end
 
@@ -118,7 +121,7 @@ class ExamCoursesController < ApplicationController
     end
 
     respond_to do |format|
-      format.js{render 'exam_courses/js/save'}
+      format.js { render 'exam_courses/js/save' }
     end
   end
 
@@ -135,8 +138,51 @@ class ExamCoursesController < ApplicationController
     end
   end
 
+  def edit_attendances
+    @exam_course = ExamCourse.find(params[:id])
+    @exam_course.attendance ||= @exam_course.build_attendance
+
+    respond_to do |format|
+      format.js { render 'exam_courses/js/edit_attendances' }
+    end
+  end
+
+  def save_attendances
+    @exam_course = ExamCourse.find(params[:id])
+    if @exam_course.update_attributes(exam_course_params)
+      respond_to do |format|
+        format.js { render 'exam_courses/js/save_attendances' }
+      end
+    end
+  end
+
+  def edit_grades
+    @exam_course = ExamCourse.find(params[:id])
+    @course_class = @exam_course.course_class
+
+    respond_to do |format|
+      format.js { render 'exam_courses/js/edit_grades' }
+    end
+  end
+
+  def save_grades
+    @exam_course = ExamCourse.find(params[:id])
+    @course_class = @exam_course.course_class
+
+    @course_class.update_attributes(course_class_params)
+
+    respond_to do |format|
+      format.js { render 'exam_courses/js/save_grades' }
+    end
+  end
+
   private
   def exam_course_params
-    params.require(:exam_course).permit(:day, :from, :to, :course_id, :course_class_id, professor_ids:[], hall_ids:[])
+    params.require(:exam_course).permit(:day, :from, :to, :course_id, :course_class_id, professor_ids: [], hall_ids: [],
+                                        attendance_attributes: [student_ids: []])
+  end
+
+  def course_class_params
+    params.require(:course_class).permit(registrations_attributes: [:id, :grade])
   end
 end

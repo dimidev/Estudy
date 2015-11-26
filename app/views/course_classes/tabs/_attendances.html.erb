@@ -1,0 +1,16 @@
+<div role="tabpanel" class="tab-pane fade in" id="attendances">
+  <%= link_to fa_icon('plus', text: 'prosthiki'), new_course_class_attendance_path(@course_class), remote: true, class:'btn btn-default' %>
+
+  <table id="attendances-table" class="datatable table table-hover table-striped" data-source="<%= course_class_attendances_path(@course_class, format: :json) %>">
+    <thead>
+    <tr>
+      <th><%= 'date' %></th>
+      <th class="text-center"><%= 'parontes' %></th>
+      <th class="text-center"><%= 'apontes' %></th>
+      <th class="text-center"><%= t 'datatable.options' %></th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div><!--//students-->

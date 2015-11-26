@@ -13,7 +13,6 @@
   <div class="panel-heading">
     <ul class="nav nav-pills">
       <li role="presentation" class="active"><a href="#programme" role="tab" data-toggle="tab"><%= fa_icon'user', text: t('mongoid.models.studies_programme.one')%></a></li>
-      <li role="presentation"><a href="#rules" role="tab" data-toggle="tab"><%= fa_icon'file-o', text: t('mongoid.models.programme_rule.other')%></a></li>
       <li role="presentation"><a href="#courses" role="tab" data-toggle="tab"><%= fa_icon'book', text: t('mongoid.models.course.other')%></a></li>
     </ul>
   </div><!--//panel-heading-->
@@ -22,7 +21,6 @@
 
         <div class="tab-content">
             <%= render 'studies_programmes/tabs/programme', f: f %>
-            <%= render 'studies_programmes/tabs/rules', f: f %>
             <%= render 'studies_programmes/tabs/courses', f: f %>
         </div><!--//tab-content-->
 

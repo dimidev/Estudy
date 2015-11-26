@@ -7,9 +7,9 @@ el:
     attributes:
       exam:
         theory_start: 'Έναρξη Θεωριών'
-        theory_end: 'Τερματισμός Θεωριών'
-        lab_start: 'Έναρξη Εργασηρίων'
-        lab_end: 'Τερματισμός Εργασηρίων'
+        theory_end: 'Λήξη Θεωριών'
+        lab_start: 'Έναρξη Εργαστηρίων'
+        lab_end: 'Λήξη Εργαστηρίων'
     success:
       exams:
         create: 'Η Εξεταστική για την περίοδο <b>%{period}</b> έχει αποθηκευτεί'

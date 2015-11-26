@@ -23,6 +23,9 @@ class CourseClass
   has_many   :registrations
   belongs_to :timetable
   has_one   :exam_course
+  embeds_many :attendances
+
+  accepts_nested_attributes_for :registrations, :attendances
 
   private
   def check_day

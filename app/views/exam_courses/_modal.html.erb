@@ -18,9 +18,8 @@
         <%= f.association :halls, collection: @halls if @theory_courses %>
 
         <div class="row">
-          <%= f.input :day, as: :date_picker, wrapper_html:{class:'col-sm-4'} %>
-          <%= f.input :from, as: :time_picker, wrapper_html:{class:'col-sm-4'} %>
-          <%= f.input :to, as: :time_picker, wrapper_html:{class:'col-sm-4'} %>
+          <%= f.input :day, as: :date_picker, wrapper_html:{class:'col-sm-6'} %>
+          <%= f.input :day, label: 'Ωρα Εξέτασης' ,collection: @lab_courses, wrapper_html:{class:'col-sm-6'} %>
         </div>
       </div>
       <div class="modal-footer">

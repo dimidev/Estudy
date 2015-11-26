@@ -20,7 +20,6 @@ class Student < User
 
   scope :active, lambda{ where(status: :active) }
 
-  # FIXME chain courses
   def available_courses
     passed_courses = self.registrations.map(&:registrations).flatten.select{|reg| reg.grade.to_f >= 5}.map(&:course_id).uniq
     chain_courses = self.studies_programme.courses.where(:chain_course_id.ne => nil).map{|course| course.chain_course.has_child_courses? ? course.chain_course.child_courses.map(&:id) : course.chain_course_id}.flatten

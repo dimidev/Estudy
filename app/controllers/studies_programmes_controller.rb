@@ -104,7 +104,6 @@ class StudiesProgrammesController < ApplicationController
 
   private
   def studies_programme_params
-    params.require(:studies_programme).permit(:studies_level, :diploma_title, :semesters, :fees, :orientation, :status,
-                                              programme_rules_attributes: [:id, :_destroy, :course_type, :operator, :value])
+    params.require(:studies_programme).permit(:studies_level, :diploma_title, :semesters, :fees, :orientation, :status)
   end
 end

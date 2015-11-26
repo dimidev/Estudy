@@ -1,6 +1,0 @@
-en:
-  mongoid:
-    models:
-      programme_rule:
-        one: 'Programme Rule'
-        other: 'Programme Rules'

@@ -1,0 +1,33 @@
+<div class="modal fade" id="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= t('exams.new.title') %></h4>
+      </div>
+      <%= simple_nested_form_for @course_class, url: save_grades_exam_course_path(@exam_course), remote: true do |f| %>
+      <div class="modal-body">
+
+        <table class="table table-bordered">
+          <thead>
+            <th><%= t 'mongoid.attributes.user.fullname' %></th>
+            <th><%= 'grade' %></th>
+          </thead>
+          <tbody>
+          <%= f.simple_fields_for :registrations, defaults:{label: false} do |r| %>
+              <tr>
+                <td><%= r.object.course_registration.student.fullname %></td>
+                <td><%= r.input :grade %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+          <%= f.button :submit, class:'btn-success' %>
+          <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'btn.close' %></button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -20,9 +20,7 @@ class StudentsController < ApplicationController
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
-                          <% if can? :index, Grade %>
-                            <li><%= link_to fa_icon('tasks', text: I18n.t('mongoid.models.grade.special')), student_grades_path(student) %></li>
-                          <% end %>
+                          <li><%= link_to fa_icon('tasks', text: I18n.t('mongoid.models.grade.special')), grades_student_path(student) %></li>
                           <% if can? :index, Registration %>
                             <li><%= link_to fa_icon('tasks', text: I18n.t('mongoid.models.registration.other')), student_registrations_path(student) %></li>
                           <% end %>
@@ -76,6 +74,13 @@ class StudentsController < ApplicationController
     @phones = @student.contacts.phones.map(&:value).join(', ')
     @fax = @student.contacts.fax.map(&:value).join(', ')
     @emails = [@student.email, @student.contacts.emails.map(&:value)].flatten.join(', ')
+  end
+
+  def grades
+    @student = Student.find(params[:id])
+    @registrations = @student.registrations.map(&:registrations).flatten.group_by{|reg| reg.course.semester}
+
+    @avg_grade, @sum_ects, @sum_hours = 0, 0, 0
   end
 
   def edit

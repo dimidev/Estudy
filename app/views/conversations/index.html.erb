@@ -1,0 +1,46 @@
+<% title t('.title') %>
+
+<div class="panel panel-default">
+  <div id="chat">
+    <div class="contacts">
+      <div class="users">
+        <% @users.each do |u| %>
+            <%= link_to '#' do %>
+              <div class="media">
+                <div class="media-left media-middle">
+                  <%= image_tag u.user_avatar.url(:thumb), class:'media-object' %>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading"><%= u.fullname %></h4>
+                  ...
+                </div>
+              </div>
+            <% end %>
+        <% end %>
+      </div><!--//users-->
+    </div><!--//contacts-->
+
+    <div class="messages">
+      <div class="messages-popups">
+        <% 30.times do %>
+          <div class="media">
+            <div class="media-left media-middle">
+              <%= image_tag current_user.user_avatar.url(:thumb), class:'media-object' %>
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading"><%= current_user.fullname %></h4>
+              ...
+            </div>
+          </div>
+        <% end %>
+      </div><!--//messages-popups-->
+
+      <div class="message-box">
+        <%= simple_form_for :message, url: '#', remote: true, class:'new-message' do |m| %>
+          <%= m.input :message, as: :ckeditor %>
+          <%= m.button :submit, class:'btn btn-primary' %>
+        <% end %>
+      </div><!--//message-box-->
+    </div><!--//messages-->
+  </div><!--//chat-->
+</div><!--//panel-->

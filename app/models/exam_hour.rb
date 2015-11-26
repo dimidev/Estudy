@@ -4,4 +4,5 @@ class ExamHour
   field :from, type: Time
   field :to, type: Time
 
+
 end

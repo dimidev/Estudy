@@ -5,8 +5,6 @@ class ExamCourse
   attr_reader :exam_day
 
   field :day,   type: Date
-  field :from,  type: Time
-  field :to,    type: Time
 
   validates_presence_of :day
 
@@ -15,10 +13,13 @@ class ExamCourse
   belongs_to :course
   has_and_belongs_to_many :halls
   has_and_belongs_to_many :professors
+  embeds_one :attendance
 
   default_scope lambda{order_by(from: :desc)}
 
+  accepts_nested_attributes_for :attendance, :course_class
+
   def exam_day
-    "#{day.strftime('%d-%m-%Y')} (#{from.to_s(:time)} - #{to.to_s(:time)})"
+    "#{day.strftime('%d-%m-%Y')}"
   end
 end

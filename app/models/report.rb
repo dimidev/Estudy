@@ -1,4 +1,3 @@
-class Grade
+class Report
   include Mongoid::Document
-
 end

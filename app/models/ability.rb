@@ -12,14 +12,14 @@ class Ability
       can [:show, :update], Superadmin
       can :manage, Admin
       can :manage, Notice
-      can :read, [Professor, Student, Registration, Grade]
+      can :read, [Professor, Student, Registration]
       can :read, [StudiesProgramme, CourseClass, Timetable, Exam]
     elsif user.role? :admin
       can :read, Institution
       can [:show, :update], Department, id: user.department_id
       can :manage, [Admin, Professor, Student]
       can :manage, [StudiesProgramme, Timetable, CourseClass, Exam, ExamCourse]
-      can :manage, [Registration, Grade]
+      can :manage, [Registration]
       can :manage, Notice, department_id: user.department_id
       can :manage, [Building, Hall]
     elsif user.role? :professor

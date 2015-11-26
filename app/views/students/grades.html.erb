@@ -1,0 +1,66 @@
+<%
+  if controller.action_name == 'show'
+    title t('registrations.show.title')
+  else
+    title t('registrations.current.title')
+  end
+%>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 class="panel-title"><%= 'das' %></h2>
+    </div>
+    <div class="panel-body">
+      <% @registrations.each do |semester, reg| %>
+          <table class="table table-bordered">
+            <caption><h4><%= "#{semester} #{t('mongoid.attributes.course.semester')}" %></h4></caption>
+          <thead>
+            <th class="col-sm-6"><%= t 'mongoid.attributes.course.title' %></th>
+            <th class="col-sm-3 text-center"><%= t 'mongoid.attributes.course.course_type' %></th>
+            <th class="col-sm-1 text-center"><%= t 'mongoid.attributes.course.ects' %></th>
+            <th class="col-sm-1 text-center"><%= t 'mongoid.attributes.course.hours' %></th>
+            <th class="col-sm-1 text-center"><%= t 'mongoid.attributes.registration.grade' %></th>
+          </thead>
+          <tbody>
+            <% reg.each do |r| %>
+              <tr>
+                <td>
+                  <%= r.course.has_parent_course? ? "#{r.course.title} (#{r.course.course_part_text})" : r.course.title %>
+                  <%= "#{r.course_class.hall.name} (#{r.course_class.day_text} #{r.course_class.from.to_s(:time)}-#{r.course_class.to.to_s(:time)})" if r.has_course_class? %>
+                </td>
+                <td class="text-center"><%= r.course.has_parent_course? ? r.course.parent_course.course_type_text : r.course.course_type_text %></td>
+                <td class="text-center"><%= r.course.has_parent_course? ? number_to_percentage(r.course.percent, precision: 0) : r.course.ects %></td>
+                <td class="text-center"><%= r.course.hours %></td>
+                <td class="text-center"><%= r.grade || '-' %></td>
+              </tr>
+            <%
+               @avg_grade += r.grade if r.grade.is_a? Numeric
+               @sum_ects += r.course.ects || 0
+               @sum_hours += r.course.hours
+            %>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+      <table class="table table-bordered">
+        <thead>
+          <th class="col-sm-9 text-right"></th>
+          <th class="col-sm-1 text-center"><%= t 'mongoid.attributes.course.ects' %></th>
+          <th class="col-sm-1 text-center"><%= t 'mongoid.attributes.course.hours' %></th>
+          <th class="col-sm-1 text-center"><%= t 'mongoid.attributes.registration.grade' %></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center"><%= 'sinolo' %></td>
+            <td class="text-center"><%= @sum_ects %></td>
+            <td class="text-center"><%= @sum_hours %></td>
+            <td class="text-center"><%= @avg_grade %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div><!--//panel-->
+
+
+
