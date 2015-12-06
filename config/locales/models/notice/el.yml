@@ -2,24 +2,25 @@ el:
   mongoid:
     models:
       notice:
-        one: 'Ειδοποίηση'
-        other: 'Ειδοποιήσεις'
+        one: 'Ανακοίνωση'
+        other: 'Ανακοινώσεις'
     attributes:
       notice:
         title: 'Τίτλος'
         content: 'Περιεχόμενο'
         created_at: 'Ημ. Δημιουργίας'
         updated_at: 'Ημ. Ανανέωσης'
+        publication_date: 'Ημ. Δημοσίευσης'
         target: 'Παραλήπτες'
     success:
       notices:
-        create: 'Ειδοποίηση με τίτλο <b>%{title}</b> έχει δημιουργηθεί'
-        update: 'Ειδοποίηση με τίτλο <b>%{title}</b> έχει αποθηκευτεί'
-        destroy: 'Ειδοποίηση με τίτλο <b>%{title}</b> έχει διαγραφεί'
+        create: 'Ανακοίνωση με τίτλο <b>%{title}</b> έχει δημιουργηθεί'
+        update: 'Ανακοίνωση με τίτλο <b>%{title}</b> έχει αποθηκευτεί'
+        destroy: 'Ανακοίνωση με τίτλο <b>%{title}</b> έχει διαγραφεί'
     errors:
       notices:
-        destroy: 'Η ειδοποίηση με τίτλο <b>%{title}</b> δεν έχει διαγραφεί'
-        no_notices: 'Δεν υπάρχουν ειδοποιήσεις'
+        destroy: 'Η ανακοίνωση με τίτλο <b>%{title}</b> δεν έχει διαγραφεί'
+        no_notices: 'Δεν υπάρχουν ανακοινώσεις'
       models:
         notice:
           attributes:

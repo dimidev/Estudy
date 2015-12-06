@@ -6,3 +6,4 @@ en:
       title: 'New Notice'
     edit:
       title: 'Edit Notice'
+      department_id_info: 'In case we specified section selection, you must select the option Departments on recipients field that announcements appear in this section only'

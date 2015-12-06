@@ -2,8 +2,8 @@ el:
   helpers:
     submit:
       notice:
-        create: 'Δημιουργία Ειδοποίησης'
-        update: 'Ενημέρωση Ειδοποίησης'
+        create: 'Δημιουργία Ανακοίνωσης'
+        update: 'Ενημέρωση Ανακοίνωσης'
   simple_form:
     labels:
       notice:

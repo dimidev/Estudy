@@ -92,8 +92,6 @@ class HallsController < ApplicationController
     add_breadcrumb I18n.t('mongoid.models.building.other'), buildings_path
     add_breadcrumb I18n.t('mongoid.models.hall.other'), building_halls_path(@hall.building)
     add_breadcrumb I18n.t('halls.edit.title')
-
-    render :edit
   end
 
   def update

@@ -1,5 +1,5 @@
 <div class="modal fade" id="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -9,11 +9,14 @@
         <h3 class='notice-title'><%= j @notice.title %></h3>
 
         <% if @notice.content.present? %>
-            <div class='well'><%= j @notice.content.html_safe %></div>
+            <div class='well'><%= h @notice.content.html_safe %></div>
         <% end %>
 
         <blockquote>
-          <p><%= @notice.updated_at.strftime('%d-%m-%Y %H:%M:%S') %></p>
+          <p><%= t('mongoid.attributes.notice.publication_date')<< ': '<< @notice.created_at.strftime('%d-%m-%Y %H:%M:%S') %></p>
+          <% if @notice.created_at != @notice.updated_at %>
+            <p><%= t('mongoid.attributes.notice.updated_at')<< ': '<< @notice.updated_at.strftime('%d-%m-%Y %H:%M:%S') %></p>
+          <% end %>
         </blockquote>
       </div>
       <div class="modal-footer">

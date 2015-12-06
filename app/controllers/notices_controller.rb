@@ -81,8 +81,6 @@ class NoticesController < ApplicationController
     @notice = Notice.find(params[:id])
 
     @departments = Department.active if current_user.role?(:superadmin)
-
-    render :edit
   end
 
   def update
