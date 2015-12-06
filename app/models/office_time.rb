@@ -3,7 +3,7 @@ class OfficeTime
   extend Enumerize
   extend ActiveModel::Naming
 
-  DAYS = %w(monday tuesday wednesday thursday friday saturday sunday)
+  DAYS = %w(monday tuesday wednesday thursday friday)
 
   field :day
   enumerize :day, in: DAYS

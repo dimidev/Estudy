@@ -15,3 +15,6 @@ el:
       models:
         address:
           no_exists: 'Δεν υπάρχουν διευθύνσεις'
+          attributes:
+            primary:
+              duplicate: 'δεν μπορείτε να έχετε δύο κύριες κατοικίες'

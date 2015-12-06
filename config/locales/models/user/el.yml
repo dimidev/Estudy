@@ -18,6 +18,8 @@ el:
         trn: 'Αριθμός Φορολογικού Μητρώου'
         ssn: 'ΑΜΚΑ'
         tax_office: 'ΔΟΥ'
+        address: 'Διεύθυνση'
+        addresses: 'Διευθύνσεις'
     success:
       users:
         create: 'Η εγγραφή %{model} <b>%{name}</b> ήταν επιτυχής'

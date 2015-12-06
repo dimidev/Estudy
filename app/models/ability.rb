@@ -18,10 +18,10 @@ class Ability
       can :read, Institution
       can [:show, :update], Department, id: user.department_id
       can :manage, [Admin, Professor, Student]
-      can :manage, [StudiesProgram, Timetable, CourseClass, Exam, ExamCourse]
-      can :manage, [Registration]
-      can :manage, Notice, department_id: user.department_id
+      can :manage, [StudiesProgram, Timetable, CourseClass, Exam, ExamCourse, Registration]
       can :manage, [Building, Hall]
+      can :manage, Notice, department_id: user.department_id
+      can :show, Notice, target: :institution
     elsif user.role? :professor
       can :read, Institution
       can :manage, Department, id: user.department_id

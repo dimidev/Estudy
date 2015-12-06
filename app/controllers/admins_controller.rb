@@ -15,7 +15,7 @@ class AdminsController < ApplicationController
                      %{<%= link_to admin.name, admin_path(admin) %>},
                      %{<%= link_to admin.lastname, admin_path(admin) %>},
                      admin.email,
-                     %{<% if [:update, :destroy] %>
+                     %{<% if can? [:update, :destroy], Admin %>
                         <li class="btn-group">
                           <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                           <ul class="dropdown-menu dropdown-center">
@@ -102,7 +102,6 @@ class AdminsController < ApplicationController
   end
 
   private
-
   def admin_params
     params.require(:admin).permit(:user_avatar, :delete_img, :email, :password, :password_confirmation,
                                   :name, :lastname, :gender, :birthdate, :nic, :trn, :ssn, :tax_office,

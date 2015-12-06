@@ -4,7 +4,10 @@ en:
       address:
        one: 'Address'
        other: 'Addresses'
-  errors:
-     models:
-       address:
-         no_exists: 'There is no address'
+    errors:
+      models:
+        address:
+          no_exists: 'There is no address'
+          attributes:
+           primary:
+             duplicate: 'you cannot have two primary addresses'

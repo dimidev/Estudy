@@ -82,6 +82,7 @@ class User
   validates_presence_of :name, :lastname, :gender, :birthdate, unless: lambda{ |obj| obj.role? :superadmin }
   validates_presence_of :password, on: :create
   validates_confirmation_of :password, unless: lambda { self.password.blank? || self.password.nil? }
+  validate :check_addresses
 
   embeds_many :addresses
   embeds_many :contacts
@@ -98,8 +99,15 @@ class User
   end
 
   private
-
   def set_default_avatar
     "user_avatars/#{self.gender}.png"
+  end
+
+  def check_addresses
+    unless role=='superadmin'
+      if addresses.select{|address| address if address.primary}.count > 1
+        errors[:addresses]<< I18n.t('mongoid.errors.models.address.attributes.primary.duplicate')
+      end
+    end
   end
 end
