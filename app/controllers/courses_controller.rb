@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render(json: StudiesProgramme.find(params[:studies_programme_id]).courses.datatable(self, %w(semester title course_type ects hours)) do |course|
+        render(json: StudiesProgram.find(params[:studies_program_id]).courses.datatable(self, %w(semester title course_type ects hours)) do |course|
                  [
                      course.semester,
                      %{<%= link_to course.title, course_path(course), remote: true %>},
@@ -27,9 +27,9 @@ class CoursesController < ApplicationController
 
   # FIXME chain_courses, the last course has only id and not exists as course
   def new
-    @studies_programme = StudiesProgramme.find(params[:studies_programme_id])
-    @chain_courses = @studies_programme.courses
-    @course = @studies_programme.courses.build
+    @studies_program = StudiesProgram.find(params[:studies_program_id])
+    @chain_courses = @studies_program.courses
+    @course = @studies_program.courses.build
 
     respond_to do |format|
       format.js { render 'courses/js/edit' }
@@ -38,15 +38,15 @@ class CoursesController < ApplicationController
 
   # FIXME chain_courses, the last course has only id and not exists as course
   def create
-    @studies_programme = StudiesProgramme.find(params[:studies_programme_id])
-    @course = @studies_programme.courses.build(course_params)
+    @studies_program = StudiesProgram.find(params[:studies_program_id])
+    @course = @studies_program.courses.build(course_params)
 
     respond_to do |format|
       if @course.save
         flash.now[:notice] = I18n.t('mongoid.success.courses.create', title: @course.title)
         format.js { render 'courses/js/save' }
       else
-        @chain_courses = @studies_programme.courses
+        @chain_courses = @studies_program.courses
         format.js { render 'courses/js/save' }
       end
     end
@@ -54,7 +54,7 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find(params[:id])
-    @chain_courses = @course.studies_programme.courses.ne(id: @course)
+    @chain_courses = @course.studies_program.courses.ne(id: @course)
 
     respond_to do |format|
       format.js{render 'courses/js/edit'}
@@ -76,7 +76,7 @@ class CoursesController < ApplicationController
         flash.now[:notice] = I18n.t('mongoid.success.courses.update', title: @course.title)
         format.js { render 'courses/js/save' }
       else
-        @chain_courses = @course.studies_programme.courses.ne(id: @course)
+        @chain_courses = @course.studies_program.courses.ne(id: @course)
         format.js { render 'courses/js/save' }
       end
     end

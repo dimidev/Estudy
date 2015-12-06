@@ -9,13 +9,13 @@ class Student < User
   field :status
   enumerize :status, in: [:active, :not_active, :postponement, :graduate], default: :active
 
-  validates_associated :department, :studies_programme
+  validates_associated :department, :studies_program
   validates_presence_of :semester, :status
   validates_numericality_of :semester, only_integer: true, greater_than_or_equal_to: 1
-  validates_associated :studies_programme
+  validates_associated :studies_program
 
   has_many    :registrations,   dependent: :destroy
-  belongs_to  :studies_programme
+  belongs_to  :studies_program
   belongs_to  :department
 
   scope :active, lambda{ where(status: :active) }

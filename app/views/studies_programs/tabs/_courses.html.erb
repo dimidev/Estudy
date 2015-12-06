@@ -1,14 +1,14 @@
 <div role="tabpanel" class="tab-pane fade" id="courses">
   <% if %w(new create).include?(controller.action_name) %>
     <div class="alert alert-warning text-center">
-      <%= fa_icon'exclamation-circle', text: t('studies_programmes.new.alerts.save_first') %>
+      <%= fa_icon'exclamation-circle', text: t('studies_programs.new.alerts.save_first') %>
     </div>
   <% else %>
       <div class="form-group">
-        <%= link_to fa_icon('plus', text: t('courses.new.title')), new_studies_programme_course_path(f.object), remote: true, class:'btn btn-primary' %>
+        <%= link_to fa_icon('plus', text: t('courses.new.title')), new_studies_program_course_path(f.object), remote: true, class:'btn btn-primary' %>
       </div>
 
-      <table id="courses-table" class="datatable table table-hover table-striped" data-source="<%= studies_programme_courses_path(f.object , format: :json) %>">
+      <table id="courses-table" class="datatable table table-hover table-striped" data-source="<%= studies_program_courses_path(f.object , format: :json) %>">
         <thead>
         <tr>
           <th class="text-center"><%= t('mongoid.attributes.course.semester') %></th>

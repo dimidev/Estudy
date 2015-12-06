@@ -25,7 +25,7 @@ class Course
   validates :attendances_limit, presence: true, numericality: {integer_only: true, greater_than_equal_to: 0, less_than_or_equal_to: 100}, if: lambda{ |obj| obj.course_part == 'lab' }
   validate :check_ects
 
-  belongs_to  :studies_programme
+  belongs_to  :studies_program
   has_many    :registrations
   has_many    :course_classes, dependent: :destroy
   has_many    :exam_courses
@@ -42,7 +42,7 @@ class Course
   private
   def check_ects
     unless has_parent_course?
-      errors[:semester] << I18n.t('mongoid.errors.models.course.attributes.semester.bigger_than_programm') if semester.to_i > studies_programme.semesters.to_i
+      errors[:semester] << I18n.t('mongoid.errors.models.course.attributes.semester.bigger_than_programm') if semester.to_i > studies_program.semesters.to_i
     end
   end
 

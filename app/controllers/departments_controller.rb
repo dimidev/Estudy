@@ -29,8 +29,8 @@ class DepartmentsController < ApplicationController
                             <li><%= link_to fa_icon('users', text: I18n.t('mongoid.models.student.other')), department_students_path(department) %></li>
                           <li class='divider'></li>
                           <% end %>
-                          <% if can? :index, StudiesProgramme %>
-                            <li><%= link_to fa_icon('book', text: I18n.t('mongoid.models.studies_programme.other')), department_studies_programmes_path(department) %></li>
+                          <% if can? :index, StudiesProgram %>
+                            <li><%= link_to fa_icon('book', text: I18n.t('mongoid.models.studies_program.other')), department_studies_programs_path(department) %></li>
                           <% end %>
                           <% if can? :index, Exam %>
                             <li><%= link_to fa_icon('calendar', text: I18n.t('mongoid.models.exam.other')), department_exams_path(department) %></li>
@@ -90,8 +90,6 @@ class DepartmentsController < ApplicationController
     add_breadcrumb I18n.t('departments.edit.title')
 
     @department = Department.find(params[:id])
-
-    render :edit
   end
 
   def update

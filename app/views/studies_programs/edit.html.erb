@@ -1,0 +1,34 @@
+<% if %w(new create).include?(controller.action_name)
+     title(t('studies_programs.new.title'))
+   else
+     title(t('studies_programs.edit.title'))
+   end
+%>
+
+<%= render 'studies_programs/modal' %>
+
+<%= render 'general/form_errors', resource: @studies_program %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <ul class="nav nav-pills">
+      <li role="presentation" class="active"><a href="#program" role="tab" data-toggle="tab"><%= fa_icon'user', text: t('mongoid.models.studies_program.one')%></a></li>
+      <li role="presentation"><a href="#courses" role="tab" data-toggle="tab"><%= fa_icon'book', text: t('mongoid.models.course.other')%></a></li>
+    </ul>
+  </div><!--//panel-heading-->
+  <div class="panel-body">
+    <%= simple_nested_form_for [@department, @studies_program] do |f| %>
+
+        <div class="tab-content">
+            <%= render 'studies_programs/tabs/program', f: f %>
+            <%= render 'studies_programs/tabs/courses', f: f %>
+        </div><!--//tab-content-->
+
+  </div><!--//panel-body-->
+  <div class="panel-footer">
+        <%= f.button :submit, class:'btn-success' %>
+        <%= cancel_btn(department_studies_programs_path(@studies_program.department)) %>
+        <%= delete_btn(@studies_program) %>
+    <% end %>
+  </div><!--//panel-footer-->
+</div><!--//panel-->

@@ -59,8 +59,6 @@ class BuildingsController < ApplicationController
     add_breadcrumb I18n.t('buildings.edit.title')
 
     @building = Building.find(params[:id])
-
-    render :edit
   end
 
   def update

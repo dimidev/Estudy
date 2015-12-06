@@ -4,7 +4,7 @@ el:
       my_account: 'Λογαριασμός Μου'
       log_out: 'Αποσύνδεση'
     languages:
-      choose_language: 'Επιλέξτε γλώσσα'
+      select_language: 'Επιλέξτε γλώσσα'
   languages:
     el: 'Ελληνικά'
-    en: 'Αγγλικά'
+    en: 'English'

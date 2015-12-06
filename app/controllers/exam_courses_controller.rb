@@ -14,7 +14,7 @@ class ExamCoursesController < ApplicationController
                 exam_course.course_class.hall.name,
                 exam_course.course_class.professor.fullname,
                 exam_course.course_class.registrations.count,
-                %{<div class="btn-group">
+                %{<div class="btn-group",
                 <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                 <ul class="dropdown-menu dropdown-center">
                   <li><%= link_to fa_icon('pencil-square-o', text: I18n.t('datatable.edit')), edit_grades_exam_course_path(exam_course), remote: true %></li>

@@ -30,14 +30,14 @@ class Department
   embeds_one :address,      autobuild: true
   embeds_many :contacts
   belongs_to :institution
-  has_many :admins
-  has_many :professors
-  has_many :students
-  has_many :studies_programmes
-  has_many :timetables
-  has_many :notices,        dependent: :destroy
-  has_many :course_classes
-  has_many :exams
+  has_many :admins,           dependent: :destroy
+  has_many :professors,       dependent: :destroy
+  has_many :students,         dependent: :destroy
+  has_many :studies_programs, dependent: :destroy
+  has_many :timetables,       dependent: :destroy
+  has_many :notices,          dependent: :destroy
+  has_many :course_classes,   dependent: :destroy
+  has_many :exams,            dependent: :destroy
 
   accepts_nested_attributes_for :address, :contacts, reject_if: :all_blank, allow_destroy: true
 
@@ -48,11 +48,11 @@ class Department
   end
 
   def courses_for_class
-    studies_programmes = self.studies_programmes.pluck(:id)
-    parent_courses = Course.where(:studies_programme_id.in => studies_programmes).pluck(:id)
+    studies_programs = self.studies_programs.pluck(:id)
+    parent_courses = Course.where(:studies_program_id.in => studies_programs).pluck(:id)
     child_courses = Course.where(:parent_course_id.in => parent_courses)
 
-    Course.or([:studies_programme_id.in => studies_programmes, :id.nin => child_courses.pluck(:parent_course_id).uniq], [:id.in=> child_courses.pluck(:id)])
+    Course.or([:studies_program_id.in => studies_programs, :id.nin => child_courses.pluck(:parent_course_id).uniq], [:id.in=> child_courses.pluck(:id)])
   end
 
   private

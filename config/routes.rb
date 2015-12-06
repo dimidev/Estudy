@@ -35,7 +35,7 @@ Rails.application.routes.draw do
           get 'current', on: :collection
         end
       end
-      resources :studies_programmes do
+      resources :studies_programs do
         resources :courses
       end
       resources :timetables do

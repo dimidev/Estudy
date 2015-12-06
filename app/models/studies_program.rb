@@ -1,4 +1,4 @@
-class StudiesProgramme
+class StudiesProgram
   include Mongoid::Document
   include Mongoid::Datatable
   extend Enumerize

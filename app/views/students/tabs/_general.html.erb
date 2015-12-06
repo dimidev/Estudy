@@ -9,7 +9,7 @@
         <fieldset>
           <legend><%= t('legends.user.academic_informations') %></legend>
           <div class="row">
-            <%= f.association :studies_programme, label_method: :diploma_title, include_blank: false, wrapper_html:{ class:'col-md-6' } %>
+            <%= f.association :studies_program, label_method: :diploma_title, include_blank: false, wrapper_html:{class:'col-md-6' } %>
             <%= f.input :status, include_blank: false, wrapper_html:{ class:'col-md-6' } %>
             <%= f.input :stc, readonly: true, wrapper_html:{ class:'col-md-6' } %>
             <%= f.input :semester, wrapper_html:{ class:'col-md-6' } %>

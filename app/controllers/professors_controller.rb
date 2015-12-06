@@ -72,7 +72,7 @@ class ProfessorsController < ApplicationController
 
   def edit
     @professor = Professor.find(params[:id])
-    add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(current_user.department) if current_user.role?(:admin)
+    add_breadcrumb I18n.t('mongoid.models.professor.other'), department_professors_path(@professor.department)
     add_breadcrumb I18n.t('professors.edit.title')
 
     @offices = [@professor.professor_office, Hall.available_offices].flatten.compact.uniq

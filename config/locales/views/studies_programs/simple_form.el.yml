@@ -1,6 +1,6 @@
 el:
   helpers:
     submit:
-      studies_programme:
+      studies_program:
         create: 'Δημιουργία Προγράμματος'
         update: 'Ενημέρωση Προγράμματος'

@@ -7,7 +7,7 @@
 
     <%= f.simple_fields_for :office_times, defaults:{label: false}  do |a| %>
         <div class="row">
-          <%= a.input :day, prompt: t('simple_form.prompts.contacts.type'), wrapper_html:{class:'col-md-4'} %>
+          <%= a.input :day, wrapper_html:{class:'col-md-4'} %>
           <%= a.input :from, as: :time_picker, wrapper_html:{class:'col-md-3'} %>
           <%= a.input :to, as: :time_picker, wrapper_html:{class:'col-md-3'} %>
           <div class="col-md-2 text-center">

@@ -1,11 +1,11 @@
 el:
   mongoid:
     models:
-      studies_programme:
+      studies_program:
         one: 'Πρόγραμμα Σπουδών'
         other: 'Προγράμματα Σπουδών'
     attributes:
-      studies_programme:
+      studies_program:
         diploma_title: 'Τίτλος Διπλώματος'
         studies_level: 'Επίπεδο Σπουδών'
         semesters: 'Εξάμηνα'
@@ -13,16 +13,16 @@ el:
         orientation: 'Κατεύθυνση'
         status: 'Κατάσταση'
     success:
-      studies_programmes:
+      studies_programs:
         create: 'Δημιουργία Προγράμματος Σπουδών <b>%{title}</b> ήταν επιτυχής'
         update: 'Αποθήκευση Προγράμματος Σπουδών <b>%{title}</b> ήταν επιτυχής'
         destroy: 'Διαγραφή Προγράμματος Σπουδών <b>%{title}</b> ήταν επιτυχής'
     errors:
-      studies_programmes:
+      studies_programs:
         destroy: 'Διαγραφή Προγράμματος Σπουδών <b>%{title}</b> δεν ήταν επιτυχής'
         no_exists: 'Δεν υπάρχει διαθέσιμο Πρόγραμμα Σπουδών, παρακαλώ δημιουργήστε ένα'
   enumerize:
-    studies_programme:
+    studies_program:
       studies_level:
         undergraduate: 'Προπτυχιακό'
         postgraduate: 'Μεταπτυχιακό'

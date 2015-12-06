@@ -43,11 +43,11 @@ class StudentsController < ApplicationController
 
     @department = Department.find(params[:department_id])
 
-    if @department.studies_programmes.exists?
+    if @department.studies_programs.exists?
       @student = @department.students.build
       render :edit
     else
-      redirect_to department_studies_programmes_path(@department), alert: I18n.t('mongoid.errors.studies_programmes.no_exists')
+      redirect_to department_studies_programs_path(@department), alert: I18n.t('mongoid.errors.studies_programs.no_exists')
     end
   end
 
@@ -134,7 +134,7 @@ class StudentsController < ApplicationController
                                       addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
                                       contacts_attributes: [:id, :_destroy, :type, :value])
     else
-      params.require(:student).permit(:studies_programme_id, :user_avatar, :email, :password, :password_confirmation, :role, :status,
+      params.require(:student).permit(:studies_program_id, :user_avatar, :email, :password, :password_confirmation, :role, :status,
                                       :name, :lastname, :gender, :birthdate, :nic, :trn, :semester,
                                       addresses_attributes: [:id, :_destroy, :country, :city, :postal_code, :address, :primary],
                                       contacts_attributes: [:id, :_destroy, :type, :value])

@@ -1,0 +1,27 @@
+<% title t('.title') %>
+
+<div class="panel panel-default">
+  <%if can? :create, StudiesProgram %>
+    <div class="panel-heading">
+      <%= link_to fa_icon('plus', text: t('studies_programs.new.title')), new_department_studies_program_path(params[:department_id]), class:'btn btn-sm btn-primary' %>
+    </div><!--//panel-heading-->
+  <% end %>
+  <div class="panel-body">
+        <table id="studies-programs-table" class="datatable table table-hover table-striped" data-source="<%= department_studies_programs_path(params[:department_id], format: :json) %>">
+          <thead>
+            <tr>
+              <th><%= t('mongoid.attributes.studies_program.diploma_title') %></th>
+              <th><%= t('mongoid.attributes.studies_program.studies_level') %></th>
+              <th class="text-center"><%= t('mongoid.attributes.studies_program.semesters') %></th>
+              <th class="text-center"><%= t('mongoid.models.course.other') %></th>
+              <th class="text-center"><%= t('mongoid.attributes.studies_program.status') %></th>
+              <% if can? [:update, :destroy], StudiesProgram %>
+                <th class="no-sort text-center"><%= t('datatable.options') %></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+  </div><!--//panel-body-->
+</div><!--//panel-->

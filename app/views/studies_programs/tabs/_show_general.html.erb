@@ -1,0 +1,33 @@
+<div role="tabpanel" class="tab-pane active fade in" id="general">
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-half table-bordered">
+        <caption><h4><%= t 'general.informations' %></h4></caption>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_program.diploma_title' %></b></td>
+          <td><%= @studies_program.diploma_title %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_program.studies_level' %></b></td>
+          <td><%= @studies_program.studies_level_text %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_program.semesters' %></b></td>
+          <td><%= @studies_program.semesters %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_program.status' %></b></td>
+          <td><%= @studies_program.status_text %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_program.fees' %></b></td>
+          <td><%= @studies_program.fees ? t('simple_form.yes') : t('simple_form.no') %></td>
+        </tr>
+        <tr>
+          <td><b><%= t 'mongoid.attributes.studies_program.orientation' %></b></td>
+          <td><%= @studies_program.orientation ? t('simple_form.yes') : t('simple_form.no') %></td>
+        </tr>
+      </table>
+    </div>
+  </div><!--//row-->
+</div><!--//general-->

@@ -1,16 +1,16 @@
 en:
   mongoid:
     models:
-      studies_programme:
+      studies_program:
         one: 'Studies Programme'
         other: 'Studies Programmes'
     attributes:
     success:
-      studies_programmes:
+      studies_programs:
         create: 'Studies Programme %{title} is created'
         update: 'Studies Programme %{title} is updated'
         destroy: 'Studies Programme %{title} is deleted'
     errors:
-      studies_programmes:
+      studies_programs:
         destroy: 'Studies Programme %{title} is not deleted'
         no_exists: 'There is no available Studies Programme, please create one'

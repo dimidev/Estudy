@@ -13,12 +13,12 @@ class Ability
       can :manage, Admin
       can :manage, Notice
       can :read, [Professor, Student, Registration]
-      can :read, [StudiesProgramme, CourseClass, Timetable, Exam]
+      can :read, [StudiesProgram, CourseClass, Timetable, Exam]
     elsif user.role? :admin
       can :read, Institution
       can [:show, :update], Department, id: user.department_id
       can :manage, [Admin, Professor, Student]
-      can :manage, [StudiesProgramme, Timetable, CourseClass, Exam, ExamCourse]
+      can :manage, [StudiesProgram, Timetable, CourseClass, Exam, ExamCourse]
       can :manage, [Registration]
       can :manage, Notice, department_id: user.department_id
       can :manage, [Building, Hall]
@@ -27,7 +27,7 @@ class Ability
       can :manage, Department, id: user.department_id
       can [:show, :edit], Professor
       can :read, CourseClass
-      can :read, [StudiesProgramme, Exam]
+      can :read, [StudiesProgram, Exam]
       can :current, Timetable
       can :read, Notice
     else
@@ -36,7 +36,7 @@ class Ability
       can [:show, :update], Student, id: user.id
       can :read, CourseClass
       can :manage, Registration
-      can :read, StudiesProgramme
+      can :read, StudiesProgram
       can :current, Timetable
     end
   end
