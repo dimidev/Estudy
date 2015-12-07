@@ -73,6 +73,10 @@ class TimetablesController < ApplicationController
 
     add_breadcrumb I18n.t('mongoid.models.timetable.other'), department_timetables_path(@timetable.department)
     add_breadcrumb I18n.t('timetables.edit.title')
+
+    unless @timetable.current?
+      redirect_to :back, alert: I18n.t('mongoid.errors.timetables.cannot_edit')
+    end
   end
 
   def update

@@ -6,7 +6,7 @@ el:
         other: 'Χρονοδιαγράμματα'
       child_timetable:
         one: 'Περίοδος'
-        other: 'Περίδοι'
+        other: 'Περίοδοι'
         period: 'Περιόδου'
     attributes:
       timetable:
@@ -15,6 +15,7 @@ el:
         type: 'Τύπος'
         from: 'Έναρξη'
         to: 'Λήξη'
+        child_timetables: 'Περίοδοι'
     success:
       timetables:
         create: 'Δημιοργία Χρονοδιαγράμματος <b>%{title}</b> ήταν επιτυχής'
@@ -23,6 +24,7 @@ el:
     errors:
       timetables:
         destroy: 'Διαγραφή Χρονοδιαγράμματος <b>%{title}</b> δεν ήταν επιτυχής'
+        cannot_edit: 'Δεν μπορείτε να επεξεργαστείτε το συγκεκριμένο χρονοδιάγραμμα'
         current:
           not_exists: 'Δεν υπάρχει Χρονοδιάγραμμα για την τρέχουσα περίοδο'
   enumerize:

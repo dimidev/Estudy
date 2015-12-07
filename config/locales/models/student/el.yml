@@ -4,6 +4,8 @@ el:
       student:
         one: 'Φοιτητή'
         other: 'Φοιτητές'
+        grade: 'Βαθμός'
+        grades: 'Βαθμολογία'
     attributes:
       student:
         stc: 'ΑΕΜ'

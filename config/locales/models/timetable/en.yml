@@ -6,16 +6,13 @@ en:
     attributes:
       timetable:
     success:
-      models:
-        timetable:
-          create: 'Timetable %{title} is created'
-          update: 'Timetable %{title} is updated'
-          destroy: 'Timetable %{title} is deleted'
+      timetables:
+        create: 'Timetable %{title} is created'
+        update: 'Timetable %{title} is updated'
+        destroy: 'Timetable %{title} is deleted'
     errors:
-      models:
-        timetable:
-          create: 'Timetable is not created'
-          update: 'Timetable is not updated'
-          destroy: 'Timetable %{title} is not deleted'
-          current:
-            not_exists: 'Timetable not exists for current period'
+      timetables:
+        destroy: 'Timetable %{title} is not deleted'
+        cannot_edit: 'Yoy cannot edit this timetable'
+        current:
+          not_exists: 'Timetable not exists for current period'

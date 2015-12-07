@@ -20,7 +20,7 @@ class StudentsController < ApplicationController
                      %{<div class="btn-group">
                         <%= link_to fa_icon('cog'), '#', class:'btn btn-sm btn-default dropdown-toggle', data:{toggle:'dropdown'} %>
                         <ul class="dropdown-menu dropdown-center">
-                          <li><%= link_to fa_icon('tasks', text: I18n.t('mongoid.models.grade.special')), grades_student_path(student) %></li>
+                          <li><%= link_to fa_icon('tasks', text: I18n.t('mongoid.models.student.grades')), grades_student_path(student) %></li>
                           <% if can? :index, Registration %>
                             <li><%= link_to fa_icon('tasks', text: I18n.t('mongoid.models.registration.other')), student_registrations_path(student) %></li>
                           <% end %>

@@ -16,6 +16,8 @@ class Department
   enumerize :status, in: {active: true, not_active: false}, default: :active
   field :head_of_department,  type: String
 
+  index({title: 1},{unique: true, background: true})
+
   has_mongoid_attached_file :department_logo, styles:{medium:'300x300>',thumb:'60x60>'},
                             url:"/system/:attachment/:style/:id.:extension",
                             path:":rails_root/public/system/:attachment/:style/:id.:extension",

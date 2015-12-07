@@ -8,17 +8,20 @@ class Timetable
 
   TIMETABLE_TYPE = %w(registrations registrations_modification theory_exams lab_exams other)
 
-  field :period,   type: String
-  field :title,   type: String
+  field :period,    type: String
+  field :title,     type: String
   field :type
   enumerize :type, in: TIMETABLE_TYPE
-  field :from,    type: Date
-  field :to,      type: Date
+  field :from,      type: Date
+  field :to,        type: Date
+
+  index({period: 1},{unique: true, background: true})
 
   validates_presence_of :from, :to
   validates_presence_of :title, if: lambda{|obj| obj.type == 'other'}
   validates_presence_of :period, if: lambda{|obj| obj.has_child_timetables? }
   validates_presence_of :type, if: lambda{|obj| obj.has_parent_timetable?}
+  validates_uniqueness_of :type, unless: lambda{|obj| obj.type == 'other' || obj.has_child_timetables?}
 
   recursively_embeds_many
   belongs_to :department
