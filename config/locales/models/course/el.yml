@@ -20,6 +20,7 @@ el:
         percent: 'Ποσοστό ECTS'
         attendances_limit: 'Όριο απουσιών'
         chain_course: 'Μάθημα Αλυσίδα'
+        child_courses: 'Μέροι μαθήματος'
     success:
       courses:
         create: 'Το Μάθημα <b>%{title}</b> δημιουργήθηκε επιτυχώς'
@@ -31,6 +32,12 @@ el:
           attributes:
             semester:
               bigger_than_programm: 'είναι μεγαλύτερο του εξαμήνου Προγράμματος'
+            course_part:
+              max_childs: 'εχετε υπέρβει το όριο τον μαθημάτων'
+            percent:
+              not_correct: 'το ποσοστό των ECTS των μαθημάτων δεν είναι σωστό'
+            hours:
+              different_than_parent: 'οι ώρες των μαθημάτων δεν είναι σωστές'
       courses:
         destroy: 'Η διαγραφή Μαθήματος <b>%{title}</b> δεν ήταν επιτυχής'
   enumerize:

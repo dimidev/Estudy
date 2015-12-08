@@ -19,5 +19,11 @@ en:
           attributes:
             semester:
               bigger_than_programm: 'is bigger than semester ot the programm'
+            course_part:
+              max_childs: 'you have reach the limit of max couorses'
+            percent:
+              not_correct: 'sum of ects is not correct'
+            hours:
+              different_than_parent: 'hours is not correct'
       courses:
         destroy: 'Course <b>%{title}</b> is not deleted'

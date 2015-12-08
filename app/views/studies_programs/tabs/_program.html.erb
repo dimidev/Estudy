@@ -3,8 +3,6 @@
       <%= f.input :diploma_title, wrapper_html:{ class:'col-md-6' } %>
       <%= f.input :studies_level, as: :select, include_blank: false, wrapper_html:{ class:'col-md-6' }  %>
       <%= f.input :semesters, wrapper_html:{ class:'col-md-6' }  %>
-      <%= f.input :status, wrapper_html:{ class:'col-md-6' } %>
+      <%= f.input :status, include_blank: false, wrapper_html:{ class:'col-md-6' } %>
     </div><!--//row-->
-    <%= f.input :fees, as: :boolean, inline_label: t('mongoid.attributes.studies_program.fees'), input_html:{class:'icheck'} %>
-    <%= f.input :orientation, as: :boolean, inline_label: t('mongoid.attributes.studies_program.orientation'), input_html:{class:'icheck'} %>
 </div><!--//programme-->

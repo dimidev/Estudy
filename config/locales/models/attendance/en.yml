@@ -6,3 +6,7 @@ en:
        other: 'Attendances'
     attributes:
       attendance:
+    errors:
+      models:
+        attendance:
+          no_students: 'There is no registered students'

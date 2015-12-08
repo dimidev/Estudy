@@ -9,7 +9,8 @@ class Student < User
   field :status
   enumerize :status, in: [:active, :not_active, :postponement, :graduate], default: :active
 
-  index({stc: 1},{unique: true, background: true})
+  # FIXME
+  #index({stc: 1},{unique: true, background: true})
 
   validates_associated :department, :studies_program
   validates_presence_of :semester, :status

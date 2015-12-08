@@ -103,6 +103,6 @@ class StudiesProgramsController < ApplicationController
 
   private
   def studies_program_params
-    params.require(:studies_program).permit(:studies_level, :diploma_title, :semesters, :fees, :orientation, :status)
+    params.require(:studies_program).permit(:studies_level, :diploma_title, :semesters, :status)
   end
 end

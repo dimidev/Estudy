@@ -6,3 +6,11 @@ el:
        other: 'Παρουσίες'
     attributes:
       attendance:
+        date: 'Ημερομηνία'
+        present: 'Παρόντες'
+        absent: 'Απώντες'
+        students: 'Φοιτητές'
+    errors:
+      models:
+        attendance:
+          no_students: 'Δεν υπάρχουν εγγεγραμμένοι φοιτητές'

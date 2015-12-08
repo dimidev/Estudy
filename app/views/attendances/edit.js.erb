@@ -1,5 +1,20 @@
 $('.modal').remove();
 $('.page-header').after("<%= j render 'attendances/modal' %>");
 $('select').selectpicker();
+
+function icheck(){
+    if($(".icheck").length > 0){
+        $(".icheck").each(function(){
+            var $el = $(this);
+            var opt = {
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_circle-blue'
+            };
+            $el.iCheck(opt);
+        });
+    }
+}
+icheck();
+
 $('.datetimepicker').datetimepicker();
 $('.modal').modal();

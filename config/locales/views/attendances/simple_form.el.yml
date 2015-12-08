@@ -1,0 +1,6 @@
+el:
+  helpers:
+    submit:
+      attendance:
+        create: 'Αποθήκευση Παρουσιών'
+        update: 'Ενημέρωση Παρουσιών'

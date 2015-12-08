@@ -7,8 +7,6 @@ class StudiesProgram
   field :diploma_title,   type: String
   field :studies_level
   enumerize :studies_level, in: [:undergraduate , :postgraduate], default: :undergraduate
-  field :fees,            type: Boolean,      default: false
-  field :orientation,     type: Boolean,      default: false
   field :semesters,       type: Integer
   field :status
   enumerize :status, in: {active: true, not_active: false}, default: :active

@@ -24,6 +24,7 @@ class AttendancesController < ApplicationController
   def new
     @course_class = CourseClass.find(params[:course_class_id])
     @attendance = @course_class.attendances.build
+    @students = @course_class.registrations.map(&:student_id)
 
     render :edit
   end
@@ -32,7 +33,9 @@ class AttendancesController < ApplicationController
     @course_class = CourseClass.find(params[:course_class_id])
     @attendance = @course_class.attendances.build(attendance_params)
 
-    unless @attendance.save
+    if @attendance.save
+    
+    else
 
     end
 

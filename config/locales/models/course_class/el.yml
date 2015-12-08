@@ -14,7 +14,7 @@ el:
         professor: 'Καθηγητής'
         hall: 'Αίθουσα'
     success:
-      course_classses:
+      course_classes:
         create: 'Το Τμήμα για <b>%{course}</b> έχει δημιουργηθεί επιτυχώς'
         update: 'Το Τμήμα για <b>%{course}</b> έχει ανανεωθεί επιτυχώς'
         destroy: 'Το Τμήμα <b>%{course}</b> διαγράφηκε με επιτυχία'
@@ -25,7 +25,7 @@ el:
             not_available: 'δεν είναι διαθέσιμος στην επιλεγμένη ώρα'
           hall:
             not_available: 'δεν είναι διαθέσιμη στην επιλεγμενη ώρα'
-      course_classses:
+      course_classes:
         destroy: 'Δεν πραγματοποιήθηκε η διαγραφή του Τμήματος για <b>%{course}</b>'
   enumerize:
     course_class:

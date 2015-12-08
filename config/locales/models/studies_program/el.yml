@@ -9,8 +9,6 @@ el:
         diploma_title: 'Τίτλος Διπλώματος'
         studies_level: 'Επίπεδο Σπουδών'
         semesters: 'Εξάμηνα'
-        fees: 'Δίδακτρα'
-        orientation: 'Κατεύθυνση'
         status: 'Κατάσταση'
     success:
       studies_programs:

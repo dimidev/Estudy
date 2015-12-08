@@ -23,7 +23,9 @@ class Course
   validates :ects, presence: true, numericality: {integer_only: true, greater_than_equal_to: 0}, unless: lambda{ |obj| obj.has_parent_course? }
   validates :percent, presence: true, numericality: {integer_only: true, greater_than_equal_to: 0, less_than_or_equal_to: 100}, if: lambda{ |obj| obj.has_parent_course? }
   validates :attendances_limit, presence: true, numericality: {integer_only: true, greater_than_equal_to: 0, less_than_or_equal_to: 100}, if: lambda{ |obj| obj.course_part == 'lab' }
+  validates_uniqueness_of :course_part, if: lambda{|obj| obj.has_parent_course?}
   validate :check_ects
+  validate :check_child_courses
 
   belongs_to  :studies_program
   has_many    :registrations
@@ -43,6 +45,14 @@ class Course
   def check_ects
     unless has_parent_course?
       errors[:semester] << I18n.t('mongoid.errors.models.course.attributes.semester.bigger_than_programm') if semester.to_i > studies_program.semesters.to_i
+    end
+  end
+
+  def check_child_courses
+    if has_child_courses?
+      errors[:child_courses] << I18n.t('mongoid.errors.models.course.attributes.course_part.max_childs') if child_courses.count > 2
+      errors[:child_courses] << I18n.t('mongoid.errors.models.course.attributes.hours.different_than_parent') if child_courses.map(&:hours).sum > hours
+      errors[:child_courses] << I18n.t('mongoid.errors.models.course.attributes.percent.not_correct') if child_courses.map(&:percent).sum != 100
     end
   end
 

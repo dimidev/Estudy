@@ -1,13 +1,20 @@
 <div class="modal fade" id="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><%= t('exams.new.title') %></h4>
+        <h4 class="modal-title"><%= t 'mongoid.models.attendance.other' %></h4>
       </div>
       <%= simple_form_for [@course_class, @attendance], remote: true do |f| %>
       <div class="modal-body">
-        <%= f.association :students, as: :check_boxes, input_html:{class:'icheck'} %>
+        <%= f.input :date, as: :datetime_picker %>
+        <% if @students.present? %>
+            <%= f.association :students, as: :check_boxes, collection: @students, label_method: lambda{|obj| "#{obj.fullname} (#{obj.semester} #{t 'mongoid.attributes.student.semester'})"}, input_html:{class:'icheck'} %>
+        <% else %>
+            <div class="alert alert-warning">
+              <%= fa_icon'exclamation-circle', text: t('mongoid.errors.models.attendance.no_students') %>
+            </div>
+        <% end %>
       </div>
       <div class="modal-footer">
           <%= f.button :submit, class:'btn-success' %>

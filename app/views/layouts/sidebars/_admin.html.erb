@@ -45,16 +45,7 @@
   </ul>
 </li>
 
-<li class="has-sub">
-  <a>
-    <%= fa_icon('book',text: t('mongoid.models.course_class.other')) %>
-    <%= fa_icon 'caret-down', class:'pull-right' %>
-  </a>
-  <ul class="sub-menu">
-    <li><%= link_to t('course_classes.new.title'), new_department_course_class_path(current_user.department) %></li>
-    <li><%= link_to t('course_classes.index.title'), department_course_classes_path(current_user.department) %></li>
-  </ul>
-</li>
+<li><%= link_to fa_icon('book',text: t('mongoid.models.course_class.other')), department_course_classes_path(current_user.department) %></li>
 
 <li class="has-sub">
   <a>
