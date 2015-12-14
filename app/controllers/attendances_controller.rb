@@ -34,7 +34,7 @@ class AttendancesController < ApplicationController
     @attendance = @course_class.attendances.build(attendance_params)
 
     if @attendance.save
-    
+
     else
 
     end
